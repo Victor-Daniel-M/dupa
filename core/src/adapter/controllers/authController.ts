@@ -4,9 +4,9 @@ import { User } from '../../domain/entities/user';
 import { Request, Response } from 'express';
 import { z } from 'zod';
 import { Body, Controller, Post, Req, Res } from '@nestjs/common';
-import { EmailService } from '@authentication/infrastructure/services/emailService';
-import { NotificationService } from '@authentication/infrastructure/services/notificationService';
-import { UserRepositoryImpl } from '@authentication/infrastructure/repositories/userRepository';
+import { EmailService } from '@core/infrastructure/services/emailService';
+import { NotificationService } from '@core/infrastructure/services/notificationService';
+import { UserRepositoryImpl } from '@core/infrastructure/repositories/userRepository';
 import { LoginDto } from './dtos/authController.dto';
 
 @Controller('auth')

@@ -9,4 +9,4 @@ import { UserRepositoryImpl } from './infrastructure/repositories/userRepository
   providers: [EmailService, NotificationService, UserRepositoryImpl],
   controllers: [AuthController],
 })
-export class AuthenticationModule {}
+export class CoreModule {}

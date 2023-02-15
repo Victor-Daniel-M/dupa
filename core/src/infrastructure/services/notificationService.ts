@@ -5,7 +5,7 @@ import { getCurrentWeather } from '../external-apis/weatherApi';
 @Injectable()
 export class NotificationService {
   async sendWeatherNotification(user: User) {
-    const weather = await getCurrentWeather(user.city);
+    // const weather = await getCurrentWeather(user.city.value);
     const notification = {
       title: 'Weather Update',
       body: 'The weather is looking good today, enjoy your day!',

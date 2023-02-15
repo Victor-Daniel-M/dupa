@@ -1,11 +1,11 @@
-import { AuthController } from '@authentication/adapter/controllers/authController';
+import { AuthController } from '@core/adapter/controllers/authController';
 import { Module } from '@nestjs/common';
-import { AuthenticationModule } from '@authentication/authentication.module';
+import { CoreModule } from '@core/core.module';
 import { PinoLoggerService } from 'common/logger/src/adapters/real/pinoLogger.service';
 import { LoggerModule } from 'common/logger/src/logger.module';
-import { EmailService } from '@authentication/infrastructure/services/emailService';
-import { NotificationService } from '@authentication/infrastructure/services/notificationService';
-import { UserRepositoryImpl } from '@authentication/infrastructure/repositories/userRepository';
+import { EmailService } from '@core/infrastructure/services/emailService';
+import { NotificationService } from '@core/infrastructure/services/notificationService';
+import { UserRepositoryImpl } from '@core/infrastructure/repositories/userRepository';
 import { ZodValidationPipe } from 'nestjs-zod';
 import { APP_PIPE } from '@nestjs/core';
 
@@ -19,7 +19,7 @@ import { APP_PIPE } from '@nestjs/core';
       useClass: ZodValidationPipe,
     },
   ],
-  imports: [AuthenticationModule, LoggerModule],
+  imports: [CoreModule, LoggerModule],
   controllers: [AuthController],
 })
 export class AppModule {

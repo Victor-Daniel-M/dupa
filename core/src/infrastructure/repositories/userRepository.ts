@@ -2,14 +2,14 @@ import { UserRepository } from '../../domain/repositories/userRepository';
 import { User } from '../../domain/entities/user';
 import { Email } from '../../domain/value-objects/email';
 import { Password } from '../../domain/value-objects/password';
+import { CString } from 'core/src/domain/value-objects/string';
 
 export class UserRepositoryImpl implements UserRepository {
   private users: User[] = [
     {
-      city: 'Kampala',
       email: new Email('test@email.com'),
       password: new Password('1234567890'),
-      id: '1',
+      id: new CString('1'),
     },
   ];
 
