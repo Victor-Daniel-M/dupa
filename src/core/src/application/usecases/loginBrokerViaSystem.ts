@@ -4,24 +4,19 @@ import { UserRepository } from '../../domain/repositories/userRepository';
 import { Email } from '../../domain/value-objects/email';
 import { Password } from '../../domain/value-objects/password';
 import { EmailService } from '../../infrastructure/services/emailService';
-import { NotificationService } from '../../infrastructure/services/notificationService';
 
-export class LoginUserUseCase {
+export class LoginBrokerViaSystemUsecase {
   private userRepository: UserRepository;
   private emailService: EmailService;
-  private notificationService: NotificationService;
 
   constructor({
     userRepository,
     emailService,
-    notificationService,
   }: {
     userRepository: UserRepository;
     emailService: EmailService;
-    notificationService: NotificationService;
   }) {
     this.emailService = emailService;
-    this.notificationService = notificationService;
     this.userRepository = userRepository;
   }
 

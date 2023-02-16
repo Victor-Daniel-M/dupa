@@ -1,6 +1,6 @@
 import express from 'express';
-import { AuthController } from '../../../adapter/controllers/authController';
-import { LoginUserUseCase } from '../../../application/usecases/loginUser';
+import { AuthController } from '../../../adapter/controllers/login.controller';
+import { LoginUserUseCase } from '../../../application/usecases/loginBrokerViaSystem';
 import { ProjectDeps } from '../../../config/projectDependencies';
 
 export function AuthRouter(projectDeps: ProjectDeps) {

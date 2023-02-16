@@ -1,0 +1,108 @@
+import { createMock } from '@golevelup/ts-jest';
+import { ExecutionContext } from '@nestjs/common';
+import { ResponseInterceptor } from '../../../../../common/controller-interceptors/src';
+import { of } from 'rxjs';
+import { AuthController } from './login.controller';
+import { Test } from '@nestjs/testing';
+import { NotificationService } from '../../infrastructure/services/notificationService';
+import { EmailService } from '../../infrastructure/services/emailService';
+import { UserRepositoryImpl } from '../../infrastructure/repositories/userRepository';
+
+describe('AuthController', () => {
+  let authController: AuthController;
+  let emailService: EmailService;
+
+  beforeEach(async () => {
+    const moduleRef = await Test.createTestingModule({
+      controllers: [AuthController],
+      providers: [
+        EmailService,
+        {
+          provide: EmailService,
+          useValue: createMock<EmailService>(new EmailService()),
+        },
+        UserRepositoryImpl,
+        {
+          provide: UserRepositoryImpl,
+          useValue: createMock<UserRepositoryImpl>(new UserRepositoryImpl()),
+        },
+        NotificationService,
+        {
+          provide: NotificationService,
+          useValue: createMock<NotificationService>(new NotificationService()),
+        },
+      ],
+    }).compile();
+
+    authController = moduleRef.get(AuthController);
+    emailService = moduleRef.get(EmailService);
+  });
+
+  describe('login', () => {
+    it('should be able to login', async () => {
+      // SETUP
+      const testData = {
+        email: 'test@email.com',
+        password: '123456789',
+      };
+
+      const expectedLoginRestaurant = {
+        id: {
+          value: '1',
+        },
+      };
+
+      // ACT
+      const res = await authController.loginBrokerViaSystem(testData);
+
+      // ASSERT
+      expect(res).toMatchObject(expectedLoginRestaurant);
+
+      expect(emailService.sendLoginEmail).toBeCalledTimes(1);
+    });
+  });
+});
+
+// describe('Mocked Execution Context', () => {
+//   it('should have a fully mocked Execution Context', () => {
+//     const mockExecutionContext = createMock<ExecutionContext>();
+//     expect(mockExecutionContext.switchToHttp().getResponse()).toBeDefined();
+//   });
+// });
+
+// describe('WrapDataInterceptor', () => {
+//   const executionContext = createMock<ExecutionContext>();
+//   const wrapDataInterceptor = new ResponseInterceptor();
+
+//   it("should wrap the next handler response in 'data' object", function (done) {
+//     // Arrange
+//     const someData = {
+//       Id: 1,
+//       email: 'john@mail.com',
+//     };
+
+//     // This guarantees our data will be returned to our interceptor
+//     const callHandler = {
+//       handle() {
+//         return of(someData);
+//       },
+//     };
+
+//     // Act
+//     wrapDataInterceptor
+//       .intercept(executionContext, callHandler)
+//       .subscribe((asyncData) => {
+//         console.log('asyncData:', asyncData);
+
+//         // Assert
+//         expect(asyncData).toMatchObject({
+//           // @ts-ignore
+//           data: {
+//             Id: 0,
+//             email: 'john@mail.com',
+//           },
+//         });
+//         done();
+//       });
+//   });
+// });
