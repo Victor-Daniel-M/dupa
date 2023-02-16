@@ -1,8 +1,9 @@
 import { CString } from '../../domain/value-objects/string';
 import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
-import { User, UserType } from '../../domain/entities/user';
 import { Property } from '../../domain/entities/property';
 import { NotificationService } from '../../infrastructure/services/notificationService';
+import { z } from 'nestjs-zod/z';
+import { RecordListingByBrokerSchema } from '@core/adapter/controllers/dtos/listing.controller.dto';
 
 export class RecordListingByBrokerUseCase {
   private propertyRepository: RepositoryImpl<Property>;
@@ -19,27 +20,15 @@ export class RecordListingByBrokerUseCase {
     this.propertyRepository = propertyRepository;
   }
 
-  async execute({
-    coverImage,
-    createdAt,
-    openDate,
-    updatedAt,
-    id,
-    propertyCategoryId,
-  }: {
-    coverImage: string;
-    openDate: string;
-    createdAt: string;
-    updatedAt: string;
-    id: string;
-    propertyCategoryId: string;
-  }): Promise<Property> {
-    const coverImageValueObj = new CString(coverImage);
-    const idValueObj = new CString(id);
-    const propertyCategoryIdValueObj = new CString(propertyCategoryId);
-    const openDateValueObj = new CString(openDate);
-    const createdAtValueObj = new CString(createdAt);
-    const updatedAtValueObj = new CString(updatedAt);
+  async execute(
+    data: z.infer<typeof RecordListingByBrokerSchema>,
+  ): Promise<Property> {
+    const coverImageValueObj = new CString(data.coverImage);
+    const idValueObj = new CString(data.id);
+    const propertyCategoryIdValueObj = new CString(data.propertyCategoryId);
+    const openDateValueObj = new CString(data.openDate);
+    const createdAtValueObj = new CString(data.createdAt);
+    const updatedAtValueObj = new CString(data.updatedAt);
 
     const res = await this.propertyRepository.createOrThrow(
       {

@@ -1,7 +1,7 @@
-import { UserTypes } from '../../../domain/entities/user';
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'nestjs-zod/z';
 
+// RECORD LISTING SCHEMA
 export const RecordListingByBrokerSchema = z.object({
   coverImage: z.string(),
   openDate: z.string(),
@@ -11,7 +11,17 @@ export const RecordListingByBrokerSchema = z.object({
   propertyCategoryId: z.string(),
 });
 
-// class is required for using DTO as a type
 export class RecordListingByBrokerDTO extends createZodDto(
   RecordListingByBrokerSchema,
 ) {}
+
+// SEARCH LISTING SCHEMA
+export const SearchListingSchema = z.object({
+  coverImage: z.string().optional(),
+  openDate: z.string().optional(),
+  createdAt: z.string().optional(),
+  updatedAt: z.string().optional(),
+  propertyCategoryId: z.string().optional(),
+});
+
+export class SearchListingDTO extends createZodDto(SearchListingSchema) {}

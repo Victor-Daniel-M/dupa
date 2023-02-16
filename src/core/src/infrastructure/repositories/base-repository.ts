@@ -30,10 +30,7 @@ export class RepositoryImpl<T extends { id?: { value: string } }>
       return Object.entries(query).every(([key, value]) => {
         if (key in item) {
           if (typeof value === 'string') {
-            return (
-              typeof item[key] === 'string' &&
-              (item[key]?.value as string).includes(value)
-            );
+            return (item[key]?.value as string).includes(value);
           } else {
             return item['id']?.value === value;
           }
