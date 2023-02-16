@@ -1,16 +1,16 @@
 import { createMock } from '@golevelup/ts-jest';
-import { AuthController } from './login.controller';
+// import { AuthController } from './login.controller';
 import { Test } from '@nestjs/testing';
 import { NotificationService } from '../../infrastructure/services/notificationService';
 import { EmailService } from '../../infrastructure/services/emailService';
 
 describe('SearchController', () => {
-  let authController: AuthController;
+  // let authController: AuthController;
   let emailService: EmailService;
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      controllers: [AuthController],
+      // controllers: [AuthController],
       providers: [
         EmailService,
         {
@@ -25,7 +25,7 @@ describe('SearchController', () => {
       ],
     }).compile();
 
-    authController = moduleRef.get(AuthController);
+    // authController = moduleRef.get(AuthController);
     emailService = moduleRef.get(EmailService);
   });
 

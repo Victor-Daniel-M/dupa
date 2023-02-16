@@ -1,41 +1,39 @@
-import { createMock } from '@golevelup/ts-jest';
-import { AuthController } from './login.controller';
-import { Test } from '@nestjs/testing';
-import { NotificationService } from '../../infrastructure/services/notificationService';
+import { LoginBrokerViaSystemUsecase } from '../../application/usecases/loginBrokerViaSystem';
+import { Body, Controller, Post, UseInterceptors } from '@nestjs/common';
 import { EmailService } from '../../infrastructure/services/emailService';
+import { NotificationService } from '../../infrastructure/services/notificationService';
+import { LoginDto } from './dtos/auth.controller.dto';
+import { ResponseInterceptor } from '../../../../../common/controller-interceptors/src';
+import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
+import { User } from '../../domain/entities/user';
+import { RegisterAsSearcherViaSystemUseCase } from '../../application/usecases/registerAsSearcherViaSystem';
+import {
+  RegisterAsSearcherViaSystem,
+  RegisterAsSearcherViaSystemDTO,
+} from './dtos/register.controller.dto';
+import { z } from 'zod';
 
-describe('RegisterController', () => {
-  let authController: AuthController;
-  let emailService: EmailService;
+@UseInterceptors(ResponseInterceptor)
+@Controller('register')
+export class RegisterController {
+  constructor(
+    private emailService: EmailService,
+    private notificationService: NotificationService,
+    private repositoryImpl: RepositoryImpl<User>,
+  ) {}
 
-  beforeEach(async () => {
-    const moduleRef = await Test.createTestingModule({
-      controllers: [AuthController],
-      providers: [
-        EmailService,
-        {
-          provide: EmailService,
-          useValue: createMock<EmailService>(new EmailService()),
-        },
-        NotificationService,
-        {
-          provide: NotificationService,
-          useValue: createMock<NotificationService>(new NotificationService()),
-        },
-      ],
-    }).compile();
+  @Post('broker-via-system')
+  async registerAsSearcherViaSystem(
+    @Body() body: RegisterAsSearcherViaSystemDTO,
+  ): Promise<User> {
+    const registerAsSearcherViaSystemUseCase =
+      new RegisterAsSearcherViaSystemUseCase({
+        emailService: this.emailService,
+        userRepository: this.repositoryImpl,
+      });
 
-    authController = moduleRef.get(AuthController);
-    emailService = moduleRef.get(EmailService);
-  });
+    const user = await registerAsSearcherViaSystemUseCase.execute(body);
 
-  describe('register a searcher via system', () => {
-    it.todo('searcher should be able to search a listing with default filters');
-
-    it.todo(
-      'searcher should not be able to search a listing with incorrect filters',
-    );
-
-    it.todo('broker should not be able to search a listing');
-  });
-});
+    return user;
+  }
+}

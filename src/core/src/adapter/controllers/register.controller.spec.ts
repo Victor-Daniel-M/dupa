@@ -1,21 +1,30 @@
 import { createMock } from '@golevelup/ts-jest';
-import { AuthController } from './login.controller';
 import { Test } from '@nestjs/testing';
 import { NotificationService } from '../../infrastructure/services/notificationService';
 import { EmailService } from '../../infrastructure/services/emailService';
+import { RegisterController } from './register.controller';
+import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
+import { User } from '@core/domain/entities/user';
 
 describe('Register Controller', () => {
-  let authController: AuthController;
+  let registerController: RegisterController;
   let emailService: EmailService;
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      controllers: [AuthController],
+      controllers: [RegisterController],
       providers: [
         EmailService,
         {
           provide: EmailService,
           useValue: createMock<EmailService>(new EmailService()),
+        },
+        RepositoryImpl,
+        {
+          provide: RepositoryImpl,
+          useValue: createMock<RepositoryImpl<User>>(
+            new RepositoryImpl('users'),
+          ),
         },
         NotificationService,
         {
@@ -25,12 +34,35 @@ describe('Register Controller', () => {
       ],
     }).compile();
 
-    authController = moduleRef.get(AuthController);
+    registerController = moduleRef.get(RegisterController);
     emailService = moduleRef.get(EmailService);
   });
 
   describe('register searcher via system', () => {
-    it.todo('searcher should be able to register via system');
+    it('searcher should be able to register via system', async () => {
+      const expectedLoginRestaurant = {
+        id: {
+          value: '1',
+        },
+      };
+
+      // ACT
+      const res = await registerController.registerAsSearcherViaSystem({
+        createdAt: 'date',
+        updatedAt: 'daate',
+        email: 'test@email.com',
+        firstName: 'test',
+        id: '1',
+        lastName: 'test',
+        password: '12343578',
+        phoneNumber: '123456',
+        userType: 'AGENT',
+      });
+
+      // ASSERT
+      expect(res).toMatchObject(expectedLoginRestaurant);
+      expect(emailService.sendLoginEmail).toBeCalledTimes(1);
+    });
 
     it.todo(
       'searcher should not be able to register with incorrect information',

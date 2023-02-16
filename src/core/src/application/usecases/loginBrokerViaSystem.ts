@@ -33,7 +33,7 @@ export class LoginBrokerViaSystemUsecase {
       throw new Error('User not found');
     }
 
-    if (!user.password.compare(passwordValueObject.value)) {
+    if (!user.password?.compare(passwordValueObject.value)) {
       throw new Error('Incorrect password');
     }
 

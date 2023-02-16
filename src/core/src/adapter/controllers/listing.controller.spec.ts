@@ -1,5 +1,5 @@
 import { createMock } from '@golevelup/ts-jest';
-import { AuthController } from './login.controller';
+// import { AuthController } from './login.controller';
 import { Test } from '@nestjs/testing';
 import { NotificationService } from '../../infrastructure/services/notificationService';
 import { EmailService } from '../../infrastructure/services/emailService';
@@ -7,12 +7,12 @@ import { RepositoryImpl } from '../../infrastructure/repositories/base-repositor
 import { User } from '@core/domain/entities/user';
 
 describe('ListingController', () => {
-  let authController: AuthController;
+  // let authController: AuthController;
   let emailService: EmailService;
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      controllers: [AuthController],
+      // controllers: [AuthController],
       providers: [
         EmailService,
         {
@@ -34,7 +34,7 @@ describe('ListingController', () => {
       ],
     }).compile();
 
-    authController = moduleRef.get(AuthController);
+    // authController = moduleRef.get(AuthController);
     emailService = moduleRef.get(EmailService);
   });
 

@@ -3,12 +3,9 @@ import { Password } from '../value-objects/password';
 import { CString } from '../value-objects/string';
 import { MetaValueTypes } from './_common';
 
-enum UserType {
-  GUEST,
-  AGENT,
-  ADMIN,
-  USER,
-}
+export const UserTypes = ['GUEST', 'AGENT', 'ADMIN', 'USER'] as const;
+
+export type UserType = (typeof UserTypes)[number];
 
 export class User {
   id?: CString;

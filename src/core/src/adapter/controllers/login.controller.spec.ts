@@ -1,5 +1,5 @@
 import { createMock } from '@golevelup/ts-jest';
-import { AuthController } from './login.controller';
+import { LoginController } from './login.controller';
 import { Test } from '@nestjs/testing';
 import { NotificationService } from '../../infrastructure/services/notificationService';
 import { EmailService } from '../../infrastructure/services/emailService';
@@ -9,13 +9,13 @@ import { CString } from '../../domain/value-objects/string';
 import { Password } from '../../domain/value-objects/password';
 
 describe('AuthController', () => {
-  let authController: AuthController;
+  let authController: LoginController;
   let emailService: EmailService;
   let userRepositoryImpl: RepositoryImpl<User>;
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      controllers: [AuthController],
+      controllers: [LoginController],
       providers: [
         EmailService,
         {
@@ -37,7 +37,7 @@ describe('AuthController', () => {
       ],
     }).compile();
 
-    authController = moduleRef.get(AuthController);
+    authController = moduleRef.get(LoginController);
     userRepositoryImpl = moduleRef.get(RepositoryImpl);
     emailService = moduleRef.get(EmailService);
   });
@@ -77,47 +77,3 @@ describe('AuthController', () => {
     });
   });
 });
-
-// describe('Mocked Execution Context', () => {
-//   it('should have a fully mocked Execution Context', () => {
-//     const mockExecutionContext = createMock<ExecutionContext>();
-//     expect(mockExecutionContext.switchToHttp().getResponse()).toBeDefined();
-//   });
-// });
-
-// describe('WrapDataInterceptor', () => {
-//   const executionContext = createMock<ExecutionContext>();
-//   const wrapDataInterceptor = new ResponseInterceptor();
-
-//   it("should wrap the next handler response in 'data' object", function (done) {
-//     // Arrange
-//     const someData = {
-//       Id: 1,
-//       email: 'john@mail.com',
-//     };
-
-//     // This guarantees our data will be returned to our interceptor
-//     const callHandler = {
-//       handle() {
-//         return of(someData);
-//       },
-//     };
-
-//     // Act
-//     wrapDataInterceptor
-//       .intercept(executionContext, callHandler)
-//       .subscribe((asyncData) => {
-//         console.log('asyncData:', asyncData);
-
-//         // Assert
-//         expect(asyncData).toMatchObject({
-//           // @ts-ignore
-//           data: {
-//             Id: 0,
-//             email: 'john@mail.com',
-//           },
-//         });
-//         done();
-//       });
-//   });
-// });
