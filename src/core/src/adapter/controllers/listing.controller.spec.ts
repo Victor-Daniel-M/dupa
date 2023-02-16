@@ -1,24 +1,18 @@
 import { createMock } from '@golevelup/ts-jest';
-// import { AuthController } from './login.controller';
 import { Test } from '@nestjs/testing';
 import { NotificationService } from '../../infrastructure/services/notificationService';
-import { EmailService } from '../../infrastructure/services/emailService';
 import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
-import { User } from '@core/domain/entities/user';
+import { User } from '../../domain/entities/user';
+import { ListingController } from './listing.controller';
 
 describe('ListingController', () => {
-  // let authController: AuthController;
-  let emailService: EmailService;
+  let listingController: ListingController;
+  let notificationService: NotificationService;
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      // controllers: [AuthController],
+      controllers: [ListingController],
       providers: [
-        EmailService,
-        {
-          provide: EmailService,
-          useValue: createMock<EmailService>(new EmailService()),
-        },
         RepositoryImpl,
         {
           provide: RepositoryImpl,
@@ -29,17 +23,37 @@ describe('ListingController', () => {
         NotificationService,
         {
           provide: NotificationService,
-          useValue: createMock<NotificationService>(new NotificationService()),
+          useValue: createMock(new NotificationService()),
         },
       ],
     }).compile();
 
-    // authController = moduleRef.get(AuthController);
-    emailService = moduleRef.get(EmailService);
+    listingController = moduleRef.get(ListingController);
+    notificationService = moduleRef.get(NotificationService);
   });
 
   describe('recording a listing', () => {
-    it.todo('broker should be able to create a listing');
+    it('agent should be able to record a listing', async () => {
+      const expectedRes = {
+        id: {
+          value: '1',
+        },
+      };
+
+      // ACT
+      const actualRes = await listingController.recordListing({
+        createdAt: 'date',
+        updatedAt: 'daate',
+        id: '1',
+        coverImage: 'test.png',
+        openDate: 'date',
+        propertyCategoryId: '1',
+      });
+
+      // ASSERT
+      expect(actualRes).toMatchObject(expectedRes);
+      expect(notificationService.sendNotification).toBeCalledTimes(1);
+    });
 
     it.todo('non broker should not be able to create a listing');
 

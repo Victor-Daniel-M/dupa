@@ -18,6 +18,12 @@ import { RegisterController } from './adapter/controllers/register.controller';
       },
       provide: RepositoryImpl,
     },
+    {
+      useFactory(...args) {
+        return new RepositoryImpl('property');
+      },
+      provide: RepositoryImpl,
+    },
   ],
   controllers: [LoginController, RegisterController],
 })
