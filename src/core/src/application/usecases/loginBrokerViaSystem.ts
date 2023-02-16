@@ -1,19 +1,20 @@
+import { BaseRepository } from '@core/domain/repositories/base-repository';
+import { RepositoryImpl } from '@core/infrastructure/repositories/base-repository';
 import { ProjectDeps } from '../../config/projectDependencies';
 import { User } from '../../domain/entities/user';
-import { UserRepository } from '../../domain/repositories/userRepository';
 import { Email } from '../../domain/value-objects/email';
 import { Password } from '../../domain/value-objects/password';
 import { EmailService } from '../../infrastructure/services/emailService';
 
 export class LoginBrokerViaSystemUsecase {
-  private userRepository: UserRepository;
+  private userRepository: RepositoryImpl<User>;
   private emailService: EmailService;
 
   constructor({
     userRepository,
     emailService,
   }: {
-    userRepository: UserRepository;
+    userRepository: RepositoryImpl<User>;
     emailService: EmailService;
   }) {
     this.emailService = emailService;
@@ -24,7 +25,9 @@ export class LoginBrokerViaSystemUsecase {
     const emailValueObject = new Email(email);
     const passwordValueObject = new Password(password);
 
-    const user = await this.userRepository.findOneByEmail(emailValueObject);
+    const user = await this.userRepository.findOrThrow({
+      email: emailValueObject,
+    });
 
     if (!user) {
       throw new Error('User not found');

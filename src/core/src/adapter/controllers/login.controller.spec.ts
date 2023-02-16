@@ -1,16 +1,17 @@
 import { createMock } from '@golevelup/ts-jest';
-import { ExecutionContext } from '@nestjs/common';
-import { ResponseInterceptor } from '../../../../../common/controller-interceptors/src';
-import { of } from 'rxjs';
 import { AuthController } from './login.controller';
 import { Test } from '@nestjs/testing';
 import { NotificationService } from '../../infrastructure/services/notificationService';
 import { EmailService } from '../../infrastructure/services/emailService';
-import { UserRepositoryImpl } from '../../infrastructure/repositories/userRepository';
+import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
+import { User } from '../../domain/entities/user';
+import { CString } from '../../domain/value-objects/string';
+import { Password } from '../../domain/value-objects/password';
 
 describe('AuthController', () => {
   let authController: AuthController;
   let emailService: EmailService;
+  let userRepositoryImpl: RepositoryImpl<User>;
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -21,10 +22,12 @@ describe('AuthController', () => {
           provide: EmailService,
           useValue: createMock<EmailService>(new EmailService()),
         },
-        UserRepositoryImpl,
+        RepositoryImpl,
         {
-          provide: UserRepositoryImpl,
-          useValue: createMock<UserRepositoryImpl>(new UserRepositoryImpl()),
+          provide: RepositoryImpl,
+          useValue: createMock<RepositoryImpl<User>>(
+            new RepositoryImpl('users'),
+          ),
         },
         NotificationService,
         {
@@ -35,17 +38,30 @@ describe('AuthController', () => {
     }).compile();
 
     authController = moduleRef.get(AuthController);
+    userRepositoryImpl = moduleRef.get(RepositoryImpl);
     emailService = moduleRef.get(EmailService);
   });
 
   describe('login', () => {
     it('should be able to login', async () => {
       // SETUP
+      await userRepositoryImpl.createOrThrow(
+        {
+          firstName: new CString('Test'),
+          lastName: new CString('Test'),
+          email: new CString('test@email.com'),
+          createdAt: new CString('date'),
+          updatedAt: new CString('date'),
+          password: new Password('123456789'),
+          phoneNumber: new CString('123456789'),
+          id: new CString('1'),
+        },
+        'email',
+      );
       const testData = {
         email: 'test@email.com',
         password: '123456789',
       };
-
       const expectedLoginRestaurant = {
         id: {
           value: '1',
@@ -57,7 +73,6 @@ describe('AuthController', () => {
 
       // ASSERT
       expect(res).toMatchObject(expectedLoginRestaurant);
-
       expect(emailService.sendLoginEmail).toBeCalledTimes(1);
     });
   });

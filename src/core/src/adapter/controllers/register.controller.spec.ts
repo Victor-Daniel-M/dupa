@@ -3,10 +3,8 @@ import { AuthController } from './login.controller';
 import { Test } from '@nestjs/testing';
 import { NotificationService } from '../../infrastructure/services/notificationService';
 import { EmailService } from '../../infrastructure/services/emailService';
-import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
-import { User } from '@core/domain/entities/user';
 
-describe('ListingController', () => {
+describe('Register Controller', () => {
   let authController: AuthController;
   let emailService: EmailService;
 
@@ -18,13 +16,6 @@ describe('ListingController', () => {
         {
           provide: EmailService,
           useValue: createMock<EmailService>(new EmailService()),
-        },
-        RepositoryImpl,
-        {
-          provide: RepositoryImpl,
-          useValue: createMock<RepositoryImpl<User>>(
-            new RepositoryImpl('listing'),
-          ),
         },
         NotificationService,
         {
@@ -38,13 +29,17 @@ describe('ListingController', () => {
     emailService = moduleRef.get(EmailService);
   });
 
-  describe('recording a listing', () => {
-    it.todo('broker should be able to create a listing');
-
-    it.todo('non broker should not be able to create a listing');
+  describe('register searcher via system', () => {
+    it.todo('searcher should be able to register via system');
 
     it.todo(
-      'user should not be able to create a listing with incorrect information',
+      'searcher should not be able to register with incorrect information',
     );
+  });
+
+  describe('register broker via system', () => {
+    it.todo('broker should be able to register via system');
+
+    it.todo('broker should not be able to register with incorrect information');
   });
 });
