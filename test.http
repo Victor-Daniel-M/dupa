@@ -1,9 +1,9 @@
-POST http://localhost:3000/auth/login
+POST http://localhost:3000/login/broker-login
 content-type: application/json
 
 {
     "email": "test@email.com",
-    "password": "123456789"
+    "password": "test"
 }
 
 ###

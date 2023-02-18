@@ -1,18 +1,18 @@
-import { LoginController } from './core/src/adapter/controllers/login.controller';
+import { LoginController } from '../core/src/adapter/controllers/login.controller';
 import { Module } from '@nestjs/common';
-import { CoreModule } from '../src/core/src/core.module';
+import { CoreModule } from '../core/src/core.module';
 import { PinoLoggerService } from 'common/logger/src/adapters/real/pinoLogger.service';
 import { LoggerModule } from 'common/logger/src/logger.module';
-import { EmailService } from '../src/core/src/infrastructure/services/emailService';
-import { NotificationService } from '../src/core/src/infrastructure/services/notificationService';
-import { ZodValidationPipe } from 'nestjs-zod';
+import { EmailService } from '../core/src/infrastructure/services/emailService';
+import { NotificationService } from '../core/src/infrastructure/services/notificationService';
+import { RepositoryImpl } from 'core/src/infrastructure/repositories/base-repository';
 import { APP_PIPE } from '@nestjs/core';
-import { RegisterController } from '@core/adapter/controllers/register.controller';
-import { RepositoryImpl } from '@core/infrastructure/repositories/base-repository';
+import { ZodValidationPipe } from 'nestjs-zod';
 
 @Module({
   providers: [
     EmailService,
+    RepositoryImpl,
     NotificationService,
     RepositoryImpl,
     {
@@ -21,12 +21,5 @@ import { RepositoryImpl } from '@core/infrastructure/repositories/base-repositor
     },
   ],
   imports: [CoreModule, LoggerModule],
-  controllers: [LoginController, RegisterController],
 })
-export class AppModule {
-  constructor(private readonly logger: PinoLoggerService) {}
-
-  // onModuleInit(): void {
-  //   this.logger.setContext('AppModule');
-  // }
-}
+export class AppModule {}

@@ -1,24 +1,22 @@
-import { NestFactory } from '@nestjs/core';
+import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { PinoLoggerService } from 'common/logger/src/adapters/real/pinoLogger.service';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { patchNestJsSwagger } from 'nestjs-zod';
+import { AllExceptionsFilter } from 'common/filters-interceptors/src';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const logger = app.get(PinoLoggerService);
-  logger.setContext('main');
-  app.useLogger(logger);
 
-  // Swagger setup
-  patchNestJsSwagger();
+  // // const logger = app.get(PinoLoggerService);
+  // logger.setContext('main');
+  // app.useLogger(logger);
 
   const config = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
+    .setTitle('Dupa app')
+    .setDescription('The dupa app API description')
     .setVersion('1.0')
-    .addTag('cats')
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
