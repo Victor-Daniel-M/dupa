@@ -1,9 +1,6 @@
 import { BaseRepository } from 'core/src/domain/repositories/base-repository';
-import { CString } from '../../domain/value-objects/string';
 import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
 import { User, UserType } from '../../domain/entities/user';
-import { Email } from '../../domain/value-objects/email';
-import { Password } from '../../domain/value-objects/password';
 import { EmailService } from '../../infrastructure/services/emailService';
 
 export class RegisterAsSearcherViaSystemUseCase {
@@ -42,14 +39,14 @@ export class RegisterAsSearcherViaSystemUseCase {
     updatedAt: string;
     userType: UserType;
   }): Promise<User> {
-    const idValueObj = new CString(id);
-    const emailValueObj = new Email(email);
-    const passwordValueObj = new Password(password);
-    const firstNameValueObj = new CString(firstName);
-    const lastNameValueObj = new CString(lastName);
-    const phoneNumberValueObj = new CString(phoneNumber);
-    const createdAtValueObj = new CString(createdAt);
-    const updatedAtValueObj = new CString(updatedAt);
+    const idValueObj = id;
+    const emailValueObj = email;
+    const passwordValueObj = password;
+    const firstNameValueObj = firstName;
+    const lastNameValueObj = lastName;
+    const phoneNumberValueObj = phoneNumber;
+    const createdAtValueObj = createdAt;
+    const updatedAtValueObj = updatedAt;
     const userTypeValueObj = userType;
 
     const user = await this.userRepository.createOrThrow(
@@ -59,7 +56,7 @@ export class RegisterAsSearcherViaSystemUseCase {
         firstName: firstNameValueObj,
         id: idValueObj,
         lastName: lastNameValueObj,
-        password: new Password(await passwordValueObj.hash()),
+        password: passwordValueObj,
         phoneNumber: phoneNumberValueObj,
         updatedAt: updatedAtValueObj,
         userType: userTypeValueObj,

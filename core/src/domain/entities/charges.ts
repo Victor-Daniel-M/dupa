@@ -1,23 +1,22 @@
-import { CString } from '../value-objects/string';
 import { MetaValueTypes } from './_common';
 
 export class ChargeType {
-  id: CString;
-  name: CString;
-  code: CString;
-  desc: CString;
-  createdAt: CString;
-  updatedAt: CString;
+  id: string;
+  name: string;
+  code: string;
+  desc: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export class Charge {
-  id: CString;
-  value: CString;
-  lowerLimit: CString;
-  upperLimit: CString;
-  createdAt: CString;
-  updatedAt: CString;
-  propertyId: CString;
-  chargeTypeId: CString;
+  id: string;
+  value: string;
+  lowerLimit: string;
+  upperLimit: string;
+  createdAt: string;
+  updatedAt: string;
+  propertyId: string;
+  chargeTypeId: string;
   valueType: MetaValueTypes;
 }

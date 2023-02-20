@@ -1,6 +1,3 @@
-import { Email } from '../value-objects/email';
-import { Password } from '../value-objects/password';
-import { CString } from '../value-objects/string';
 import { MetaValueTypes } from './_common';
 
 export const UserTypes = ['GUEST', 'AGENT', 'ADMIN', 'USER'] as const;
@@ -8,23 +5,23 @@ export const UserTypes = ['GUEST', 'AGENT', 'ADMIN', 'USER'] as const;
 export type UserType = (typeof UserTypes)[number];
 
 export class User {
-  id?: CString;
-  email?: Email;
-  password?: Password;
-  firstName?: CString;
-  lastName?: CString;
-  phoneNumber?: CString;
-  createdAt?: CString;
-  updatedAt?: CString;
+  id?: string;
+  email?: string;
+  password?: string;
+  firstName?: string;
+  lastName?: string;
+  phoneNumber?: string;
+  createdAt?: string;
+  updatedAt?: string;
   userType?: UserType;
 }
 
 export class UserMeta {
-  id?: CString;
-  key: CString;
-  value: CString;
+  id?: string;
+  key: string;
+  value: string;
   valueType: MetaValueTypes;
-  userId: CString;
-  createdAt: CString;
-  updatedAt: CString;
+  userId: string;
+  createdAt: string;
+  updatedAt: string;
 }

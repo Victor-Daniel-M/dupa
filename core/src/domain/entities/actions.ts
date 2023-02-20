@@ -1,19 +1,17 @@
-import { CString } from '../value-objects/string';
-
 export class Action {
-  id: CString;
-  name: CString;
-  code: CString;
-  desc: CString;
+  id: string;
+  name: string;
+  code: string;
+  desc: string;
 
-  createdAt: CString;
-  updatedAt: CString;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export class ResourceAction {
-  id: CString;
-  createdAt: CString;
-  updatedAt: CString;
-  actionId: CString;
-  resourceId: CString;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  actionId: string;
+  resourceId: string;
 }

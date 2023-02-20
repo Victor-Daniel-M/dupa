@@ -1,22 +1,21 @@
-import { CString } from '../value-objects/string';
 import { MetaValueTypes } from './_common';
 
 export class Offer {
-  id: CString;
-  fromEntityId: CString;
-  fromEntityName: CString;
-  onEntityId: CString;
-  onEntityName: CString;
-  createdAt: CString;
-  updatedAt: CString;
+  id: string;
+  fromEntityId: string;
+  fromEntityName: string;
+  onEntityId: string;
+  onEntityName: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export class OfferMeta {
-  id: CString;
-  key: CString;
-  value: CString;
-  createdAt: CString;
-  updatedAt: CString;
-  offerId: CString;
+  id: string;
+  key: string;
+  value: string;
+  createdAt: string;
+  updatedAt: string;
+  offerId: string;
   valueType: MetaValueTypes;
 }

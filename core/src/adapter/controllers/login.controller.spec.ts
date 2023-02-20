@@ -5,8 +5,6 @@ import { NotificationService } from '../../infrastructure/services/notificationS
 import { EmailService } from '../../infrastructure/services/emailService';
 import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
 import { User } from '../../domain/entities/user';
-import { CString } from '../../domain/value-objects/string';
-import { Password } from '../../domain/value-objects/password';
 
 describe('AuthController', () => {
   let authController: LoginController;
@@ -45,25 +43,24 @@ describe('AuthController', () => {
       // SETUP
       await userRepositoryImpl.createOrThrow(
         {
-          firstName: new CString('Test'),
-          lastName: new CString('Test'),
-          email: new CString('test@email.com'),
-          createdAt: new CString('date'),
-          updatedAt: new CString('date'),
-          password: new Password('123456789'),
-          phoneNumber: new CString('123456789'),
-          id: new CString('1'),
+          firstName: 'Test',
+          lastName: 'Test',
+          email: 'test@email.com',
+          createdAt: 'date',
+          updatedAt: 'date',
+          password: '123456789',
+          phoneNumber: '123456789',
+          id: '1',
         },
         'email',
       );
+
       const testData = {
         email: 'test@email.com',
         password: '123456789',
       };
       const expectedLoginRestaurant = {
-        id: {
-          value: '1',
-        },
+        id: '1',
       };
 
       // ACT

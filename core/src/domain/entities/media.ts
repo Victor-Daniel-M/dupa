@@ -1,5 +1,3 @@
-import { CString } from '../value-objects/string';
-
 enum MediaType {
   IMAGE,
   VIDEO,
@@ -7,11 +5,11 @@ enum MediaType {
 }
 
 export class Media {
-  id: CString;
-  entityId: CString;
-  entityName: CString;
-  value: CString;
-  createdAt: CString;
-  updatedAt: CString;
+  id: string;
+  entityId: string;
+  entityName: string;
+  value: string;
+  createdAt: string;
+  updatedAt: string;
   mediaType: MediaType;
 }

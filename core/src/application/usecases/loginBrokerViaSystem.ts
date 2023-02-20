@@ -1,8 +1,6 @@
 import { NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { RepositoryImpl } from 'core/src/infrastructure/repositories/base-repository';
 import { User } from '../../domain/entities/user';
-import { Email } from '../../domain/value-objects/email';
-import { Password } from '../../domain/value-objects/password';
 import { EmailService } from '../../infrastructure/services/emailService';
 
 export class LoginBrokerViaSystemUsecase {
@@ -21,8 +19,8 @@ export class LoginBrokerViaSystemUsecase {
   }
 
   async execute(email: string, password: string): Promise<User> {
-    const emailValueObject = new Email(email);
-    const passwordValueObject = new Password(password);
+    const emailValueObject = email;
+    const passwordValueObject = password;
 
     const user = await this.userRepository.findOrThrow({
       email: emailValueObject,
@@ -32,7 +30,7 @@ export class LoginBrokerViaSystemUsecase {
       throw new NotFoundException('User not found');
     }
 
-    if (!user.password?.compare(passwordValueObject.value)) {
+    if (user.password != passwordValueObject) {
       throw new UnauthorizedException('Incorrect password');
     }
 

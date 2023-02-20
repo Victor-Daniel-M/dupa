@@ -1,45 +1,43 @@
-import { Decimal } from '../value-objects/decimal';
-import { CString } from '../value-objects/string';
 import { MetaValueTypes } from './_common';
 
-// PropertyCString
+// Propertystring
 export class PropertyCategory {
-  id: CString;
-  name: CString;
-  code: CString;
-  desc: CString;
-  createdAt: CString;
-  updatedAt: CString;
+  id: string;
+  name: string;
+  code: string;
+  desc: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export class Property {
-  id: CString;
-  title: CString;
-  description: CString;
-  coverImage: CString;
-  cost: Decimal;
-  createdAt: CString;
-  updatedAt: CString;
-  openDate: CString;
-  propertyCategoryId: CString;
+  id: string;
+  title: string;
+  description: string;
+  coverImage: string;
+  cost: number;
+  createdAt: string;
+  updatedAt: string;
+  openDate: string;
+  propertyCategoryId: string;
 }
 
 export class PropertyMetaCategories {
-  id: CString;
-  code: CString;
-  desc: CString;
+  id: string;
+  code: string;
+  desc: string;
   valueType: MetaValueTypes;
-  createdAt: CString;
-  updatedAt: CString;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export class PropertyMeta {
-  id: CString;
-  key: CString;
-  value: CString;
-  createdAt: CString;
-  updatedAt: CString;
-  propertyId: CString;
-  parentId: CString;
-  propertyMetaCategoryId: CString;
+  id: string;
+  key: string;
+  value: string;
+  createdAt: string;
+  updatedAt: string;
+  propertyId: string;
+  parentId: string;
+  propertyMetaCategoryId: string;
 }

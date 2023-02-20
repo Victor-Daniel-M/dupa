@@ -1,21 +1,20 @@
-import { CString } from '../value-objects/string';
 import { MetaValueTypes } from './_common';
 
 export class AuthStrategy {
-  id: CString;
-  name: CString;
-  desc: CString;
-  code: CString;
-  createdAt: CString;
-  updatedAt: CString;
+  id: string;
+  name: string;
+  desc: string;
+  code: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export class AuthStrategyMeta {
-  id: CString;
-  key: CString;
-  value: CString;
+  id: string;
+  key: string;
+  value: string;
   valueType: MetaValueTypes;
-  authStrategyId: CString;
-  createdAt: CString;
-  updatedAt: CString;
+  authStrategyId: string;
+  createdAt: string;
+  updatedAt: string;
 }

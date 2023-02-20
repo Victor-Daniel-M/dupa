@@ -1,13 +1,11 @@
-import { CString } from '../value-objects/string';
-
 export enum UserPropertyType {
   OWNER,
   BROKER,
 }
 
 export class UserProperty {
-  id: CString;
+  id: string;
   userPropertyType: UserPropertyType;
-  propertyId: CString;
-  userId: CString;
+  propertyId: string;
+  userId: string;
 }

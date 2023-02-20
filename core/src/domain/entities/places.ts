@@ -1,18 +1,17 @@
-import { CString } from '../value-objects/string';
 import { MetaValueTypes } from './_common';
 
 export class Place {
-  id: CString;
-  createdAt: CString;
-  updatedAt: CString;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export class PlaceMeta {
-  id: CString;
-  key: CString;
-  value: CString;
-  createdAt: CString;
-  updatedAt: CString;
-  placeId: CString;
+  id: string;
+  key: string;
+  value: string;
+  createdAt: string;
+  updatedAt: string;
+  placeId: string;
   valueType: MetaValueTypes;
 }

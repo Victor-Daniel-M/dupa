@@ -1,4 +1,3 @@
-import { CString } from '../value-objects/string';
 import { MetaValueTypes } from './_common';
 
 // Search
@@ -8,20 +7,20 @@ enum SearchType {
 }
 
 export class Search {
-  id: CString;
-  userId: CString;
+  id: string;
+  userId: string;
   isSaved: Boolean;
   searchType: SearchType;
-  createdAt: CString;
-  updatedAt: CString;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export class SearchMeta {
   id: String;
-  key: CString;
-  value: CString;
+  key: string;
+  value: string;
   valueType: MetaValueTypes;
-  searchId: CString;
-  createdAt: CString;
-  updatedAt: CString;
+  searchId: string;
+  createdAt: string;
+  updatedAt: string;
 }

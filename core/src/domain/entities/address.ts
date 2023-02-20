@@ -1,21 +1,19 @@
-import { CString } from '../value-objects/string';
-
 // Address
 export class Address {
-  id: CString;
-  city: CString;
-  street: CString;
-  district: CString;
-  region: CString;
-  createdAt: CString;
-  updatedAt: CString;
+  id: string;
+  city: string;
+  street: string;
+  district: string;
+  region: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export class EntityAddress {
-  id: CString;
-  entityId: CString;
-  entityName: CString;
-  createdAt: CString;
-  updatedAt: CString;
-  addressId: CString;
+  id: string;
+  entityId: string;
+  entityName: string;
+  createdAt: string;
+  updatedAt: string;
+  addressId: string;
 }

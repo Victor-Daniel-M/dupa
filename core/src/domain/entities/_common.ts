@@ -1,7 +1,7 @@
 export enum MetaValueTypes {
   STRING_ENCRYPTED,
   STRING_RAW,
-  DECIMAL,
+  number,
   INT,
   EMAIL,
   PHONE,

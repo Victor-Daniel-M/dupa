@@ -1,5 +1,3 @@
-import { CString } from '../value-objects/string';
-
 enum ReactionType {
   LIKE,
   DISLIKE,
@@ -9,13 +7,13 @@ enum ReactionType {
 }
 
 export class Reaction {
-  id: CString;
-  fromEntityId: CString;
-  fromEntityName: CString;
-  toEntityId: CString;
-  toEntityName: CString;
-  text: CString;
-  createdAt: CString;
-  updatedAt: CString;
+  id: string;
+  fromEntityId: string;
+  fromEntityName: string;
+  toEntityId: string;
+  toEntityName: string;
+  text: string;
+  createdAt: string;
+  updatedAt: string;
   reactionType: ReactionType;
 }

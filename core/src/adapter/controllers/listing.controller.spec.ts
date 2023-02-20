@@ -33,9 +33,7 @@ describe('ListingController', () => {
   describe('recording a listing', () => {
     it('agent should be able to record a listing', async () => {
       const expectedRes = {
-        id: {
-          value: '1',
-        },
+        id: '1',
       };
 
       // ACT

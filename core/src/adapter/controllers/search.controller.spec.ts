@@ -6,8 +6,6 @@ import { EmailService } from '../../infrastructure/services/emailService';
 import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
 import { Property } from '../../domain/entities/property';
 import { SearchController } from './search.controller';
-import { CString } from '../../domain/value-objects/string';
-import { Decimal } from '@core/domain/value-objects/decimal';
 
 describe('SearchController', () => {
   let searchController: SearchController;
@@ -34,23 +32,21 @@ describe('SearchController', () => {
       // SETUP
       await propertyRepository.createOrThrow(
         {
-          createdAt: new CString('date'),
-          updatedAt: new CString('daate'),
-          id: new CString('1'),
-          coverImage: new CString('test.png'),
-          openDate: new CString('date'),
-          propertyCategoryId: new CString('1'),
-          cost: new Decimal(1000_000_000),
-          description: new CString('description'),
-          title: new CString('title'),
+          createdAt: 'date',
+          updatedAt: 'daate',
+          id: '1',
+          coverImage: 'test.png',
+          openDate: 'date',
+          propertyCategoryId: '1',
+          cost: 1000_000_000,
+          description: 'description',
+          title: 'title',
         },
         'id',
       );
 
       const expectedLoginRestaurant = {
-        id: {
-          value: '1',
-        },
+        id: '1',
       };
 
       // ACT

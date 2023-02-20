@@ -1,13 +1,11 @@
-import { CString } from '../value-objects/string';
-
 export enum ConfigType {
   TERMS,
 }
 
 export class Config {
-  id: CString;
-  text: CString;
-  value: CString;
-  createdAt: CString;
-  updatedAt: CString;
+  id: string;
+  text: string;
+  value: string;
+  createdAt: string;
+  updatedAt: string;
 }

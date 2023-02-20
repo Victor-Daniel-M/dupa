@@ -6,11 +6,11 @@ import {
 } from '@nestjs/common';
 
 type EntityInput<T> = {
-  [key in keyof T as string]?: { value: string | number };
+  [key in keyof T as string]?: string | number;
 };
 
 @Injectable()
-export class RepositoryImpl<T extends { id?: { value: string } }>
+export class RepositoryImpl<T extends { id?: string }>
   implements BaseRepository
 {
   private table: T[];
@@ -22,7 +22,7 @@ export class RepositoryImpl<T extends { id?: { value: string } }>
   async findOrThrow(data: EntityInput<T>): Promise<T> {
     const key: string = Object.keys(data)[0];
     const result = this.table.find((item: any) => {
-      return item[key].value === data[key]?.value;
+      return item[key] === data[key];
     });
 
     if (!result) {
@@ -36,9 +36,9 @@ export class RepositoryImpl<T extends { id?: { value: string } }>
       return Object.entries(query).every(([key, value]) => {
         if (key in item) {
           if (typeof value === 'string') {
-            return (item[key]?.value as string).includes(value);
+            return (item[key] as string).includes(value);
           } else {
-            return item['id']?.value === value;
+            return item['id'] === value;
           }
         }
         return false;
@@ -59,12 +59,12 @@ export class RepositoryImpl<T extends { id?: { value: string } }>
   }
 
   async update(id: string, updatedItem: T): Promise<void> {
-    const index = this.table.findIndex((item) => item.id?.value === id);
+    const index = this.table.findIndex((item) => item.id === id);
     if (index !== -1) this.table[index] = updatedItem;
   }
 
   async delete(id: string): Promise<void> {
-    const index = this.table.findIndex((item) => item.id?.value === id);
+    const index = this.table.findIndex((item) => item.id === id);
     if (index !== -1) this.table.splice(index, 1);
   }
 }

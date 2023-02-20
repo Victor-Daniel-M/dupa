@@ -1,4 +1,3 @@
-import { CString } from '../value-objects/string';
 import { MetaValueTypes } from './_common';
 
 export enum RequestType {
@@ -12,30 +11,30 @@ export enum RequestStatus {
 }
 
 export class Request {
-  id: CString;
-  fromEntityId: CString;
-  fromEntityName: CString;
-  onEntityId: CString;
-  onEntityName: CString;
-  message: CString;
-  createdAt: CString;
-  updatedAt: CString;
+  id: string;
+  fromEntityId: string;
+  fromEntityName: string;
+  onEntityId: string;
+  onEntityName: string;
+  message: string;
+  createdAt: string;
+  updatedAt: string;
   status: RequestStatus;
   requestType: RequestType;
 }
 
 export class RequestMeta {
-  id: CString;
-  key: CString;
-  value: CString;
-  createdAt: CString;
-  updatedAt: CString;
-  requestId: CString;
+  id: string;
+  key: string;
+  value: string;
+  createdAt: string;
+  updatedAt: string;
+  requestId: string;
   valueType: MetaValueTypes;
 }
 
 export class RequestUser {
-  id: CString;
-  userId: CString;
-  requestId: CString;
+  id: string;
+  userId: string;
+  requestId: string;
 }

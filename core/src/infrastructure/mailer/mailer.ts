@@ -1,4 +1,3 @@
-import { Email } from '../../domain/value-objects/email';
 import * as nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
@@ -10,7 +9,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export async function sendLoginEmail(email: Email) {
+export async function sendLoginEmail(email: string) {
   // const mailOptions = {
   //   from: 'info@example.com',
   //   to: email.value,

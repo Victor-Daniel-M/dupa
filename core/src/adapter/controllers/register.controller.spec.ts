@@ -39,9 +39,7 @@ describe('Register Controller', () => {
   describe('register searcher via system', () => {
     it('searcher should be able to register via system', async () => {
       const expectedLoginRestaurant = {
-        id: {
-          value: '1',
-        },
+        id: '1',
       };
 
       // ACT

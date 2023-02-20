@@ -1,4 +1,3 @@
-import { CString } from '../../domain/value-objects/string';
 import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
 import { Property } from '../../domain/entities/property';
 import { NotificationService } from '../../infrastructure/services/notificationService';

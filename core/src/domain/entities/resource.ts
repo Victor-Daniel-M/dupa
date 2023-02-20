@@ -1,11 +1,9 @@
-import { CString } from '../value-objects/string';
-
 export class Resource {
-  id: CString;
-  name: CString;
-  code: CString;
-  desc: CString;
+  id: string;
+  name: string;
+  code: string;
+  desc: string;
 
-  createdAt: CString;
-  updatedAt: CString;
+  createdAt: string;
+  updatedAt: string;
 }

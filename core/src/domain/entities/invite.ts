@@ -1,4 +1,3 @@
-import { CString } from '../value-objects/string';
 import { MetaValueTypes } from './_common';
 
 export enum InviteType {
@@ -6,20 +5,20 @@ export enum InviteType {
 }
 
 export class Invite {
-  id: CString;
-  text: CString;
-  inviteType: CString;
-  createdAt: CString;
-  updatedAt: CString;
+  id: string;
+  text: string;
+  inviteType: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export class InviteMeta {
-  id: CString;
-  key: CString;
-  value: CString;
-  ref: CString;
-  createdAt: CString;
-  updatedAt: CString;
-  inviteId: CString;
+  id: string;
+  key: string;
+  value: string;
+  ref: string;
+  createdAt: string;
+  updatedAt: string;
+  inviteId: string;
   valueType: MetaValueTypes;
 }

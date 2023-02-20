@@ -1,38 +1,36 @@
-import { CString } from '../value-objects/string';
-
 // Notifications
 export class NotificationStrategy {
-  id: CString;
-  name: CString;
-  code: CString;
-  desc: CString;
-  createdAt: CString;
-  updatedAt: CString;
+  id: string;
+  name: string;
+  code: string;
+  desc: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export class NotificationFrequency {
-  id: CString;
-  name: CString;
-  code: CString;
-  desc: CString;
-  createdAt: CString;
-  updatedAt: CString;
+  id: string;
+  name: string;
+  code: string;
+  desc: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export class NotificationSubscribable {
-  id: CString;
-  actionId: CString;
-  createdAt: CString;
-  updatedAt: CString;
-  notificationStrategyId: CString;
-  notificationFrequencyId: CString;
+  id: string;
+  actionId: string;
+  createdAt: string;
+  updatedAt: string;
+  notificationStrategyId: string;
+  notificationFrequencyId: string;
 }
 
 export class NotificationSubscriber {
-  id: CString;
-  entityId: CString;
-  entityName: CString;
-  createdAt: CString;
-  updatedAt: CString;
-  notificationSubscribableId: CString;
+  id: string;
+  entityId: string;
+  entityName: string;
+  createdAt: string;
+  updatedAt: string;
+  notificationSubscribableId: string;
 }
