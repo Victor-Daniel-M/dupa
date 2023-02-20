@@ -3,8 +3,8 @@ import { Test } from '@nestjs/testing';
 import { NotificationService } from '../../infrastructure/services/notificationService';
 import { EmailService } from '../../infrastructure/services/emailService';
 import { RegisterController } from './register.controller';
-import { UserRepositoryImpl } from '../../infrastructure/repositories/base-repository';
 import { User } from 'core/src/domain/entities/user';
+import { UserRepositoryImpl } from '@core/infrastructure/repositories/user-repository';
 
 describe('Register Controller', () => {
   let registerController: RegisterController;

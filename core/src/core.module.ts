@@ -3,10 +3,8 @@ import { Global, Module } from '@nestjs/common';
 import { EmailService } from './infrastructure/services/emailService';
 import { NotificationService } from './infrastructure/services/notificationService';
 import { ResponseInterceptor } from 'common/filters-interceptors/src';
-import {
-  PropertyRepositoryImpl,
-  UserRepositoryImpl,
-} from './infrastructure/repositories/base-repository';
+import { PropertyRepositoryImpl } from './infrastructure/repositories/property-repository';
+import { UserRepositoryImpl } from './infrastructure/repositories/user-repository';
 
 @Global()
 @Module({

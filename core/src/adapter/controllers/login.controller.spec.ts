@@ -3,11 +3,8 @@ import { LoginController } from './login.controller';
 import { Test } from '@nestjs/testing';
 import { NotificationService } from '../../infrastructure/services/notificationService';
 import { EmailService } from '../../infrastructure/services/emailService';
-import {
-  PropertyRepositoryImpl,
-  UserRepositoryImpl,
-} from '../../infrastructure/repositories/base-repository';
-import { User } from '../../domain/entities/user';
+import { UserRepositoryImpl } from '@core/infrastructure/repositories/user-repository';
+import { PropertyRepositoryImpl } from '@core/infrastructure/repositories/property-repository';
 
 describe('AuthController', () => {
   let authController: LoginController;

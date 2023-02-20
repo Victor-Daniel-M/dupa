@@ -1,19 +1,10 @@
 import { LoginBrokerViaSystemUsecase } from '../../application/usecases/loginBrokerViaSystem';
-import {
-  Body,
-  Controller,
-  Post,
-  UseFilters,
-  UseInterceptors,
-} from '@nestjs/common';
+import { Body, Controller, Post, UseInterceptors } from '@nestjs/common';
 import { EmailService } from '../../infrastructure/services/emailService';
 import { LoginDto } from './dtos/auth.controller.dto';
-import {
-  AllExceptionsFilter,
-  ResponseInterceptor,
-} from '../../../../common/filters-interceptors/src';
-import { UserRepositoryImpl } from '@core/infrastructure/repositories/base-repository';
+import { ResponseInterceptor } from '../../../../common/filters-interceptors/src';
 import { User } from '../../domain/entities/user';
+import { UserRepositoryImpl } from '@core/infrastructure/repositories/user-repository';
 
 @UseInterceptors(ResponseInterceptor)
 @Controller('login')

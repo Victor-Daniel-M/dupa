@@ -1,8 +1,8 @@
 import { Body, Controller, Post, UseInterceptors } from '@nestjs/common';
 import { ResponseInterceptor } from '../../../../common/filters-interceptors/src';
-import { PropertyRepositoryImpl } from '../../infrastructure/repositories/base-repository';
 import { SearchListingDTO } from './dtos/listing.controller.dto';
 import { SearchListingUseCase } from '../../application/usecases/searchListings';
+import { PropertyRepositoryImpl } from '@core/infrastructure/repositories/property-repository';
 
 @UseInterceptors(ResponseInterceptor)
 @Controller('search')

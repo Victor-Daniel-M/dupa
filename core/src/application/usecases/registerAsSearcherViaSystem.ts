@@ -1,4 +1,4 @@
-import { UserRepositoryImpl } from '../../infrastructure/repositories/base-repository';
+import { UserRepositoryImpl } from '@core/infrastructure/repositories/user-repository';
 import { User, UserType } from '../../domain/entities/user';
 import { EmailService } from '../../infrastructure/services/emailService';
 

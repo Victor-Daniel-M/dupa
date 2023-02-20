@@ -1,5 +1,5 @@
+import { UserRepositoryImpl } from '@core/infrastructure/repositories/user-repository';
 import { NotFoundException, UnauthorizedException } from '@nestjs/common';
-import { UserRepositoryImpl } from 'core/src/infrastructure/repositories/base-repository';
 import { User } from '../../domain/entities/user';
 import { EmailService } from '../../infrastructure/services/emailService';
 

@@ -69,9 +69,3 @@ export class RepositoryImpl<T extends { id?: string }>
     if (index !== -1) this.table.splice(index, 1);
   }
 }
-
-@Injectable()
-export class UserRepositoryImpl extends RepositoryImpl<User> {}
-
-@Injectable()
-export class PropertyRepositoryImpl extends RepositoryImpl<Property> {}

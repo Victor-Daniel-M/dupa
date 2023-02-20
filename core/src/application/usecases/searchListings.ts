@@ -1,8 +1,8 @@
-import { PropertyRepositoryImpl } from '../../infrastructure/repositories/base-repository';
 import { Property } from '../../domain/entities/property';
 import { NotificationService } from '../../infrastructure/services/notificationService';
 import { z } from 'nestjs-zod/z';
 import { SearchListingSchema } from 'core/src/adapter/controllers/dtos/listing.controller.dto';
+import { PropertyRepositoryImpl } from '@core/infrastructure/repositories/property-repository';
 
 export class SearchListingUseCase {
   private propertyRepository: PropertyRepositoryImpl;

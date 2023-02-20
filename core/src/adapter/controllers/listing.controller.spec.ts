@@ -1,11 +1,8 @@
+import { PropertyRepositoryImpl } from '@core/infrastructure/repositories/property-repository';
+import { UserRepositoryImpl } from '@core/infrastructure/repositories/user-repository';
 import { createMock } from '@golevelup/ts-jest';
 import { Test } from '@nestjs/testing';
 import { NotificationService } from '../../infrastructure/services/notificationService';
-import {
-  PropertyRepositoryImpl,
-  UserRepositoryImpl,
-} from '../../infrastructure/repositories/base-repository';
-import { User } from '../../domain/entities/user';
 import { ListingController } from './listing.controller';
 
 describe('ListingController', () => {
