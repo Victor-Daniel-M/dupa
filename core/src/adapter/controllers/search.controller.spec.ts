@@ -7,6 +7,7 @@ import { RepositoryImpl } from '../../infrastructure/repositories/base-repositor
 import { Property } from '../../domain/entities/property';
 import { SearchController } from './search.controller';
 import { CString } from '../../domain/value-objects/string';
+import { Decimal } from '@core/domain/value-objects/decimal';
 
 describe('SearchController', () => {
   let searchController: SearchController;
@@ -39,6 +40,9 @@ describe('SearchController', () => {
           coverImage: new CString('test.png'),
           openDate: new CString('date'),
           propertyCategoryId: new CString('1'),
+          cost: new Decimal(1000_000_000),
+          description: new CString('description'),
+          title: new CString('title'),
         },
         'id',
       );

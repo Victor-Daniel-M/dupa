@@ -9,6 +9,17 @@ export const RecordListingByBrokerSchema = z.object({
   createdAt: z.string(),
   updatedAt: z.string(),
   propertyCategoryId: z.string(),
+  description: z.string(),
+  title: z.string(),
+  cost: z.number(),
+  propertyMeta: z.array(
+    z.object({
+      propertyMetaCategoryId: z.string(),
+      parentId: z.string().nullable(),
+      value: z.string(),
+      key: z.string(),
+    }),
+  ),
 });
 
 export class RecordListingByBrokerDTO extends createZodDto(

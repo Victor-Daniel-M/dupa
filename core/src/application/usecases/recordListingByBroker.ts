@@ -4,6 +4,7 @@ import { Property } from '../../domain/entities/property';
 import { NotificationService } from '../../infrastructure/services/notificationService';
 import { z } from 'nestjs-zod/z';
 import { RecordListingByBrokerSchema } from 'core/src/adapter/controllers/dtos/listing.controller.dto';
+import { Decimal } from '@core/domain/value-objects/decimal';
 
 export class RecordListingByBrokerUseCase {
   private propertyRepository: RepositoryImpl<Property>;
@@ -27,6 +28,9 @@ export class RecordListingByBrokerUseCase {
     const idValueObj = new CString(data.id);
     const propertyCategoryIdValueObj = new CString(data.propertyCategoryId);
     const openDateValueObj = new CString(data.openDate);
+    const costValueObj = new Decimal(data.cost);
+    const descriptionValueObj = new CString(data.description);
+    const titleValueObj = new CString(data.title);
     const createdAtValueObj = new CString(data.createdAt);
     const updatedAtValueObj = new CString(data.updatedAt);
 
@@ -38,9 +42,27 @@ export class RecordListingByBrokerUseCase {
         openDate: openDateValueObj,
         id: idValueObj,
         propertyCategoryId: propertyCategoryIdValueObj,
+        cost: costValueObj,
+        description: descriptionValueObj,
+        title: titleValueObj,
       },
       'id',
     );
+
+    // const res = await this.propertyRepository.createOrThrow(
+    //   {
+    //     coverImage: coverImageValueObj,
+    //     createdAt: createdAtValueObj,
+    //     updatedAt: updatedAtValueObj,
+    //     openDate: openDateValueObj,
+    //     id: idValueObj,
+    //     propertyCategoryId: propertyCategoryIdValueObj,
+    //     cost: costValueObj,
+    //     description: descriptionValueObj,
+    //     title: titleValueObj,
+    //   },
+    //   'id',
+    // );
 
     this.notificationService.sendNotification();
 

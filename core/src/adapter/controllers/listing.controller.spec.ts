@@ -46,6 +46,17 @@ describe('ListingController', () => {
         coverImage: 'test.png',
         openDate: 'date',
         propertyCategoryId: '1',
+        cost: 1000_000_000,
+        description: 'Some cool property',
+        title: 'Test',
+        propertyMeta: [
+          {
+            key: 'width',
+            parentId: null,
+            propertyMetaCategoryId: '1',
+            value: '1000',
+          },
+        ],
       });
 
       // ASSERT

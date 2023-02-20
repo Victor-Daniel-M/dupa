@@ -8,14 +8,16 @@ export class PropertyCategory {
   name: CString;
   code: CString;
   desc: CString;
-  cost: Decimal;
   createdAt: CString;
   updatedAt: CString;
 }
 
 export class Property {
   id: CString;
+  title: CString;
+  description: CString;
   coverImage: CString;
+  cost: Decimal;
   createdAt: CString;
   updatedAt: CString;
   openDate: CString;
@@ -26,6 +28,7 @@ export class PropertyMetaCategories {
   id: CString;
   code: CString;
   desc: CString;
+  valueType: MetaValueTypes;
   createdAt: CString;
   updatedAt: CString;
 }
@@ -34,11 +37,9 @@ export class PropertyMeta {
   id: CString;
   key: CString;
   value: CString;
-  valueType: MetaValueTypes;
-
   createdAt: CString;
   updatedAt: CString;
   propertyId: CString;
   parentId: CString;
-  propertyMetaCategoriesId: CString;
+  propertyMetaCategoryId: CString;
 }
