@@ -3,28 +3,19 @@ import { Global, Module } from '@nestjs/common';
 import { EmailService } from './infrastructure/services/emailService';
 import { NotificationService } from './infrastructure/services/notificationService';
 import { ResponseInterceptor } from 'common/filters-interceptors/src';
-import { RepositoryImpl } from './infrastructure/repositories/base-repository';
-import { RegisterController } from './adapter/controllers/register.controller';
+import {
+  PropertyRepositoryImpl,
+  UserRepositoryImpl,
+} from './infrastructure/repositories/base-repository';
 
 @Global()
 @Module({
   providers: [
     EmailService,
-    RepositoryImpl,
+    PropertyRepositoryImpl,
+    UserRepositoryImpl,
     NotificationService,
     ResponseInterceptor,
-    // {
-    //   useFactory(...args) {
-    //     return new RepositoryImpl('users');
-    //   },
-    //   provide: RepositoryImpl,
-    // },
-    // {
-    //   useFactory(...args) {
-    //     return new RepositoryImpl('property');
-    //   },
-    //   provide: RepositoryImpl,
-    // },
   ],
   controllers: [LoginController],
 })

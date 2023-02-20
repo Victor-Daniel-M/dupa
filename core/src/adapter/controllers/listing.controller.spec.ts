@@ -1,7 +1,10 @@
 import { createMock } from '@golevelup/ts-jest';
 import { Test } from '@nestjs/testing';
 import { NotificationService } from '../../infrastructure/services/notificationService';
-import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
+import {
+  PropertyRepositoryImpl,
+  UserRepositoryImpl,
+} from '../../infrastructure/repositories/base-repository';
 import { User } from '../../domain/entities/user';
 import { ListingController } from './listing.controller';
 
@@ -13,10 +16,17 @@ describe('ListingController', () => {
     const moduleRef = await Test.createTestingModule({
       controllers: [ListingController],
       providers: [
-        RepositoryImpl,
+        UserRepositoryImpl,
         {
-          provide: RepositoryImpl,
-          useValue: createMock<RepositoryImpl<User>>(new RepositoryImpl()),
+          provide: UserRepositoryImpl,
+          useValue: createMock<UserRepositoryImpl>(new UserRepositoryImpl()),
+        },
+        PropertyRepositoryImpl,
+        {
+          provide: PropertyRepositoryImpl,
+          useValue: createMock<PropertyRepositoryImpl>(
+            new PropertyRepositoryImpl(),
+          ),
         },
         NotificationService,
         {

@@ -5,16 +5,19 @@ import { PinoLoggerService } from 'common/logger/src/adapters/real/pinoLogger.se
 import { LoggerModule } from 'common/logger/src/logger.module';
 import { EmailService } from '../core/src/infrastructure/services/emailService';
 import { NotificationService } from '../core/src/infrastructure/services/notificationService';
-import { RepositoryImpl } from 'core/src/infrastructure/repositories/base-repository';
+import {
+  PropertyRepositoryImpl,
+  UserRepositoryImpl,
+} from 'core/src/infrastructure/repositories/base-repository';
 import { APP_PIPE } from '@nestjs/core';
 import { ZodValidationPipe } from 'nestjs-zod';
 
 @Module({
   providers: [
     EmailService,
-    RepositoryImpl,
+    PropertyRepositoryImpl,
     NotificationService,
-    RepositoryImpl,
+    UserRepositoryImpl,
     {
       provide: APP_PIPE,
       useClass: ZodValidationPipe,

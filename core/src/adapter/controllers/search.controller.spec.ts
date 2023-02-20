@@ -1,30 +1,27 @@
 import { createMock } from '@golevelup/ts-jest';
-// import { AuthController } from './login.controller';
 import { Test } from '@nestjs/testing';
-import { NotificationService } from '../../infrastructure/services/notificationService';
-import { EmailService } from '../../infrastructure/services/emailService';
-import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
-import { Property } from '../../domain/entities/property';
+import { PropertyRepositoryImpl } from '../../infrastructure/repositories/base-repository';
 import { SearchController } from './search.controller';
 
 describe('SearchController', () => {
   let searchController: SearchController;
-  let propertyRepository: RepositoryImpl<Property>;
+  let propertyRepository: PropertyRepositoryImpl;
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
       controllers: [SearchController],
       providers: [
         {
-          provide: RepositoryImpl,
-          useValue: createMock<RepositoryImpl<Property>>(new RepositoryImpl()),
+          provide: PropertyRepositoryImpl,
+          useValue: createMock<PropertyRepositoryImpl>(
+            new PropertyRepositoryImpl(),
+          ),
         },
       ],
     }).compile();
 
     searchController = moduleRef.get(SearchController);
-
-    propertyRepository = moduleRef.get(RepositoryImpl);
+    propertyRepository = moduleRef.get(PropertyRepositoryImpl);
   });
 
   describe('search a listing', () => {

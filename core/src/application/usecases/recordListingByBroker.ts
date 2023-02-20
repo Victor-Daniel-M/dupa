@@ -1,18 +1,18 @@
-import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
+import { PropertyRepositoryImpl } from '../../infrastructure/repositories/base-repository';
 import { Property } from '../../domain/entities/property';
 import { NotificationService } from '../../infrastructure/services/notificationService';
 import { z } from 'nestjs-zod/z';
 import { RecordListingByBrokerSchema } from 'core/src/adapter/controllers/dtos/listing.controller.dto';
 
 export class RecordListingByBrokerUseCase {
-  private propertyRepository: RepositoryImpl<Property>;
+  private propertyRepository: PropertyRepositoryImpl;
   private notificationService: NotificationService;
 
   constructor({
     propertyRepository,
     notificationService,
   }: {
-    propertyRepository: RepositoryImpl<Property>;
+    propertyRepository: PropertyRepositoryImpl;
     notificationService: NotificationService;
   }) {
     this.notificationService = notificationService;

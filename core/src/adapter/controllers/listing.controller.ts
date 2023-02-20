@@ -1,9 +1,8 @@
 import { Body, Controller, Post, UseInterceptors } from '@nestjs/common';
 import { ResponseInterceptor } from '../../../../common/filters-interceptors/src';
-import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
+import { PropertyRepositoryImpl } from '../../infrastructure/repositories/base-repository';
 import { RecordListingByBrokerUseCase } from '../../application/usecases/recordListingByBroker';
 import { NotificationService } from '../../infrastructure/services/notificationService';
-import { Property } from '../../domain/entities/property';
 import { RecordListingByBrokerDTO } from './dtos/listing.controller.dto';
 
 @UseInterceptors(ResponseInterceptor)
@@ -11,7 +10,7 @@ import { RecordListingByBrokerDTO } from './dtos/listing.controller.dto';
 export class ListingController {
   constructor(
     private notificationService: NotificationService,
-    private repositoryImpl: RepositoryImpl<Property>,
+    private repositoryImpl: PropertyRepositoryImpl,
   ) {}
 
   @Post('record')

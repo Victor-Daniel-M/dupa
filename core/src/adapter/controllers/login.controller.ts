@@ -12,7 +12,7 @@ import {
   AllExceptionsFilter,
   ResponseInterceptor,
 } from '../../../../common/filters-interceptors/src';
-import { RepositoryImpl } from '@core/infrastructure/repositories/base-repository';
+import { UserRepositoryImpl } from '@core/infrastructure/repositories/base-repository';
 import { User } from '../../domain/entities/user';
 
 @UseInterceptors(ResponseInterceptor)
@@ -20,14 +20,14 @@ import { User } from '../../domain/entities/user';
 export class LoginController {
   constructor(
     private emailService: EmailService,
-    private repositoryImpl: RepositoryImpl<any>,
+    private userRepository: UserRepositoryImpl,
   ) {}
 
   @Post('broker-login')
   async loginBrokerViaSystem(@Body() body: LoginDto): Promise<User> {
     const loginUseCase = new LoginBrokerViaSystemUsecase({
       emailService: this.emailService,
-      userRepository: this.repositoryImpl,
+      userRepository: this.userRepository,
     });
 
     const user = await loginUseCase.execute(body.email, body.password);

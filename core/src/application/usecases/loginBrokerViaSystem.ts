@@ -1,17 +1,17 @@
 import { NotFoundException, UnauthorizedException } from '@nestjs/common';
-import { RepositoryImpl } from 'core/src/infrastructure/repositories/base-repository';
+import { UserRepositoryImpl } from 'core/src/infrastructure/repositories/base-repository';
 import { User } from '../../domain/entities/user';
 import { EmailService } from '../../infrastructure/services/emailService';
 
 export class LoginBrokerViaSystemUsecase {
-  private userRepository: RepositoryImpl<User>;
+  private userRepository: UserRepositoryImpl;
   private emailService: EmailService;
 
   constructor({
     userRepository,
     emailService,
   }: {
-    userRepository: RepositoryImpl<User>;
+    userRepository: UserRepositoryImpl;
     emailService: EmailService;
   }) {
     this.emailService = emailService;

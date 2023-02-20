@@ -4,16 +4,17 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { User } from '@core/domain/entities/user';
+import { Property } from '@core/domain/entities/property';
 
 type EntityInput<T> = {
   [key in keyof T as string]?: string | number;
 };
 
-@Injectable()
 export class RepositoryImpl<T extends { id?: string }>
   implements BaseRepository
 {
-  private table: T[];
+  private table: T[] = [];
 
   constructor() {
     this.table = [];
@@ -68,3 +69,9 @@ export class RepositoryImpl<T extends { id?: string }>
     if (index !== -1) this.table.splice(index, 1);
   }
 }
+
+@Injectable()
+export class UserRepositoryImpl extends RepositoryImpl<User> {}
+
+@Injectable()
+export class PropertyRepositoryImpl extends RepositoryImpl<Property> {}

@@ -1,17 +1,16 @@
-import { BaseRepository } from 'core/src/domain/repositories/base-repository';
-import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
+import { UserRepositoryImpl } from '../../infrastructure/repositories/base-repository';
 import { User, UserType } from '../../domain/entities/user';
 import { EmailService } from '../../infrastructure/services/emailService';
 
 export class RegisterAsSearcherViaSystemUseCase {
-  private userRepository: RepositoryImpl<User>;
+  private userRepository: UserRepositoryImpl;
   private emailService: EmailService;
 
   constructor({
     userRepository,
     emailService,
   }: {
-    userRepository: RepositoryImpl<User>;
+    userRepository: UserRepositoryImpl;
     emailService: EmailService;
   }) {
     this.emailService = emailService;

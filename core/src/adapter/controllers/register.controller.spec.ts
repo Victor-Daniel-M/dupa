@@ -3,7 +3,7 @@ import { Test } from '@nestjs/testing';
 import { NotificationService } from '../../infrastructure/services/notificationService';
 import { EmailService } from '../../infrastructure/services/emailService';
 import { RegisterController } from './register.controller';
-import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
+import { UserRepositoryImpl } from '../../infrastructure/repositories/base-repository';
 import { User } from 'core/src/domain/entities/user';
 
 describe('Register Controller', () => {
@@ -19,10 +19,10 @@ describe('Register Controller', () => {
           provide: EmailService,
           useValue: createMock<EmailService>(new EmailService()),
         },
-        RepositoryImpl,
+        UserRepositoryImpl,
         {
-          provide: RepositoryImpl,
-          useValue: createMock<RepositoryImpl<User>>(new RepositoryImpl()),
+          provide: UserRepositoryImpl,
+          useValue: createMock<UserRepositoryImpl>(new UserRepositoryImpl()),
         },
         NotificationService,
         {

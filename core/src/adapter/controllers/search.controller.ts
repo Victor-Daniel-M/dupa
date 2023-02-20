@@ -1,15 +1,13 @@
 import { Body, Controller, Post, UseInterceptors } from '@nestjs/common';
 import { ResponseInterceptor } from '../../../../common/filters-interceptors/src';
-import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
-import { NotificationService } from '../../infrastructure/services/notificationService';
-import { Property } from '../../domain/entities/property';
+import { PropertyRepositoryImpl } from '../../infrastructure/repositories/base-repository';
 import { SearchListingDTO } from './dtos/listing.controller.dto';
 import { SearchListingUseCase } from '../../application/usecases/searchListings';
 
 @UseInterceptors(ResponseInterceptor)
 @Controller('search')
 export class SearchController {
-  constructor(private repositoryImpl: RepositoryImpl<Property>) {}
+  constructor(private repositoryImpl: PropertyRepositoryImpl) {}
 
   @Post('listing')
   async searchListing(@Body() body: SearchListingDTO) {

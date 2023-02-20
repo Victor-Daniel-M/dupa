@@ -3,13 +3,16 @@ import { LoginController } from './login.controller';
 import { Test } from '@nestjs/testing';
 import { NotificationService } from '../../infrastructure/services/notificationService';
 import { EmailService } from '../../infrastructure/services/emailService';
-import { RepositoryImpl } from '../../infrastructure/repositories/base-repository';
+import {
+  PropertyRepositoryImpl,
+  UserRepositoryImpl,
+} from '../../infrastructure/repositories/base-repository';
 import { User } from '../../domain/entities/user';
 
 describe('AuthController', () => {
   let authController: LoginController;
   let emailService: EmailService;
-  let userRepositoryImpl: RepositoryImpl<User>;
+  let userRepositoryImpl: UserRepositoryImpl;
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -20,10 +23,17 @@ describe('AuthController', () => {
           provide: EmailService,
           useValue: createMock<EmailService>(new EmailService()),
         },
-        RepositoryImpl,
+        PropertyRepositoryImpl,
         {
-          provide: RepositoryImpl,
-          useValue: createMock<RepositoryImpl<User>>(new RepositoryImpl()),
+          provide: PropertyRepositoryImpl,
+          useValue: createMock<PropertyRepositoryImpl>(
+            new PropertyRepositoryImpl(),
+          ),
+        },
+        UserRepositoryImpl,
+        {
+          provide: UserRepositoryImpl,
+          useValue: createMock<UserRepositoryImpl>(new UserRepositoryImpl()),
         },
         NotificationService,
         {
@@ -34,7 +44,7 @@ describe('AuthController', () => {
     }).compile();
 
     authController = moduleRef.get(LoginController);
-    userRepositoryImpl = moduleRef.get(RepositoryImpl);
+    userRepositoryImpl = moduleRef.get(UserRepositoryImpl);
     emailService = moduleRef.get(EmailService);
   });
 
