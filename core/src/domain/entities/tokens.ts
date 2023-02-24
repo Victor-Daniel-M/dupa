@@ -1,4 +1,4 @@
-export class Tokens {
+export class Token {
   id?: string;
   key: string;
   value: string;

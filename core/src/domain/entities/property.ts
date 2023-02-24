@@ -22,7 +22,7 @@ export class Property {
   propertyCategoryId: string;
 }
 
-export class PropertyMetaCategories {
+export class PropertyMetaCategory {
   id: string;
   code: string;
   desc: string;

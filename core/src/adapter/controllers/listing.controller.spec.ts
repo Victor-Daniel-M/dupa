@@ -1,5 +1,5 @@
-import { PropertyRepositoryImpl } from '@core/infrastructure/repositories/property-repository';
-import { UserRepositoryImpl } from '@core/infrastructure/repositories/user-repository';
+import { PropertyRepositoryImpl } from '@core/infrastructure/repositories/properties-repository';
+import { UserRepositoryImpl } from '@core/infrastructure/repositories/users-repository';
 import { createMock } from '@golevelup/ts-jest';
 import { Test } from '@nestjs/testing';
 import { NotificationService } from '../../infrastructure/services/notificationService';

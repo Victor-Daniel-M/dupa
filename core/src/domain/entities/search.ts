@@ -16,7 +16,7 @@ export class Search {
 }
 
 export class SearchMeta {
-  id: String;
+  id: string;
   key: string;
   value: string;
   valueType: MetaValueTypes;

@@ -1,4 +1,4 @@
-import { PropertyRepositoryImpl } from '@core/infrastructure/repositories/property-repository';
+import { PropertyRepositoryImpl } from '@core/infrastructure/repositories/properties-repository';
 import { createMock } from '@golevelup/ts-jest';
 import { Test } from '@nestjs/testing';
 import { SearchController } from './search.controller';

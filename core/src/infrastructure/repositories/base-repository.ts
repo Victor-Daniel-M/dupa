@@ -20,7 +20,7 @@ export class RepositoryImpl<T extends { id?: string }>
     this.table = [];
   }
 
-  async findOrThrow(data: EntityInput<T>): Promise<T> {
+  async findOrThrow(data: Partial<T>): Promise<T> {
     const key: string = Object.keys(data)[0];
     const result = this.table.find((item: any) => {
       return item[key] === data[key];
@@ -47,7 +47,7 @@ export class RepositoryImpl<T extends { id?: string }>
     });
   }
 
-  async findAll(): Promise<T[]> {
+  async findAll(data?: { start: number; take: number }): Promise<T[]> {
     return this.table;
   }
 
@@ -59,9 +59,10 @@ export class RepositoryImpl<T extends { id?: string }>
     return data;
   }
 
-  async update(id: string, updatedItem: T): Promise<void> {
+  async update(id: string, updatedItem: Partial<T>): Promise<void> {
     const index = this.table.findIndex((item) => item.id === id);
-    if (index !== -1) this.table[index] = updatedItem;
+    const item = this.table[index];
+    if (index !== -1) this.table[index] = { ...item, ...updatedItem, id };
   }
 
   async delete(id: string): Promise<void> {
