@@ -29,8 +29,8 @@ describe('userProperties Controller', () => {
       const createRes = await userPropertiesCrudController.create({
         id: '1',
         userPropertyType: 'UserPropertyType',
-  propertyId: 'string',
-  userId: 'string'
+        propertyId: 'string',
+        userId: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -50,13 +50,15 @@ describe('userProperties Controller', () => {
       await userPropertiesCrudController.update({
         id: '1',
         userPropertyType: 'UserPropertyType2',
-  propertyId: 'string2',
-  userId: 'string2'
+        propertyId: 'string2',
+        userId: 'string2',
       });
       const findUpdatedRes = await userPropertiesCrudController.findOne({
         id: '1',
       });
-      expect(findUpdatedRes).toMatchObject({ userPropertyType: 'UserPropertyType2' });
+      expect(findUpdatedRes).toMatchObject({
+        userPropertyType: 'UserPropertyType2',
+      });
 
       // ACT - DELETE
       await userPropertiesCrudController.delete({
@@ -69,4 +71,4 @@ describe('userProperties Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

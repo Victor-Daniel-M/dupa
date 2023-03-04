@@ -29,10 +29,10 @@ describe('resources Controller', () => {
       const createRes = await resourcesCrudController.create({
         id: '1',
         name: 'string',
-  code: 'string',
-  desc: 'string',
-  createdAt: 'string',
-  updatedAt: 'string'
+        code: 'string',
+        desc: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -52,10 +52,10 @@ describe('resources Controller', () => {
       await resourcesCrudController.update({
         id: '1',
         name: 'string2',
-  code: 'string2',
-  desc: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2'
+        code: 'string2',
+        desc: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
       });
       const findUpdatedRes = await resourcesCrudController.findOne({
         id: '1',
@@ -73,4 +73,4 @@ describe('resources Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

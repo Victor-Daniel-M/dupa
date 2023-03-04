@@ -29,9 +29,9 @@ describe('configs Controller', () => {
       const createRes = await configsCrudController.create({
         id: '1',
         text: 'string',
-  value: 'string',
-  createdAt: 'string',
-  updatedAt: 'string'
+        value: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -51,9 +51,9 @@ describe('configs Controller', () => {
       await configsCrudController.update({
         id: '1',
         text: 'string2',
-  value: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2'
+        value: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
       });
       const findUpdatedRes = await configsCrudController.findOne({
         id: '1',
@@ -71,4 +71,4 @@ describe('configs Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

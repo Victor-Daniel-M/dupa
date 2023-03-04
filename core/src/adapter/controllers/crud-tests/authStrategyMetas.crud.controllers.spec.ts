@@ -20,7 +20,9 @@ describe('authStrategyMetas Controller', () => {
       ],
     }).compile();
 
-    authStrategyMetasCrudController = moduleRef.get(AuthStrategyMetasCrudController);
+    authStrategyMetasCrudController = moduleRef.get(
+      AuthStrategyMetasCrudController,
+    );
   });
 
   describe('CRUD AuthStrategyMetas', () => {
@@ -29,11 +31,11 @@ describe('authStrategyMetas Controller', () => {
       const createRes = await authStrategyMetasCrudController.create({
         id: '1',
         key: 'string',
-  value: 'string',
-  valueType: 'MetaValueTypes',
-  authStrategyId: 'string',
-  createdAt: 'string',
-  updatedAt: 'string'
+        value: 'string',
+        valueType: 'MetaValueTypes',
+        authStrategyId: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -53,11 +55,11 @@ describe('authStrategyMetas Controller', () => {
       await authStrategyMetasCrudController.update({
         id: '1',
         key: 'string2',
-  value: 'string2',
-  valueType: 'MetaValueTypes2',
-  authStrategyId: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2'
+        value: 'string2',
+        valueType: 'MetaValueTypes2',
+        authStrategyId: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
       });
       const findUpdatedRes = await authStrategyMetasCrudController.findOne({
         id: '1',
@@ -75,4 +77,4 @@ describe('authStrategyMetas Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

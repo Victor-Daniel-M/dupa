@@ -29,11 +29,11 @@ describe('placeMetas Controller', () => {
       const createRes = await placeMetasCrudController.create({
         id: '1',
         key: 'string',
-  value: 'string',
-  createdAt: 'string',
-  updatedAt: 'string',
-  placeId: 'string',
-  valueType: 'MetaValueTypes'
+        value: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
+        placeId: 'string',
+        valueType: 'MetaValueTypes',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -53,11 +53,11 @@ describe('placeMetas Controller', () => {
       await placeMetasCrudController.update({
         id: '1',
         key: 'string2',
-  value: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2',
-  placeId: 'string2',
-  valueType: 'MetaValueTypes2'
+        value: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
+        placeId: 'string2',
+        valueType: 'MetaValueTypes2',
       });
       const findUpdatedRes = await placeMetasCrudController.findOne({
         id: '1',
@@ -75,4 +75,4 @@ describe('placeMetas Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

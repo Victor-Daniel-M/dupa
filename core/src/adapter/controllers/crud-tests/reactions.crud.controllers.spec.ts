@@ -29,13 +29,13 @@ describe('reactions Controller', () => {
       const createRes = await reactionsCrudController.create({
         id: '1',
         fromEntityId: 'string',
-  fromEntityName: 'string',
-  toEntityId: 'string',
-  toEntityName: 'string',
-  text: 'string',
-  createdAt: 'string',
-  updatedAt: 'string',
-  reactionType: 'ReactionType'
+        fromEntityName: 'string',
+        toEntityId: 'string',
+        toEntityName: 'string',
+        text: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
+        reactionType: 'ReactionType',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -55,13 +55,13 @@ describe('reactions Controller', () => {
       await reactionsCrudController.update({
         id: '1',
         fromEntityId: 'string2',
-  fromEntityName: 'string2',
-  toEntityId: 'string2',
-  toEntityName: 'string2',
-  text: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2',
-  reactionType: 'ReactionType2'
+        fromEntityName: 'string2',
+        toEntityId: 'string2',
+        toEntityName: 'string2',
+        text: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
+        reactionType: 'ReactionType2',
       });
       const findUpdatedRes = await reactionsCrudController.findOne({
         id: '1',
@@ -79,4 +79,4 @@ describe('reactions Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

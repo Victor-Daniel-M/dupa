@@ -29,10 +29,10 @@ describe('searches Controller', () => {
       const createRes = await searchesCrudController.create({
         id: '1',
         userId: 'string',
-  isSaved: 'Boolean',
-  searchType: 'SearchType',
-  createdAt: 'string',
-  updatedAt: 'string'
+        isSaved: 'Boolean',
+        searchType: 'SearchType',
+        createdAt: 'string',
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -52,10 +52,10 @@ describe('searches Controller', () => {
       await searchesCrudController.update({
         id: '1',
         userId: 'string2',
-  isSaved: 'Boolean2',
-  searchType: 'SearchType2',
-  createdAt: 'string2',
-  updatedAt: 'string2'
+        isSaved: 'Boolean2',
+        searchType: 'SearchType2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
       });
       const findUpdatedRes = await searchesCrudController.findOne({
         id: '1',
@@ -73,4 +73,4 @@ describe('searches Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

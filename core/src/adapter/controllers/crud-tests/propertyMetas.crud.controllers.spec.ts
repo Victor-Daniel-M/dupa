@@ -29,12 +29,12 @@ describe('propertyMetas Controller', () => {
       const createRes = await propertyMetasCrudController.create({
         id: '1',
         key: 'string',
-  value: 'string',
-  createdAt: 'string',
-  updatedAt: 'string',
-  propertyId: 'string',
-  parentId: 'string',
-  propertyMetaCategoryId: 'string'
+        value: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
+        propertyId: 'string',
+        parentId: 'string',
+        propertyMetaCategoryId: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -54,12 +54,12 @@ describe('propertyMetas Controller', () => {
       await propertyMetasCrudController.update({
         id: '1',
         key: 'string2',
-  value: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2',
-  propertyId: 'string2',
-  parentId: 'string2',
-  propertyMetaCategoryId: 'string2'
+        value: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
+        propertyId: 'string2',
+        parentId: 'string2',
+        propertyMetaCategoryId: 'string2',
       });
       const findUpdatedRes = await propertyMetasCrudController.findOne({
         id: '1',
@@ -77,4 +77,4 @@ describe('propertyMetas Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

@@ -20,7 +20,9 @@ describe('propertyCategories Controller', () => {
       ],
     }).compile();
 
-    propertyCategoriesCrudController = moduleRef.get(PropertyCategoriesCrudController);
+    propertyCategoriesCrudController = moduleRef.get(
+      PropertyCategoriesCrudController,
+    );
   });
 
   describe('CRUD PropertyCategories', () => {
@@ -29,10 +31,10 @@ describe('propertyCategories Controller', () => {
       const createRes = await propertyCategoriesCrudController.create({
         id: '1',
         name: 'string',
-  code: 'string',
-  desc: 'string',
-  createdAt: 'string',
-  updatedAt: 'string'
+        code: 'string',
+        desc: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -52,10 +54,10 @@ describe('propertyCategories Controller', () => {
       await propertyCategoriesCrudController.update({
         id: '1',
         name: 'string2',
-  code: 'string2',
-  desc: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2'
+        code: 'string2',
+        desc: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
       });
       const findUpdatedRes = await propertyCategoriesCrudController.findOne({
         id: '1',
@@ -73,4 +75,4 @@ describe('propertyCategories Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

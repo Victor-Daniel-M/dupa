@@ -29,12 +29,12 @@ describe('locations Controller', () => {
       const createRes = await locationsCrudController.create({
         id: '1',
         entityName: 'string',
-  entityId: 'string',
-  lat: 1,
-  lng: 1,
-  name: 'string',
-  createdAt: 'string',
-  updatedAt: 'string'
+        entityId: 'string',
+        lat: 1,
+        lng: 1,
+        name: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -54,12 +54,12 @@ describe('locations Controller', () => {
       await locationsCrudController.update({
         id: '1',
         entityName: 'string2',
-  entityId: 'string2',
-  lat: 1,
-  lng: 1,
-  name: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2'
+        entityId: 'string2',
+        lat: 1,
+        lng: 1,
+        name: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
       });
       const findUpdatedRes = await locationsCrudController.findOne({
         id: '1',
@@ -77,4 +77,4 @@ describe('locations Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

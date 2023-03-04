@@ -29,13 +29,13 @@ describe('schedules Controller', () => {
       const createRes = await schedulesCrudController.create({
         id: '1',
         openAt: 'string',
-  closeAt: 'string',
-  entityName: 'string',
-  entityId: 'string',
-  createdAt: 'string',
-  updatedAt: 'string',
-  scheduleId: 'string',
-  dayOfWeek: 'DayOfWeek'
+        closeAt: 'string',
+        entityName: 'string',
+        entityId: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
+        scheduleId: 'string',
+        dayOfWeek: 'DayOfWeek',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -55,13 +55,13 @@ describe('schedules Controller', () => {
       await schedulesCrudController.update({
         id: '1',
         openAt: 'string2',
-  closeAt: 'string2',
-  entityName: 'string2',
-  entityId: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2',
-  scheduleId: 'string2',
-  dayOfWeek: 'DayOfWeek2'
+        closeAt: 'string2',
+        entityName: 'string2',
+        entityId: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
+        scheduleId: 'string2',
+        dayOfWeek: 'DayOfWeek2',
       });
       const findUpdatedRes = await schedulesCrudController.findOne({
         id: '1',
@@ -79,4 +79,4 @@ describe('schedules Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

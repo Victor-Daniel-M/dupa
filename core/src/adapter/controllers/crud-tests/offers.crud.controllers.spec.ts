@@ -13,9 +13,7 @@ describe('offers Controller', () => {
         OfferRepositoryImpl,
         {
           provide: OfferRepositoryImpl,
-          useValue: createMock<OfferRepositoryImpl>(
-            new OfferRepositoryImpl(),
-          ),
+          useValue: createMock<OfferRepositoryImpl>(new OfferRepositoryImpl()),
         },
       ],
     }).compile();
@@ -29,11 +27,11 @@ describe('offers Controller', () => {
       const createRes = await offersCrudController.create({
         id: '1',
         fromEntityId: 'string',
-  fromEntityName: 'string',
-  onEntityId: 'string',
-  onEntityName: 'string',
-  createdAt: 'string',
-  updatedAt: 'string'
+        fromEntityName: 'string',
+        onEntityId: 'string',
+        onEntityName: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -53,11 +51,11 @@ describe('offers Controller', () => {
       await offersCrudController.update({
         id: '1',
         fromEntityId: 'string2',
-  fromEntityName: 'string2',
-  onEntityId: 'string2',
-  onEntityName: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2'
+        fromEntityName: 'string2',
+        onEntityId: 'string2',
+        onEntityName: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
       });
       const findUpdatedRes = await offersCrudController.findOne({
         id: '1',
@@ -75,4 +73,4 @@ describe('offers Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

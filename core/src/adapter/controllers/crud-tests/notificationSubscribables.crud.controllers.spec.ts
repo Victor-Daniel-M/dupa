@@ -20,7 +20,9 @@ describe('notificationSubscribables Controller', () => {
       ],
     }).compile();
 
-    notificationSubscribablesCrudController = moduleRef.get(NotificationSubscribablesCrudController);
+    notificationSubscribablesCrudController = moduleRef.get(
+      NotificationSubscribablesCrudController,
+    );
   });
 
   describe('CRUD NotificationSubscribables', () => {
@@ -29,10 +31,10 @@ describe('notificationSubscribables Controller', () => {
       const createRes = await notificationSubscribablesCrudController.create({
         id: '1',
         actionId: 'string',
-  createdAt: 'string',
-  updatedAt: 'string',
-  notificationStrategyId: 'string',
-  notificationFrequencyId: 'string'
+        createdAt: 'string',
+        updatedAt: 'string',
+        notificationStrategyId: 'string',
+        notificationFrequencyId: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -45,21 +47,24 @@ describe('notificationSubscribables Controller', () => {
       expect(findOneRes).toMatchObject({ id: '1' });
 
       // ACT - FIND ALL
-      const findAllRes = await notificationSubscribablesCrudController.findAll({});
+      const findAllRes = await notificationSubscribablesCrudController.findAll(
+        {},
+      );
       expect(findAllRes).toMatchObject([{ id: '1' }]);
 
       // ACT - UPDATE
       await notificationSubscribablesCrudController.update({
         id: '1',
         actionId: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2',
-  notificationStrategyId: 'string2',
-  notificationFrequencyId: 'string2'
+        createdAt: 'string2',
+        updatedAt: 'string2',
+        notificationStrategyId: 'string2',
+        notificationFrequencyId: 'string2',
       });
-      const findUpdatedRes = await notificationSubscribablesCrudController.findOne({
-        id: '1',
-      });
+      const findUpdatedRes =
+        await notificationSubscribablesCrudController.findOne({
+          id: '1',
+        });
       expect(findUpdatedRes).toMatchObject({ actionId: 'string2' });
 
       // ACT - DELETE
@@ -73,4 +78,4 @@ describe('notificationSubscribables Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

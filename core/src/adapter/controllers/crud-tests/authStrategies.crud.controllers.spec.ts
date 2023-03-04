@@ -29,10 +29,10 @@ describe('authStrategies Controller', () => {
       const createRes = await authStrategiesCrudController.create({
         id: '1',
         name: 'string',
-  desc: 'string',
-  code: 'string',
-  createdAt: 'string',
-  updatedAt: 'string'
+        desc: 'string',
+        code: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -52,10 +52,10 @@ describe('authStrategies Controller', () => {
       await authStrategiesCrudController.update({
         id: '1',
         name: 'string2',
-  desc: 'string2',
-  code: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2'
+        desc: 'string2',
+        code: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
       });
       const findUpdatedRes = await authStrategiesCrudController.findOne({
         id: '1',
@@ -73,4 +73,4 @@ describe('authStrategies Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

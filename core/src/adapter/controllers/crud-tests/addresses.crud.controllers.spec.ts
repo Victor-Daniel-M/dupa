@@ -29,11 +29,11 @@ describe('addresses Controller', () => {
       const createRes = await addressesCrudController.create({
         id: '1',
         city: 'string',
-  street: 'string',
-  district: 'string',
-  region: 'string',
-  createdAt: 'string',
-  updatedAt: 'string'
+        street: 'string',
+        district: 'string',
+        region: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -53,11 +53,11 @@ describe('addresses Controller', () => {
       await addressesCrudController.update({
         id: '1',
         city: 'string2',
-  street: 'string2',
-  district: 'string2',
-  region: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2'
+        street: 'string2',
+        district: 'string2',
+        region: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
       });
       const findUpdatedRes = await addressesCrudController.findOne({
         id: '1',
@@ -75,4 +75,4 @@ describe('addresses Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

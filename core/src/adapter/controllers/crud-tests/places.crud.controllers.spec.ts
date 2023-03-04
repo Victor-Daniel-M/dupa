@@ -13,9 +13,7 @@ describe('places Controller', () => {
         PlaceRepositoryImpl,
         {
           provide: PlaceRepositoryImpl,
-          useValue: createMock<PlaceRepositoryImpl>(
-            new PlaceRepositoryImpl(),
-          ),
+          useValue: createMock<PlaceRepositoryImpl>(new PlaceRepositoryImpl()),
         },
       ],
     }).compile();
@@ -29,7 +27,7 @@ describe('places Controller', () => {
       const createRes = await placesCrudController.create({
         id: '1',
         createdAt: 'string',
-  updatedAt: 'string'
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -49,7 +47,7 @@ describe('places Controller', () => {
       await placesCrudController.update({
         id: '1',
         createdAt: 'string2',
-  updatedAt: 'string2'
+        updatedAt: 'string2',
       });
       const findUpdatedRes = await placesCrudController.findOne({
         id: '1',
@@ -67,4 +65,4 @@ describe('places Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

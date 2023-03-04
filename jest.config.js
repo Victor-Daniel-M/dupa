@@ -7,13 +7,16 @@ const { compilerOptions } = require('./tsconfig.json')
 
 module.exports = {
   "rootDir": ".",
-  "transform": {
-    "^.+\\.(t|j)s$": "ts-jest"
+  // "transform": {
+  //   "^.+\\.(t|j)s$": "ts-jest"
+  // },
+  transform: {
+    "^.+\\.(t|j)sx?$": "@swc/jest",
   },
   "collectCoverageFrom": [
     "**/*.(t|j)s"
   ],
-  preset: 'ts-jest',
+  // preset: 'ts-jest',
   "coverageDirectory": "../coverage",
   "moduleDirectories": ["<rootDir>/../", "node_modules"],
   roots: ['<rootDir>'],

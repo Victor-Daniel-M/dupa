@@ -29,14 +29,14 @@ describe('requests Controller', () => {
       const createRes = await requestsCrudController.create({
         id: '1',
         fromEntityId: 'string',
-  fromEntityName: 'string',
-  onEntityId: 'string',
-  onEntityName: 'string',
-  message: 'string',
-  createdAt: 'string',
-  updatedAt: 'string',
-  status: 'RequestStatus',
-  requestType: 'RequestType'
+        fromEntityName: 'string',
+        onEntityId: 'string',
+        onEntityName: 'string',
+        message: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
+        status: 'RequestStatus',
+        requestType: 'RequestType',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -56,14 +56,14 @@ describe('requests Controller', () => {
       await requestsCrudController.update({
         id: '1',
         fromEntityId: 'string2',
-  fromEntityName: 'string2',
-  onEntityId: 'string2',
-  onEntityName: 'string2',
-  message: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2',
-  status: 'RequestStatus2',
-  requestType: 'RequestType2'
+        fromEntityName: 'string2',
+        onEntityId: 'string2',
+        onEntityName: 'string2',
+        message: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
+        status: 'RequestStatus2',
+        requestType: 'RequestType2',
       });
       const findUpdatedRes = await requestsCrudController.findOne({
         id: '1',
@@ -81,4 +81,4 @@ describe('requests Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

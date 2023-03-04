@@ -20,7 +20,9 @@ describe('notificationFrequencies Controller', () => {
       ],
     }).compile();
 
-    notificationFrequenciesCrudController = moduleRef.get(NotificationFrequenciesCrudController);
+    notificationFrequenciesCrudController = moduleRef.get(
+      NotificationFrequenciesCrudController,
+    );
   });
 
   describe('CRUD NotificationFrequencies', () => {
@@ -29,10 +31,10 @@ describe('notificationFrequencies Controller', () => {
       const createRes = await notificationFrequenciesCrudController.create({
         id: '1',
         name: 'string',
-  code: 'string',
-  desc: 'string',
-  createdAt: 'string',
-  updatedAt: 'string'
+        code: 'string',
+        desc: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -45,21 +47,24 @@ describe('notificationFrequencies Controller', () => {
       expect(findOneRes).toMatchObject({ id: '1' });
 
       // ACT - FIND ALL
-      const findAllRes = await notificationFrequenciesCrudController.findAll({});
+      const findAllRes = await notificationFrequenciesCrudController.findAll(
+        {},
+      );
       expect(findAllRes).toMatchObject([{ id: '1' }]);
 
       // ACT - UPDATE
       await notificationFrequenciesCrudController.update({
         id: '1',
         name: 'string2',
-  code: 'string2',
-  desc: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2'
+        code: 'string2',
+        desc: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
       });
-      const findUpdatedRes = await notificationFrequenciesCrudController.findOne({
-        id: '1',
-      });
+      const findUpdatedRes =
+        await notificationFrequenciesCrudController.findOne({
+          id: '1',
+        });
       expect(findUpdatedRes).toMatchObject({ name: 'string2' });
 
       // ACT - DELETE
@@ -73,4 +78,4 @@ describe('notificationFrequencies Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

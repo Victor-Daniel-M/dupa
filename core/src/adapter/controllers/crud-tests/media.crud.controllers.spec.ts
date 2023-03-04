@@ -13,9 +13,7 @@ describe('media Controller', () => {
         MediaRepositoryImpl,
         {
           provide: MediaRepositoryImpl,
-          useValue: createMock<MediaRepositoryImpl>(
-            new MediaRepositoryImpl(),
-          ),
+          useValue: createMock<MediaRepositoryImpl>(new MediaRepositoryImpl()),
         },
       ],
     }).compile();
@@ -29,11 +27,11 @@ describe('media Controller', () => {
       const createRes = await mediaCrudController.create({
         id: '1',
         entityId: 'string',
-  entityName: 'string',
-  value: 'string',
-  createdAt: 'string',
-  updatedAt: 'string',
-  mediaType: 'MediaType'
+        entityName: 'string',
+        value: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
+        mediaType: 'MediaType',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -53,11 +51,11 @@ describe('media Controller', () => {
       await mediaCrudController.update({
         id: '1',
         entityId: 'string2',
-  entityName: 'string2',
-  value: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2',
-  mediaType: 'MediaType2'
+        entityName: 'string2',
+        value: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
+        mediaType: 'MediaType2',
       });
       const findUpdatedRes = await mediaCrudController.findOne({
         id: '1',
@@ -75,4 +73,4 @@ describe('media Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

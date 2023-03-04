@@ -20,7 +20,9 @@ describe('entityAddresses Controller', () => {
       ],
     }).compile();
 
-    entityAddressesCrudController = moduleRef.get(EntityAddressesCrudController);
+    entityAddressesCrudController = moduleRef.get(
+      EntityAddressesCrudController,
+    );
   });
 
   describe('CRUD EntityAddresses', () => {
@@ -29,10 +31,10 @@ describe('entityAddresses Controller', () => {
       const createRes = await entityAddressesCrudController.create({
         id: '1',
         entityId: 'string',
-  entityName: 'string',
-  createdAt: 'string',
-  updatedAt: 'string',
-  addressId: 'string'
+        entityName: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
+        addressId: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -52,10 +54,10 @@ describe('entityAddresses Controller', () => {
       await entityAddressesCrudController.update({
         id: '1',
         entityId: 'string2',
-  entityName: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2',
-  addressId: 'string2'
+        entityName: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
+        addressId: 'string2',
       });
       const findUpdatedRes = await entityAddressesCrudController.findOne({
         id: '1',
@@ -73,4 +75,4 @@ describe('entityAddresses Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

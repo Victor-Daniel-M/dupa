@@ -29,13 +29,13 @@ describe('properties Controller', () => {
       const createRes = await propertiesCrudController.create({
         id: '1',
         title: 'string',
-  description: 'string',
-  coverImage: 'string',
-  cost: 1,
-  createdAt: 'string',
-  updatedAt: 'string',
-  openDate: 'string',
-  propertyCategoryId: 'string'
+        description: 'string',
+        coverImage: 'string',
+        cost: 1,
+        createdAt: 'string',
+        updatedAt: 'string',
+        openDate: 'string',
+        propertyCategoryId: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -55,13 +55,13 @@ describe('properties Controller', () => {
       await propertiesCrudController.update({
         id: '1',
         title: 'string2',
-  description: 'string2',
-  coverImage: 'string2',
-  cost: 1,
-  createdAt: 'string2',
-  updatedAt: 'string2',
-  openDate: 'string2',
-  propertyCategoryId: 'string2'
+        description: 'string2',
+        coverImage: 'string2',
+        cost: 1,
+        createdAt: 'string2',
+        updatedAt: 'string2',
+        openDate: 'string2',
+        propertyCategoryId: 'string2',
       });
       const findUpdatedRes = await propertiesCrudController.findOne({
         id: '1',
@@ -79,4 +79,4 @@ describe('properties Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

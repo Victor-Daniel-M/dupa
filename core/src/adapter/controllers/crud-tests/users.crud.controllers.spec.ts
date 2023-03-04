@@ -13,9 +13,7 @@ describe('users Controller', () => {
         UserRepositoryImpl,
         {
           provide: UserRepositoryImpl,
-          useValue: createMock<UserRepositoryImpl>(
-            new UserRepositoryImpl(),
-          ),
+          useValue: createMock<UserRepositoryImpl>(new UserRepositoryImpl()),
         },
       ],
     }).compile();
@@ -29,13 +27,13 @@ describe('users Controller', () => {
       const createRes = await usersCrudController.create({
         id: '1',
         email: 'string',
-  password: 'string',
-  firstName: 'string',
-  lastName: 'string',
-  phoneNumber: 'string',
-  createdAt: 'string',
-  updatedAt: 'string',
-  userType: 'UserType'
+        password: 'string',
+        firstName: 'string',
+        lastName: 'string',
+        phoneNumber: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
+        userType: 'UserType',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -55,13 +53,13 @@ describe('users Controller', () => {
       await usersCrudController.update({
         id: '1',
         email: 'string2',
-  password: 'string2',
-  firstName: 'string2',
-  lastName: 'string2',
-  phoneNumber: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2',
-  userType: 'UserType2'
+        password: 'string2',
+        firstName: 'string2',
+        lastName: 'string2',
+        phoneNumber: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
+        userType: 'UserType2',
       });
       const findUpdatedRes = await usersCrudController.findOne({
         id: '1',
@@ -79,4 +77,4 @@ describe('users Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

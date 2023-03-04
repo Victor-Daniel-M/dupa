@@ -29,12 +29,12 @@ describe('inviteMetas Controller', () => {
       const createRes = await inviteMetasCrudController.create({
         id: '1',
         key: 'string',
-  value: 'string',
-  ref: 'string',
-  createdAt: 'string',
-  updatedAt: 'string',
-  inviteId: 'string',
-  valueType: 'MetaValueTypes'
+        value: 'string',
+        ref: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
+        inviteId: 'string',
+        valueType: 'MetaValueTypes',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -54,12 +54,12 @@ describe('inviteMetas Controller', () => {
       await inviteMetasCrudController.update({
         id: '1',
         key: 'string2',
-  value: 'string2',
-  ref: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2',
-  inviteId: 'string2',
-  valueType: 'MetaValueTypes2'
+        value: 'string2',
+        ref: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
+        inviteId: 'string2',
+        valueType: 'MetaValueTypes2',
       });
       const findUpdatedRes = await inviteMetasCrudController.findOne({
         id: '1',
@@ -77,4 +77,4 @@ describe('inviteMetas Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

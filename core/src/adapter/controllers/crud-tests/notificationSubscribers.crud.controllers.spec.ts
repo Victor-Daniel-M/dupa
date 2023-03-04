@@ -20,7 +20,9 @@ describe('notificationSubscribers Controller', () => {
       ],
     }).compile();
 
-    notificationSubscribersCrudController = moduleRef.get(NotificationSubscribersCrudController);
+    notificationSubscribersCrudController = moduleRef.get(
+      NotificationSubscribersCrudController,
+    );
   });
 
   describe('CRUD NotificationSubscribers', () => {
@@ -29,10 +31,10 @@ describe('notificationSubscribers Controller', () => {
       const createRes = await notificationSubscribersCrudController.create({
         id: '1',
         entityId: 'string',
-  entityName: 'string',
-  createdAt: 'string',
-  updatedAt: 'string',
-  notificationSubscribableId: 'string'
+        entityName: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
+        notificationSubscribableId: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -45,21 +47,24 @@ describe('notificationSubscribers Controller', () => {
       expect(findOneRes).toMatchObject({ id: '1' });
 
       // ACT - FIND ALL
-      const findAllRes = await notificationSubscribersCrudController.findAll({});
+      const findAllRes = await notificationSubscribersCrudController.findAll(
+        {},
+      );
       expect(findAllRes).toMatchObject([{ id: '1' }]);
 
       // ACT - UPDATE
       await notificationSubscribersCrudController.update({
         id: '1',
         entityId: 'string2',
-  entityName: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2',
-  notificationSubscribableId: 'string2'
+        entityName: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
+        notificationSubscribableId: 'string2',
       });
-      const findUpdatedRes = await notificationSubscribersCrudController.findOne({
-        id: '1',
-      });
+      const findUpdatedRes =
+        await notificationSubscribersCrudController.findOne({
+          id: '1',
+        });
       expect(findUpdatedRes).toMatchObject({ entityId: 'string2' });
 
       // ACT - DELETE
@@ -73,4 +78,4 @@ describe('notificationSubscribers Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

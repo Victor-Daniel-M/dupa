@@ -20,7 +20,9 @@ describe('notificationStrategies Controller', () => {
       ],
     }).compile();
 
-    notificationStrategiesCrudController = moduleRef.get(NotificationStrategiesCrudController);
+    notificationStrategiesCrudController = moduleRef.get(
+      NotificationStrategiesCrudController,
+    );
   });
 
   describe('CRUD NotificationStrategies', () => {
@@ -29,10 +31,10 @@ describe('notificationStrategies Controller', () => {
       const createRes = await notificationStrategiesCrudController.create({
         id: '1',
         name: 'string',
-  code: 'string',
-  desc: 'string',
-  createdAt: 'string',
-  updatedAt: 'string'
+        code: 'string',
+        desc: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -52,14 +54,16 @@ describe('notificationStrategies Controller', () => {
       await notificationStrategiesCrudController.update({
         id: '1',
         name: 'string2',
-  code: 'string2',
-  desc: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2'
+        code: 'string2',
+        desc: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
       });
-      const findUpdatedRes = await notificationStrategiesCrudController.findOne({
-        id: '1',
-      });
+      const findUpdatedRes = await notificationStrategiesCrudController.findOne(
+        {
+          id: '1',
+        },
+      );
       expect(findUpdatedRes).toMatchObject({ name: 'string2' });
 
       // ACT - DELETE
@@ -73,4 +77,4 @@ describe('notificationStrategies Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

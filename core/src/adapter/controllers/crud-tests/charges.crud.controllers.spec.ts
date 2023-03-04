@@ -29,13 +29,13 @@ describe('charges Controller', () => {
       const createRes = await chargesCrudController.create({
         id: '1',
         value: 'string',
-  lowerLimit: 'string',
-  upperLimit: 'string',
-  createdAt: 'string',
-  updatedAt: 'string',
-  propertyId: 'string',
-  chargeTypeId: 'string',
-  valueType: 'MetaValueTypes'
+        lowerLimit: 'string',
+        upperLimit: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
+        propertyId: 'string',
+        chargeTypeId: 'string',
+        valueType: 'MetaValueTypes',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -55,13 +55,13 @@ describe('charges Controller', () => {
       await chargesCrudController.update({
         id: '1',
         value: 'string2',
-  lowerLimit: 'string2',
-  upperLimit: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2',
-  propertyId: 'string2',
-  chargeTypeId: 'string2',
-  valueType: 'MetaValueTypes2'
+        lowerLimit: 'string2',
+        upperLimit: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
+        propertyId: 'string2',
+        chargeTypeId: 'string2',
+        valueType: 'MetaValueTypes2',
       });
       const findUpdatedRes = await chargesCrudController.findOne({
         id: '1',
@@ -79,4 +79,4 @@ describe('charges Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

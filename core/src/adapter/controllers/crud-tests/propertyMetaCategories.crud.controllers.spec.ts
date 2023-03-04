@@ -20,7 +20,9 @@ describe('propertyMetaCategories Controller', () => {
       ],
     }).compile();
 
-    propertyMetaCategoriesCrudController = moduleRef.get(PropertyMetaCategoriesCrudController);
+    propertyMetaCategoriesCrudController = moduleRef.get(
+      PropertyMetaCategoriesCrudController,
+    );
   });
 
   describe('CRUD PropertyMetaCategories', () => {
@@ -29,10 +31,10 @@ describe('propertyMetaCategories Controller', () => {
       const createRes = await propertyMetaCategoriesCrudController.create({
         id: '1',
         code: 'string',
-  desc: 'string',
-  valueType: 'MetaValueTypes',
-  createdAt: 'string',
-  updatedAt: 'string'
+        desc: 'string',
+        valueType: 'MetaValueTypes',
+        createdAt: 'string',
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -52,14 +54,16 @@ describe('propertyMetaCategories Controller', () => {
       await propertyMetaCategoriesCrudController.update({
         id: '1',
         code: 'string2',
-  desc: 'string2',
-  valueType: 'MetaValueTypes2',
-  createdAt: 'string2',
-  updatedAt: 'string2'
+        desc: 'string2',
+        valueType: 'MetaValueTypes2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
       });
-      const findUpdatedRes = await propertyMetaCategoriesCrudController.findOne({
-        id: '1',
-      });
+      const findUpdatedRes = await propertyMetaCategoriesCrudController.findOne(
+        {
+          id: '1',
+        },
+      );
       expect(findUpdatedRes).toMatchObject({ code: 'string2' });
 
       // ACT - DELETE
@@ -73,4 +77,4 @@ describe('propertyMetaCategories Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

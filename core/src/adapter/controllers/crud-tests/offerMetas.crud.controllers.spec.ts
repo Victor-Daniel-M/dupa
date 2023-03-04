@@ -29,11 +29,11 @@ describe('offerMetas Controller', () => {
       const createRes = await offerMetasCrudController.create({
         id: '1',
         key: 'string',
-  value: 'string',
-  createdAt: 'string',
-  updatedAt: 'string',
-  offerId: 'string',
-  valueType: 'MetaValueTypes'
+        value: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
+        offerId: 'string',
+        valueType: 'MetaValueTypes',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -53,11 +53,11 @@ describe('offerMetas Controller', () => {
       await offerMetasCrudController.update({
         id: '1',
         key: 'string2',
-  value: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2',
-  offerId: 'string2',
-  valueType: 'MetaValueTypes2'
+        value: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
+        offerId: 'string2',
+        valueType: 'MetaValueTypes2',
       });
       const findUpdatedRes = await offerMetasCrudController.findOne({
         id: '1',
@@ -75,4 +75,4 @@ describe('offerMetas Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

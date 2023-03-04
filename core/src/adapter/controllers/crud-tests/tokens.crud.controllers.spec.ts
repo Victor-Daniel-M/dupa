@@ -13,9 +13,7 @@ describe('tokens Controller', () => {
         TokenRepositoryImpl,
         {
           provide: TokenRepositoryImpl,
-          useValue: createMock<TokenRepositoryImpl>(
-            new TokenRepositoryImpl(),
-          ),
+          useValue: createMock<TokenRepositoryImpl>(new TokenRepositoryImpl()),
         },
       ],
     }).compile();
@@ -29,12 +27,12 @@ describe('tokens Controller', () => {
       const createRes = await tokensCrudController.create({
         id: '1',
         key: 'string',
-  value: 'string',
-  entityName: 'string',
-  entityId: 'string',
-  expiresAt: 'string',
-  createdAt: 'string',
-  updatedAt: 'string'
+        value: 'string',
+        entityName: 'string',
+        entityId: 'string',
+        expiresAt: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -54,12 +52,12 @@ describe('tokens Controller', () => {
       await tokensCrudController.update({
         id: '1',
         key: 'string2',
-  value: 'string2',
-  entityName: 'string2',
-  entityId: 'string2',
-  expiresAt: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2'
+        value: 'string2',
+        entityName: 'string2',
+        entityId: 'string2',
+        expiresAt: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
       });
       const findUpdatedRes = await tokensCrudController.findOne({
         id: '1',
@@ -77,4 +75,4 @@ describe('tokens Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

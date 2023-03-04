@@ -20,7 +20,9 @@ describe('resourceActions Controller', () => {
       ],
     }).compile();
 
-    resourceActionsCrudController = moduleRef.get(ResourceActionsCrudController);
+    resourceActionsCrudController = moduleRef.get(
+      ResourceActionsCrudController,
+    );
   });
 
   describe('CRUD ResourceActions', () => {
@@ -29,9 +31,9 @@ describe('resourceActions Controller', () => {
       const createRes = await resourceActionsCrudController.create({
         id: '1',
         createdAt: 'string',
-  updatedAt: 'string',
-  actionId: 'string',
-  resourceId: 'string'
+        updatedAt: 'string',
+        actionId: 'string',
+        resourceId: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -51,9 +53,9 @@ describe('resourceActions Controller', () => {
       await resourceActionsCrudController.update({
         id: '1',
         createdAt: 'string2',
-  updatedAt: 'string2',
-  actionId: 'string2',
-  resourceId: 'string2'
+        updatedAt: 'string2',
+        actionId: 'string2',
+        resourceId: 'string2',
       });
       const findUpdatedRes = await resourceActionsCrudController.findOne({
         id: '1',
@@ -71,4 +73,4 @@ describe('resourceActions Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

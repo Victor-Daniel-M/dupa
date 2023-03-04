@@ -29,11 +29,11 @@ describe('userMetas Controller', () => {
       const createRes = await userMetasCrudController.create({
         id: '1',
         key: 'string',
-  value: 'string',
-  valueType: 'MetaValueTypes',
-  userId: 'string',
-  createdAt: 'string',
-  updatedAt: 'string'
+        value: 'string',
+        valueType: 'MetaValueTypes',
+        userId: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -53,11 +53,11 @@ describe('userMetas Controller', () => {
       await userMetasCrudController.update({
         id: '1',
         key: 'string2',
-  value: 'string2',
-  valueType: 'MetaValueTypes2',
-  userId: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2'
+        value: 'string2',
+        valueType: 'MetaValueTypes2',
+        userId: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
       });
       const findUpdatedRes = await userMetasCrudController.findOne({
         id: '1',
@@ -75,4 +75,4 @@ describe('userMetas Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

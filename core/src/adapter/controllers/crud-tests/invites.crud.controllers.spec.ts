@@ -29,9 +29,9 @@ describe('invites Controller', () => {
       const createRes = await invitesCrudController.create({
         id: '1',
         text: 'string',
-  inviteType: 'string',
-  createdAt: 'string',
-  updatedAt: 'string'
+        inviteType: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -51,9 +51,9 @@ describe('invites Controller', () => {
       await invitesCrudController.update({
         id: '1',
         text: 'string2',
-  inviteType: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2'
+        inviteType: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
       });
       const findUpdatedRes = await invitesCrudController.findOne({
         id: '1',
@@ -71,4 +71,4 @@ describe('invites Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

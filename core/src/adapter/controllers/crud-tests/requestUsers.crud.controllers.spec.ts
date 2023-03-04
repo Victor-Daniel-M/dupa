@@ -29,7 +29,7 @@ describe('requestUsers Controller', () => {
       const createRes = await requestUsersCrudController.create({
         id: '1',
         userId: 'string',
-  requestId: 'string'
+        requestId: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -49,7 +49,7 @@ describe('requestUsers Controller', () => {
       await requestUsersCrudController.update({
         id: '1',
         userId: 'string2',
-  requestId: 'string2'
+        requestId: 'string2',
       });
       const findUpdatedRes = await requestUsersCrudController.findOne({
         id: '1',
@@ -67,4 +67,4 @@ describe('requestUsers Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

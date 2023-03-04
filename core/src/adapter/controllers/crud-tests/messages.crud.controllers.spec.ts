@@ -29,14 +29,14 @@ describe('messages Controller', () => {
       const createRes = await messagesCrudController.create({
         id: '1',
         text: 'string',
-  mediaType: 'string',
-  mediaValue: 'string',
-  fromEntityId: 'string',
-  fromEntityName: 'string',
-  toEntityId: 'string',
-  toEntityName: 'string',
-  createdAt: 'string',
-  updatedAt: 'string'
+        mediaType: 'string',
+        mediaValue: 'string',
+        fromEntityId: 'string',
+        fromEntityName: 'string',
+        toEntityId: 'string',
+        toEntityName: 'string',
+        createdAt: 'string',
+        updatedAt: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -56,14 +56,14 @@ describe('messages Controller', () => {
       await messagesCrudController.update({
         id: '1',
         text: 'string2',
-  mediaType: 'string2',
-  mediaValue: 'string2',
-  fromEntityId: 'string2',
-  fromEntityName: 'string2',
-  toEntityId: 'string2',
-  toEntityName: 'string2',
-  createdAt: 'string2',
-  updatedAt: 'string2'
+        mediaType: 'string2',
+        mediaValue: 'string2',
+        fromEntityId: 'string2',
+        fromEntityName: 'string2',
+        toEntityId: 'string2',
+        toEntityName: 'string2',
+        createdAt: 'string2',
+        updatedAt: 'string2',
       });
       const findUpdatedRes = await messagesCrudController.findOne({
         id: '1',
@@ -81,4 +81,4 @@ describe('messages Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});

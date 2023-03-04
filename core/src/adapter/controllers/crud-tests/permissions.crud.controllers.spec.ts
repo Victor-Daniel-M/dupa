@@ -29,8 +29,8 @@ describe('permissions Controller', () => {
       const createRes = await permissionsCrudController.create({
         id: '1',
         entityId: 'string',
-  entityName: 'string',
-  resourceActionId: 'string'
+        entityName: 'string',
+        resourceActionId: 'string',
       });
       expect(createRes).toMatchObject({
         id: '1',
@@ -50,8 +50,8 @@ describe('permissions Controller', () => {
       await permissionsCrudController.update({
         id: '1',
         entityId: 'string2',
-  entityName: 'string2',
-  resourceActionId: 'string2'
+        entityName: 'string2',
+        resourceActionId: 'string2',
       });
       const findUpdatedRes = await permissionsCrudController.findOne({
         id: '1',
@@ -69,4 +69,4 @@ describe('permissions Controller', () => {
       ).rejects.toThrow();
     });
   });
-});    
+});
