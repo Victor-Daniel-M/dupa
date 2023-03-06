@@ -2,6 +2,6 @@ import { z } from 'nestjs-zod/z';
 
 export class ComplaintsListUsecase {
   async execute(data: any) {
-    console.log('ComplaintsListUsecase');
+    console.log('ComplaintsListUsecasev');
   }
 }
