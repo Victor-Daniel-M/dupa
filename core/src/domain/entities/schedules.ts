@@ -8,8 +8,8 @@ export enum DayOfWeek {
   SUN,
 }
 
-export class Schedule {
-  id: string;
+export interface ISchedule {
+  id?: string;
   openAt: string;
   closeAt: string;
   entityName: string;

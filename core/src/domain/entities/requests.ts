@@ -10,8 +10,8 @@ export enum RequestStatus {
   REJECTED,
 }
 
-export class Request {
-  id: string;
+export interface IRequest {
+  id?: string;
   fromEntityId: string;
   fromEntityName: string;
   onEntityId: string;
@@ -23,8 +23,8 @@ export class Request {
   requestType: RequestType;
 }
 
-export class RequestMeta {
-  id: string;
+export interface IRequestMeta {
+  id?: string;
   key: string;
   value: string;
   createdAt: string;
@@ -33,8 +33,8 @@ export class RequestMeta {
   valueType: MetaValueTypes;
 }
 
-export class RequestUser {
-  id: string;
+export interface IRequestUser {
+  id?: string;
   userId: string;
   requestId: string;
 }

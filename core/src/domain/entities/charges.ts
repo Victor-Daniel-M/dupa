@@ -1,7 +1,7 @@
 import { MetaValueTypes } from './_common';
 
-export class ChargeType {
-  id: string;
+export interface IChargeType {
+  id?: string;
   name: string;
   code: string;
   desc: string;
@@ -9,8 +9,8 @@ export class ChargeType {
   updatedAt: string;
 }
 
-export class Charge {
-  id: string;
+export interface ICharge {
+  id?: string;
   value: string;
   lowerLimit: string;
   upperLimit: string;

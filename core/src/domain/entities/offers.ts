@@ -1,7 +1,7 @@
 import { MetaValueTypes } from './_common';
 
-export class Offer {
-  id: string;
+export interface IOffer {
+  id?: string;
   fromEntityId: string;
   fromEntityName: string;
   onEntityId: string;
@@ -10,8 +10,8 @@ export class Offer {
   updatedAt: string;
 }
 
-export class OfferMeta {
-  id: string;
+export interface IOfferMeta {
+  id?: string;
   key: string;
   value: string;
   createdAt: string;

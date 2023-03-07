@@ -4,7 +4,7 @@ export const UserTypes = ['GUEST', 'AGENT', 'ADMIN', 'USER'] as const;
 
 export type UserType = (typeof UserTypes)[number];
 
-export class User {
+export interface IUser {
   id?: string;
   email?: string;
   password?: string;
@@ -16,7 +16,7 @@ export class User {
   userType?: UserType;
 }
 
-export class UserMeta {
+export interface IUserMeta {
   id?: string;
   key: string;
   value: string;

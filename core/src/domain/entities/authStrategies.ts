@@ -1,7 +1,7 @@
 import { MetaValueTypes } from './_common';
 
-export class AuthStrategy {
-  id: string;
+export interface IAuthStrategy {
+  id?: string;
   name: string;
   desc: string;
   code: string;
@@ -9,8 +9,8 @@ export class AuthStrategy {
   updatedAt: string;
 }
 
-export class AuthStrategyMeta {
-  id: string;
+export interface IAuthStrategyMeta {
+  id?: string;
   key: string;
   value: string;
   valueType: MetaValueTypes;

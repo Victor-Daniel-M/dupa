@@ -1,4 +1,4 @@
-export class Token {
+export interface IToken {
   id?: string;
   key: string;
   value: string;

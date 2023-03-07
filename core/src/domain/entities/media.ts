@@ -4,8 +4,8 @@ enum MediaType {
   AUDIO,
 }
 
-export class Media {
-  id: string;
+export interface IMedia {
+  id?: string;
   entityId: string;
   entityName: string;
   value: string;

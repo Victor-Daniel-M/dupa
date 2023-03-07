@@ -3,8 +3,8 @@ export enum MessageType {
   TALK_TO_AGENT,
 }
 
-export class Message {
-  id: string;
+export interface IMessage {
+  id?: string;
   text: string;
   mediaType: string;
   mediaValue: string;

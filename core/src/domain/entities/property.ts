@@ -1,8 +1,8 @@
 import { MetaValueTypes } from './_common';
 
 // Propertystring
-export class PropertyCategory {
-  id: string;
+export interface IPropertyCategory {
+  id?: string;
   name: string;
   code: string;
   desc: string;
@@ -10,8 +10,8 @@ export class PropertyCategory {
   updatedAt: string;
 }
 
-export class Property {
-  id: string;
+export interface IProperty {
+  id?: string;
   title: string;
   description: string;
   coverImage: string;
@@ -22,8 +22,8 @@ export class Property {
   propertyCategoryId: string;
 }
 
-export class PropertyMetaCategory {
-  id: string;
+export interface IPropertyMetaCategory {
+  id?: string;
   code: string;
   desc: string;
   valueType: MetaValueTypes;
@@ -31,8 +31,8 @@ export class PropertyMetaCategory {
   updatedAt: string;
 }
 
-export class PropertyMeta {
-  id: string;
+export interface IPropertyMeta {
+  id?: string;
   key: string;
   value: string;
   createdAt: string;

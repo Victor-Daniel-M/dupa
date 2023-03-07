@@ -1,6 +1,6 @@
 // Notifications
-export class NotificationStrategy {
-  id: string;
+export interface INotificationStrategy {
+  id?: string;
   name: string;
   code: string;
   desc: string;
@@ -8,8 +8,8 @@ export class NotificationStrategy {
   updatedAt: string;
 }
 
-export class NotificationFrequency {
-  id: string;
+export interface INotificationFrequency {
+  id?: string;
   name: string;
   code: string;
   desc: string;
@@ -17,8 +17,8 @@ export class NotificationFrequency {
   updatedAt: string;
 }
 
-export class NotificationSubscribable {
-  id: string;
+export interface INotificationSubscribable {
+  id?: string;
   actionId: string;
   createdAt: string;
   updatedAt: string;
@@ -26,8 +26,8 @@ export class NotificationSubscribable {
   notificationFrequencyId: string;
 }
 
-export class NotificationSubscriber {
-  id: string;
+export interface INotificationSubscriber {
+  id?: string;
   entityId: string;
   entityName: string;
   createdAt: string;

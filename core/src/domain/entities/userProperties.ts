@@ -3,8 +3,8 @@ export enum UserPropertyType {
   BROKER,
 }
 
-export class UserProperty {
-  id: string;
+export interface IUserProperty {
+  id?: string;
   userPropertyType: UserPropertyType;
   propertyId: string;
   userId: string;

@@ -1,5 +1,5 @@
-export class Location {
-  id: string;
+export interface ILocation {
+  id?: string;
   entityName: string;
   entityId: string;
   lat: number;

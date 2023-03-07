@@ -6,8 +6,8 @@ enum ReactionType {
   RATING,
 }
 
-export class Reaction {
-  id: string;
+export interface IReaction {
+  id?: string;
   fromEntityId: string;
   fromEntityName: string;
   toEntityId: string;

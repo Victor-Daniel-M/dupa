@@ -6,8 +6,8 @@ enum SearchType {
   HOUSE_SEARCH,
 }
 
-export class Search {
-  id: string;
+export interface ISearch {
+  id?: string;
   userId: string;
   isSaved: Boolean;
   searchType: SearchType;
@@ -15,8 +15,8 @@ export class Search {
   updatedAt: string;
 }
 
-export class SearchMeta {
-  id: string;
+export interface ISearchMeta {
+  id?: string;
   key: string;
   value: string;
   valueType: MetaValueTypes;

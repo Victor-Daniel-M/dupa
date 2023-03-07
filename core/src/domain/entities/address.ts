@@ -1,6 +1,6 @@
 // Address
-export class Address {
-  id: string;
+export interface IAddress {
+  id?: string;
   city: string;
   street: string;
   district: string;
@@ -9,8 +9,8 @@ export class Address {
   updatedAt: string;
 }
 
-export class EntityAddress {
-  id: string;
+export interface IEntityAddress {
+  id?: string;
   entityId: string;
   entityName: string;
   createdAt: string;

@@ -2,8 +2,8 @@ export enum ConfigType {
   TERMS,
 }
 
-export class Config {
-  id: string;
+export interface IConfig {
+  id?: string;
   text: string;
   value: string;
   createdAt: string;

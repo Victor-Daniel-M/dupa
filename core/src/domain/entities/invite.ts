@@ -4,16 +4,16 @@ export enum InviteType {
   VIEW_PROPERTY,
 }
 
-export class Invite {
-  id: string;
+export interface IInvite {
+  id?: string;
   text: string;
   inviteType: string;
   createdAt: string;
   updatedAt: string;
 }
 
-export class InviteMeta {
-  id: string;
+export interface IInviteMeta {
+  id?: string;
   key: string;
   value: string;
   ref: string;

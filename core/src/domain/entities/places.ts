@@ -1,13 +1,13 @@
 import { MetaValueTypes } from './_common';
 
-export class Place {
-  id: string;
+export interface IPlace {
+  id?: string;
   createdAt: string;
   updatedAt: string;
 }
 
-export class PlaceMeta {
-  id: string;
+export interface IPlaceMeta {
+  id?: string;
   key: string;
   value: string;
   createdAt: string;

@@ -1,5 +1,5 @@
-export class Permission {
-  id: string;
+export interface IPermission {
+  id?: string;
   entityId: string;
   entityName: string;
   resourceActionId: string;

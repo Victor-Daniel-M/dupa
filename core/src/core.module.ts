@@ -1,20 +1,13 @@
-import { LoginController } from './adapter/controllers/login.controller';
 import { Global, Module } from '@nestjs/common';
-import { EmailService } from './infrastructure/services/emailService';
-import { NotificationService } from './infrastructure/services/notificationService';
 import { ResponseInterceptor } from 'common/filters-interceptors/src';
-import { PropertyRepositoryImpl } from './infrastructure/repositories/property-repository';
-import { UserRepositoryImpl } from './infrastructure/repositories/user-repository';
+import { HealthController } from './adapter/controllers/health.controller';
+import { OwnerPropertyController } from './adapter/controllers/owner/ownerProperty.controller';
+import { PropertiesRepositoryImpl } from './infrastructure/repositories/propertiesRepository';
+import { PrismaService } from './infrastructure/services/prisma.service';
 
 @Global()
 @Module({
-  providers: [
-    EmailService,
-    PropertyRepositoryImpl,
-    UserRepositoryImpl,
-    NotificationService,
-    ResponseInterceptor,
-  ],
-  controllers: [LoginController],
+  providers: [ResponseInterceptor, PropertiesRepositoryImpl, PrismaService],
+  controllers: [HealthController, OwnerPropertyController],
 })
 export class CoreModule {}

@@ -1,5 +1,5 @@
-export class Action {
-  id: string;
+export interface IAction {
+  id?: string;
   name: string;
   code: string;
   desc: string;
@@ -8,8 +8,8 @@ export class Action {
   updatedAt: string;
 }
 
-export class ResourceAction {
-  id: string;
+export interface IResourceAction {
+  id?: string;
   createdAt: string;
   updatedAt: string;
   actionId: string;
