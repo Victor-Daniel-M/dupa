@@ -1,4 +1,4 @@
-import { CreatePropertyReq } from '@core/adapter/dtos/owner/properties.controller.dto';
+import { CreatePropertyReqDto } from '@core/adapter/dtos/owner/properties.controller.dto';
 import { PropertiesRepositoryImpl } from '@core/infrastructure/repositories/propertiesRepository';
 import { z } from 'nestjs-zod/z';
 
@@ -11,7 +11,7 @@ export class PropertiesCreateUsecase {
   }) {
     this.propertiesRepositoryImpl = propertiesRepositoryImpl;
   }
-  async execute(data: z.infer<typeof CreatePropertyReq>) {
+  async execute(data: CreatePropertyReqDto) {
     console.log('RentalsCreateUsecase');
 
     this.propertiesRepositoryImpl.create(data);

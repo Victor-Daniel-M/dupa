@@ -1,15 +1,50 @@
-import { createZodDto } from 'nestjs-zod';
-import { number, string, z } from 'nestjs-zod/z';
+export class CreatePropertyReqDto {
+  title: string;
+  description: string;
+  coverImage: string;
+  cost: number;
+  createdAt: string;
+  updatedAt: string;
+  openDate: string;
+  propertyCategoryId: string;
+}
 
-export const CreatePropertyReq = z.object({
-  title: string(),
-  description: string(),
-  coverImage: string(),
-  cost: number(),
-  createdAt: string(),
-  updatedAt: string(),
-  openDate: string(),
-  propertyCategoryId: string(),
-});
+// S3 upload
+import { ApiPropertyOptional } from '@nestjs/swagger';
 
-export class CreatePropertyReqDto extends createZodDto(CreatePropertyReq) {}
+export class ImageFileDTO {
+  @ApiPropertyOptional()
+  fieldname?: string;
+
+  @ApiPropertyOptional()
+  originalname?: string;
+
+  @ApiPropertyOptional()
+  encoding?: string;
+
+  @ApiPropertyOptional()
+  mimetype?: string;
+
+  @ApiPropertyOptional()
+  buffer?: any;
+
+  @ApiPropertyOptional()
+  size?: number;
+}
+
+export class ImageResponseDTO {
+  @ApiPropertyOptional()
+  ETag?: string;
+
+  @ApiPropertyOptional()
+  Location?: string;
+
+  @ApiPropertyOptional()
+  key?: string;
+
+  @ApiPropertyOptional()
+  Key?: string;
+
+  @ApiPropertyOptional()
+  Bucket?: string;
+}

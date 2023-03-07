@@ -1,9 +1,11 @@
 import { CreatePropertyReqDto } from '@core/adapter/dtos/owner/properties.controller.dto';
 import { PropertiesCreateUsecase } from '@core/application/usecases/owner/property-create';
 import { PropertiesRepositoryImpl } from '@core/infrastructure/repositories/propertiesRepository';
+import { UploadImageService } from '@core/infrastructure/services/uploadImage.service';
 import { Controller, Post, ParseFilePipeBuilder } from '@nestjs/common';
 import { Body, UseInterceptors } from '@nestjs/common/decorators';
 import { UploadedFile } from '@nestjs/common/decorators/http/route-params.decorator';
+import { InternalServerErrorException } from '@nestjs/common/exceptions';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 export class SampleDto {
@@ -13,7 +15,11 @@ export class SampleDto {
 
 @Controller('owner/properties')
 export class OwnerPropertyController {
-  constructor(private propertiesRepositoryImpl: PropertiesRepositoryImpl) {}
+  constructor(
+    private propertiesRepositoryImpl: PropertiesRepositoryImpl,
+    private readonly uploadImageService: UploadImageService,
+  ) {}
+
   @Post('')
   @UseInterceptors(FileInterceptor('file'))
   async propertyCreate(
@@ -21,19 +27,20 @@ export class OwnerPropertyController {
     @UploadedFile()
     file?: Express.Multer.File,
   ) {
-    // const propertiesCreateUsecase = new PropertiesCreateUsecase({
-    //   propertiesRepositoryImpl: this.propertiesRepositoryImpl,
-    // });
+    try {
+      const data = await this.uploadImageService.upload(file);
+      console.log('Uploaded file:', data);
+    } catch (error) {
+      console.log(error);
 
-    // return propertiesCreateUsecase.execute(body);
+      throw new InternalServerErrorException("Couldn't upload");
+    }
 
-    console.log(file);
-    console.log(body);
+    const propertiesCreateUsecase = new PropertiesCreateUsecase({
+      propertiesRepositoryImpl: this.propertiesRepositoryImpl,
+    });
 
-    return {
-      body,
-      file: file?.buffer.toString(),
-    };
+    return propertiesCreateUsecase.execute(body);
   }
 
   @UseInterceptors(FileInterceptor('file'))
