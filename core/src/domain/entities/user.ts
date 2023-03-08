@@ -1,19 +1,24 @@
 import { MetaValueTypes } from './_common';
 
-export const UserTypes = ['GUEST', 'AGENT', 'ADMIN', 'USER'] as const;
+export const UserTypes = [
+  'PROPERTY_ADMIN',
+  'SYSTEM_ADMIN',
+  'TENANT',
+  'REALTOR',
+] as const;
 
 export type UserType = (typeof UserTypes)[number];
 
 export interface IUser {
   id?: string;
-  email?: string;
-  password?: string;
-  firstName?: string;
-  lastName?: string;
-  phoneNumber?: string;
-  createdAt?: string;
-  updatedAt?: string;
-  userType?: UserType;
+  email?: string | null;
+  password?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  phoneNumber?: string | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
+  userType?: UserType | null;
 }
 
 export interface IUserMeta {

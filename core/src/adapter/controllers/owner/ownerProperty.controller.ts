@@ -8,11 +8,6 @@ import { UploadedFile } from '@nestjs/common/decorators/http/route-params.decora
 import { InternalServerErrorException } from '@nestjs/common/exceptions';
 import { FileInterceptor } from '@nestjs/platform-express';
 
-export class SampleDto {
-  name: string;
-  age: string;
-}
-
 @Controller('owner/properties')
 export class OwnerPropertyController {
   constructor(
@@ -41,20 +36,5 @@ export class OwnerPropertyController {
     });
 
     return propertiesCreateUsecase.execute(body);
-  }
-
-  @UseInterceptors(FileInterceptor('file'))
-  @Post('file/pass-validation')
-  uploadFileAndPassValidation(
-    @Body() body: SampleDto,
-    @UploadedFile()
-    file?: Express.Multer.File,
-  ) {
-    console.log(file);
-
-    return {
-      body,
-      file: file?.buffer.toString(),
-    };
   }
 }

@@ -21,3 +21,22 @@ model Property {
   openDate           String
   propertyCategoryId String
 }
+
+enum UserType {
+  TENANT
+  PROPERTY_ADMIN
+  REALTOR
+  SYSTEM_ADMIN
+}
+
+model User {
+  id          String    @unique() @default(cuid())
+  email       String?
+  password    String?
+  firstName   String?
+  lastName    String?
+  phoneNumber String?
+  createdAt   String?
+  updatedAt   String?
+  userType    UserType?
+}

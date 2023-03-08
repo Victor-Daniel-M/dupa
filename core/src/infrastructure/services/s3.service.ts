@@ -34,4 +34,6 @@ export class S3ConfigProvider {
 }
 
 /* Create a bucket (run this once)*/
-// new S3ConfigProvider().createBucket();
+export function createBucket() {
+  new S3ConfigProvider().createBucket();
+}

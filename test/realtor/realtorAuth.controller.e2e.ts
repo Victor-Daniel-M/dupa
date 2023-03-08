@@ -2,10 +2,10 @@ import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { AppModule } from 'src/app.module';
+import { RealtorRegisterReqDto } from '@core/adapter/dtos/realtor/auth.controller.dto';
 
-describe('Health', () => {
+describe('Realtor Auth', () => {
   let app: INestApplication;
-  let server: any;
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -13,15 +13,23 @@ describe('Health', () => {
     }).compile();
 
     app = moduleRef.createNestApplication();
-    server = app.getHttpServer();
     await app.init();
   });
-  it(`/GET /ping`, async () => {
-    return request(server).get('/ping').expect(200);
+
+  it(`/POST /realtor/auth/register`, async () => {
+    return request(app.getHttpServer())
+      .post('/realtor/auth/register')
+      .send({
+        email: 'test@email.com',
+        firstName: 'Test',
+        lastName: 'Test',
+        password: 'Test',
+        phoneNumber: '3423423',
+      } as RealtorRegisterReqDto)
+      .expect(201);
   });
 
   afterAll(async () => {
     await app.close();
-    server.close();
   });
 });
