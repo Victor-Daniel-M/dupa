@@ -40,3 +40,28 @@ model User {
   updatedAt   String?
   userType    UserType?
 }
+
+model Owner {
+  id         String @unique() @default(cuid())
+  propertyId String
+  userId     String
+}
+
+model Realtor {
+  id         String @unique() @default(cuid())
+  propertyId String
+  userId     String
+}
+
+model Tenant {
+  id         String  @unique() @default(cuid())
+  propertyId String
+  userId     String
+  realtorId  String?
+}
+
+model RealtorPropertyApplication {
+  id         String @unique() @default(cuid())
+  propertyId String
+  realtorId  String
+}

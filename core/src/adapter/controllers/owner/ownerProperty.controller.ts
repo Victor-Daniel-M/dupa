@@ -1,6 +1,8 @@
 import { CreatePropertyReqDto } from '@core/adapter/dtos/owner/properties.controller.dto';
 import { PropertiesCreateUsecase } from '@core/application/usecases/owner/property-create';
+import { OwnersRepositoryImpl } from '@core/infrastructure/repositories/ownersRepository';
 import { PropertiesRepositoryImpl } from '@core/infrastructure/repositories/propertiesRepository';
+import { UsersRepositoryImpl } from '@core/infrastructure/repositories/usersRepository';
 import { UploadImageService } from '@core/infrastructure/services/uploadImage.service';
 import { Controller, Post, ParseFilePipeBuilder } from '@nestjs/common';
 import { Body, UseInterceptors } from '@nestjs/common/decorators';
@@ -12,8 +14,9 @@ import { FileInterceptor } from '@nestjs/platform-express';
 export class OwnerPropertyController {
   constructor(
     private propertiesRepositoryImpl: PropertiesRepositoryImpl,
-    private readonly uploadImageService: UploadImageService,
-  ) {}
+    private ownersRepositoryImpl: OwnersRepositoryImpl,
+  ) // private readonly uploadImageService: UploadImageService,
+  {}
 
   @Post('')
   @UseInterceptors(FileInterceptor('file'))
@@ -22,17 +25,18 @@ export class OwnerPropertyController {
     @UploadedFile()
     file?: Express.Multer.File,
   ) {
-    try {
-      const data = await this.uploadImageService.upload(file);
-      console.log('Uploaded file:', data);
-    } catch (error) {
-      console.log(error);
+    // try {
+    //   const data = await this.uploadImageService.upload(file);
+    //   console.log('Uploaded file:', data);
+    // } catch (error) {
+    //   console.log(error);
 
-      throw new InternalServerErrorException("Couldn't upload");
-    }
+    //   throw new InternalServerErrorException("Couldn't upload");
+    // }
 
     const propertiesCreateUsecase = new PropertiesCreateUsecase({
       propertiesRepositoryImpl: this.propertiesRepositoryImpl,
+      ownersRepositoryImpl: this.ownersRepositoryImpl,
     });
 
     return propertiesCreateUsecase.execute(body);
