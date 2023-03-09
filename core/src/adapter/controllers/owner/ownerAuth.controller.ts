@@ -3,18 +3,17 @@ import { RegisterUsecase } from '@core/application/usecases/owner/register';
 import { UsersRepositoryImpl } from '@core/infrastructure/repositories/usersRepository';
 import { Controller, Post } from '@nestjs/common';
 import { Body } from '@nestjs/common/decorators';
+import { Inject } from '@nestjs/common';
 
 @Controller('owner/auth')
 export class OwnerAuthController {
-  constructor(private usersRepositoryImpl: UsersRepositoryImpl) {}
+  constructor(
+    @Inject('RegisterUsecase') private registerUsecase: RegisterUsecase,
+  ) {}
 
   @Post('register')
   async register(@Body() body: OwnerRegisterReqDto) {
-    const registerUsecase = new RegisterUsecase({
-      userRepositoryImp: this.usersRepositoryImpl,
-    });
-
-    registerUsecase.execute(body);
+    const registerUsecase = this.registerUsecase.execute(body);
     return;
   }
 }

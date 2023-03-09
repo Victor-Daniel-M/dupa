@@ -4,6 +4,7 @@ import { HealthController } from './adapter/controllers/health.controller';
 import { OwnerAuthController } from './adapter/controllers/owner/ownerAuth.controller';
 import { OwnerPropertyController } from './adapter/controllers/owner/ownerProperty.controller';
 import { RealtorAuthController } from './adapter/controllers/realtor/realtorAuth.controller';
+import { RegisterUsecase } from './application/usecases/owner/register';
 import { OwnersRepositoryImpl } from './infrastructure/repositories/ownersRepository';
 import { PropertiesRepositoryImpl } from './infrastructure/repositories/propertiesRepository';
 import { RealtorPropertyApplicationsRepositoryImpl } from './infrastructure/repositories/propertyApplications';
@@ -27,6 +28,9 @@ import { UploadImageService } from './infrastructure/services/uploadImage.servic
     PrismaService,
     UploadImageService,
     S3ConfigProvider,
+    RegisterUsecase,
+    { provide: 'UsersRepositoryImpl', useClass: UsersRepositoryImpl },
+    { provide: 'RegisterUsecase', useClass: RegisterUsecase },
   ],
   controllers: [
     HealthController,

@@ -15,7 +15,6 @@ module.exports = {
   preset: 'ts-jest',
   "coverageDirectory": "../../coverage",
   "moduleDirectories": ["<rootDir>/../", "node_modules"],
-  setupFilesAfterEnv: ['./jest.setup.js'],
   roots: ['<rootDir>'],
   modulePaths: [compilerOptions.baseUrl],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
