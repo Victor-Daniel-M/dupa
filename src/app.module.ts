@@ -1,13 +1,16 @@
 import { Module } from '@nestjs/common';
-import { CoreModule } from '../core/src/core.module';
-import { APP_PIPE } from '@nestjs/core';
-import { ZodValidationPipe } from 'nestjs-zod';
-import { AuthModule } from './auth/auth.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
-import { RealtorModule } from './realtor/realtor.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { OrmConfig } from './ormconfig';
 
 @Module({
-  providers: [],
-  imports: [CoreModule, AuthModule, UsersModule, RealtorModule],
+  imports: [
+    UsersModule,
+    TypeOrmModule.forRoot(OrmConfig)
+  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
