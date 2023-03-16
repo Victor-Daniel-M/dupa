@@ -1,8 +1,45 @@
-POST http://localhost:3000/login/broker-login
+## create test entity
+POST http://localhost:3000/test_entity
 content-type: application/json
 
 {
-    "email": "test@email.com",
-    "password": "test"
+    "name": "Test"
 }
 
+###
+
+## get test entities
+GET http://localhost:3000/test_entity
+content-type: application/json
+
+###
+
+## view test entity
+GET http://localhost:3000/test_entity/1
+content-type: application/json
+
+###
+
+## update test entity
+PUT http://localhost:3000/test_entity
+content-type: application/json
+
+{
+    "id": 1,
+    "name": "Test6"
+}
+
+###
+
+## delete test entity
+DELETE http://localhost:3000/test_entity/1
+content-type: application/json
+
+###
+## create USER
+POST http://localhost:3000/users/create
+content-type: application/json
+
+{
+    "fullName": "Test"
+}

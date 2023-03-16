@@ -1,3 +1,5 @@
+import { TestEntity } from 'src/test_entity/domain/testEntity.entity';
+import { User } from 'src/users/domain/user.entity';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
 export const OrmConfig: PostgresConnectionOptions = {
@@ -7,6 +9,6 @@ export const OrmConfig: PostgresConnectionOptions = {
   username: 'postgres',
   password: 'postgres',
   database: 'dupa_test_db',
-  entities: [`${__dirname}/**/*.entity{.ts,.js}`],
+  entities: [TestEntity, User],
   synchronize: true,
 };
