@@ -12,15 +12,15 @@ export class Config extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   text: string;
 
-  @Column()
+  @Column({ nullable: true })
   value: string;
 
-  @Column()
+  @Column({ nullable: true })
   createdAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   updatedAt: string;
 }

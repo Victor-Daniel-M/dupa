@@ -8,19 +8,19 @@ export class Action extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   code: string;
 
-  @Column()
+  @Column({ nullable: true })
   desc: string;
 
-  @Column()
+  @Column({ nullable: true })
   createdAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   updatedAt: string;
 }
 
@@ -31,15 +31,15 @@ export class ResourceAction extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   actionId: string;
 
-  @Column()
+  @Column({ nullable: true })
   resourceId: string;
 
-  @Column()
+  @Column({ nullable: true })
   createdAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   updatedAt: string;
 }

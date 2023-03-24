@@ -14,8 +14,14 @@ content-type: application/json
 
 ###
 
+GET http://localhost:3000/users
+content-type: application/json
+
+###
+
+
 ## view test entity
-GET http://localhost:3000/test_entity/1
+GET http://localhost:3000/test_entity/2
 content-type: application/json
 
 ###
@@ -25,7 +31,7 @@ PUT http://localhost:3000/test_entity
 content-type: application/json
 
 {
-    "id": 1,
+    "id": 2,
     "name": "Test6"
 }
 
@@ -36,10 +42,3 @@ DELETE http://localhost:3000/test_entity/1
 content-type: application/json
 
 ###
-## create USER
-POST http://localhost:3000/users/create
-content-type: application/json
-
-{
-    "fullName": "Test"
-}

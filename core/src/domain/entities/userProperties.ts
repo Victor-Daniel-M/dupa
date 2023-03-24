@@ -1,10 +1,9 @@
 import { BaseEntity } from 'base/base.entity';
 import { Column, Entity } from 'typeorm';
 
-export enum UserPropertyType {
-  OWNER,
-  BROKER,
-}
+export const UserPropertyTypes = ['OWNER', 'BROKER'] as const;
+
+export type UserPropertyType = (typeof UserPropertyTypes)[number];
 
 @Entity('UserProperty')
 export class UserProperty extends BaseEntity {
@@ -13,12 +12,12 @@ export class UserProperty extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   userPropertyType: UserPropertyType;
 
-  @Column()
-  propertyId: string;
+  @Column({ nullable: true })
+  propertyId: number;
 
-  @Column()
-  userId: string;
+  @Column({ nullable: true })
+  userId: number;
 }

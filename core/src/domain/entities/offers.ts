@@ -9,22 +9,22 @@ export class Offer extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   fromEntityId: string;
 
-  @Column()
+  @Column({ nullable: true })
   fromEntityName: string;
 
-  @Column()
+  @Column({ nullable: true })
   onEntityId: string;
 
-  @Column()
+  @Column({ nullable: true })
   onEntityName: string;
 
-  @Column()
+  @Column({ nullable: true })
   createdAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   updatedAt: string;
 }
 
@@ -35,21 +35,21 @@ export class OfferMeta extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   key: string;
 
-  @Column()
+  @Column({ nullable: true })
   value: string;
 
-  @Column()
+  @Column({ nullable: true })
   createdAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   updatedAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   offerId: string;
 
-  @Column()
+  @Column({ nullable: true })
   valueType: MetaValueTypes;
 }

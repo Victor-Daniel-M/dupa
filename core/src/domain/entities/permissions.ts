@@ -8,12 +8,12 @@ export class Permission extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   entityId: string;
 
-  @Column()
+  @Column({ nullable: true })
   entityName: string;
 
-  @Column()
+  @Column({ nullable: true })
   resourceActionId: string;
 }

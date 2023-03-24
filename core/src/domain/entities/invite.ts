@@ -13,16 +13,16 @@ export class Invite extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   text: string;
 
-  @Column()
+  @Column({ nullable: true })
   inviteType: string;
 
-  @Column()
+  @Column({ nullable: true })
   createdAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   updatedAt: string;
 }
 
@@ -33,24 +33,24 @@ export class InviteMeta extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   key: string;
 
-  @Column()
+  @Column({ nullable: true })
   value: string;
 
-  @Column()
+  @Column({ nullable: true })
   ref: string;
 
-  @Column()
+  @Column({ nullable: true })
   createdAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   updatedAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   inviteId: string;
 
-  @Column()
+  @Column({ nullable: true })
   valueType: MetaValueTypes;
 }

@@ -4,19 +4,23 @@ import { Repository } from 'typeorm';
 import { STATUS_CODES } from 'http';
 import { IBaseRepository } from './IBase.repository';
 import { BaseEntity } from './base.entity';
+import { TYPES } from '@core/domain/types';
 
 @Injectable()
 export class BaseRepository<T extends BaseEntity>
   implements IBaseRepository<T>
 {
-  constructor(private readonly genericRepository: Repository<T>) {}
+  constructor(
+    @Inject(TYPES.repositories.Repository)
+    private readonly genericRepository: Repository<T>,
+  ) {}
 
-  create(entity: any): Promise<number> {
+  create(entity: T): Promise<T> {
     try {
-      return new Promise<number>((resolve, reject) => {
+      return new Promise<T>((resolve, reject) => {
         this.genericRepository
           .save(entity)
-          .then((created) => resolve(created.id))
+          .then((created) => resolve(created))
           .catch((err) => reject(err));
       });
     } catch (error) {
@@ -43,6 +47,18 @@ export class BaseRepository<T extends BaseEntity>
   async delete(id: number) {
     try {
       await this.genericRepository.delete(id);
+    } catch (error) {
+      throw new BadGatewayException(error);
+    }
+  }
+
+  async deleteBy({ key, value }: { key: keyof T; value: any }) {
+    try {
+      await this.genericRepository
+        .createQueryBuilder()
+        .delete()
+        .where(`${String(key)} = :value`, { value })
+        .execute();
     } catch (error) {
       throw new BadGatewayException(error);
     }

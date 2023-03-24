@@ -8,24 +8,24 @@ export class Token extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   key: string;
 
-  @Column()
+  @Column({ nullable: true })
   value: string;
 
-  @Column()
+  @Column({ nullable: true })
   entityName: string;
 
-  @Column()
+  @Column({ nullable: true })
   entityId: string;
 
-  @Column()
+  @Column({ nullable: true })
   expiresAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   createdAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   updatedAt: string;
 }

@@ -9,19 +9,19 @@ export class ChargeType extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   code: string;
 
-  @Column()
+  @Column({ nullable: true })
   desc: string;
 
-  @Column()
+  @Column({ nullable: true })
   createdAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   updatedAt: string;
 }
 
@@ -32,27 +32,27 @@ export class Charge extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   value: string;
 
-  @Column()
+  @Column({ nullable: true })
   lowerLimit: string;
 
-  @Column()
+  @Column({ nullable: true })
   upperLimit: string;
 
-  @Column()
+  @Column({ nullable: true })
   createdAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   updatedAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   propertyId: string;
 
-  @Column()
+  @Column({ nullable: true })
   chargeTypeId: string;
 
-  @Column()
+  @Column({ nullable: true })
   valueType: MetaValueTypes;
 }

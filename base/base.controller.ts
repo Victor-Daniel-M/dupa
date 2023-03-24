@@ -34,7 +34,7 @@ export class BaseController<T extends BaseEntity> {
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
-  async create(@Body() entity: T): Promise<number> {
+  async create(@Body() entity: T): Promise<T> {
     return this.IBaseService.create(entity);
   }
 

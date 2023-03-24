@@ -9,20 +9,20 @@ export class PropertyCategory extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   code: string;
 
-  @Column()
+  @Column({ nullable: true })
   desc: string;
 
-  @Column()
-  createdAt: string;
+  @Column({ nullable: true })
+  createdAt?: string;
 
-  @Column()
-  updatedAt: string;
+  @Column({ nullable: true })
+  updatedAt?: string;
 }
 
 @Entity('Property')
@@ -32,28 +32,28 @@ export class Property extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   title: string;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 
-  @Column()
+  @Column({ nullable: true })
   coverImage: string;
 
-  @Column()
+  @Column({ nullable: true })
   cost: number;
 
-  @Column()
-  createdAt: string;
+  @Column({ nullable: true })
+  createdAt?: string;
 
-  @Column()
-  updatedAt: string;
+  @Column({ nullable: true })
+  updatedAt?: string;
 
-  @Column()
+  @Column({ nullable: true })
   openDate: string;
 
-  @Column()
+  @Column({ nullable: true })
   propertyCategoryId: string;
 }
 
@@ -64,20 +64,20 @@ export class PropertyMetaCategory extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   code: string;
 
-  @Column()
+  @Column({ nullable: true })
   desc: string;
 
-  @Column()
+  @Column({ nullable: true })
   valueType: MetaValueTypes;
 
-  @Column()
-  createdAt: string;
+  @Column({ nullable: true })
+  createdAt?: string;
 
-  @Column()
-  updatedAt: string;
+  @Column({ nullable: true })
+  updatedAt?: string;
 }
 
 @Entity('PropertyMeta')
@@ -87,24 +87,24 @@ export class PropertyMeta extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   key: string;
 
-  @Column()
+  @Column({ nullable: true })
   value: string;
 
-  @Column()
-  createdAt: string;
+  @Column({ nullable: true })
+  createdAt?: string;
 
-  @Column()
-  updatedAt: string;
+  @Column({ nullable: true })
+  updatedAt?: string;
 
-  @Column()
+  @Column({ nullable: true })
   propertyId: string;
 
-  @Column()
+  @Column({ nullable: true })
   parentId: string;
 
-  @Column()
+  @Column({ nullable: true })
   propertyMetaCategoryId: string;
 }

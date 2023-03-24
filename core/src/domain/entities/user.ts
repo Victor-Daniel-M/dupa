@@ -13,28 +13,28 @@ export class User extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   email?: string;
 
-  @Column()
+  @Column({ nullable: true })
   password?: string;
 
-  @Column()
+  @Column({ nullable: true })
   firstName?: string;
 
-  @Column()
+  @Column({ nullable: true })
   lastName?: string;
 
-  @Column()
+  @Column({ nullable: true })
   phoneNumber?: string;
 
-  @Column()
+  @Column({ nullable: true })
   createdAt?: string;
 
-  @Column()
+  @Column({ nullable: true })
   updatedAt?: string;
 
-  @Column()
+  @Column({ nullable: true })
   userType?: UserType;
 }
 
@@ -45,21 +45,21 @@ export class UserMeta extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   key: string;
 
-  @Column()
+  @Column({ nullable: true })
   value: string;
 
-  @Column()
+  @Column({ nullable: true })
   valueType: MetaValueTypes;
 
-  @Column()
+  @Column({ nullable: true })
   userId: string;
 
-  @Column()
+  @Column({ nullable: true })
   createdAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   updatedAt: string;
 }

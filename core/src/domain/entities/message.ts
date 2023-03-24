@@ -13,30 +13,30 @@ export class Message extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   text: string;
 
-  @Column()
+  @Column({ nullable: true })
   mediaType: string;
 
-  @Column()
+  @Column({ nullable: true })
   mediaValue: string;
 
-  @Column()
+  @Column({ nullable: true })
   fromEntityId: string;
 
-  @Column()
+  @Column({ nullable: true })
   fromEntityName: string;
 
-  @Column()
+  @Column({ nullable: true })
   toEntityId: string;
 
-  @Column()
+  @Column({ nullable: true })
   toEntityName: string;
 
-  @Column()
+  @Column({ nullable: true })
   createdAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   updatedAt: string;
 }

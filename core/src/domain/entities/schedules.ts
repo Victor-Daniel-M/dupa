@@ -18,27 +18,27 @@ export class Schedule extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   openAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   closeAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   entityName: string;
 
-  @Column()
+  @Column({ nullable: true })
   entityId: string;
 
-  @Column()
+  @Column({ nullable: true })
   createdAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   updatedAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   scheduleId: string;
 
-  @Column()
+  @Column({ nullable: true })
   dayOfWeek: DayOfWeek;
 }

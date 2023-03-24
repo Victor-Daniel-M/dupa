@@ -19,31 +19,31 @@ export class Request extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   fromEntityId: string;
 
-  @Column()
+  @Column({ nullable: true })
   fromEntityName: string;
 
-  @Column()
+  @Column({ nullable: true })
   onEntityId: string;
 
-  @Column()
+  @Column({ nullable: true })
   onEntityName: string;
 
-  @Column()
+  @Column({ nullable: true })
   message: string;
 
-  @Column()
+  @Column({ nullable: true })
   createdAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   updatedAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   status: RequestStatus;
 
-  @Column()
+  @Column({ nullable: true })
   requestType: RequestType;
 }
 
@@ -54,22 +54,22 @@ export class RequestMeta extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   key: string;
 
-  @Column()
+  @Column({ nullable: true })
   value: string;
 
-  @Column()
+  @Column({ nullable: true })
   createdAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   updatedAt: string;
 
-  @Column()
+  @Column({ nullable: true })
   requestId: string;
 
-  @Column()
+  @Column({ nullable: true })
   valueType: MetaValueTypes;
 }
 
@@ -80,9 +80,9 @@ export class RequestUser extends BaseEntity {
     Object.assign(this, o);
   }
 
-  @Column()
+  @Column({ nullable: true })
   userId: string;
 
-  @Column()
+  @Column({ nullable: true })
   requestId: string;
 }

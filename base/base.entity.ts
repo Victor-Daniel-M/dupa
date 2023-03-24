@@ -4,5 +4,5 @@ import { ApiPropertyOptional } from '@nestjs/swagger';
 export class BaseEntity {
   @PrimaryGeneratedColumn()
   @ApiPropertyOptional()
-  public id: number;
+  public id?: number;
 }
