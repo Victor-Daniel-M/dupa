@@ -20,10 +20,10 @@ export class Invite extends BaseEntity {
   inviteType: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 }
 
 @Entity('InviteMeta')
@@ -43,10 +43,10 @@ export class InviteMeta extends BaseEntity {
   ref: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 
   @Column({ nullable: true })
   inviteId: string;

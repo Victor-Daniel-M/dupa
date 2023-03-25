@@ -10,10 +10,10 @@ export class Place extends BaseEntity {
   }
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 }
 
 @Entity('PlaceMeta')
@@ -30,10 +30,10 @@ export class PlaceMeta extends BaseEntity {
   value: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 
   @Column({ nullable: true })
   placeId: string;

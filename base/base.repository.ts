@@ -36,6 +36,17 @@ export class BaseRepository<T extends BaseEntity>
     }
   }
 
+  getBy({ key, value }: { key: keyof T; value: any }): Promise<T[]> {
+    try {
+      return <Promise<T[]>>this.genericRepository
+        .createQueryBuilder()
+        .where(`${String(key)} = :value`, { value })
+        .execute();
+    } catch (error) {
+      throw new BadGatewayException(error);
+    }
+  }
+
   get(id: number): Promise<T> {
     try {
     } catch (error) {

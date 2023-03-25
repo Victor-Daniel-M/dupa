@@ -58,8 +58,8 @@ export class UserMeta extends BaseEntity {
   userId: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 }

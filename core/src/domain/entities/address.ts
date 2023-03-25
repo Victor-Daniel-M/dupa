@@ -21,10 +21,10 @@ export class Address extends BaseEntity {
   region: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 }
 
 @Entity('EntityAddress')
@@ -41,10 +41,10 @@ export class EntityAddress extends BaseEntity {
   entityName: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 
   @Column({ nullable: true })
   addressId: string;

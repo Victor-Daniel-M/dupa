@@ -1,38 +1,36 @@
 import { BaseEntity } from 'base/base.entity';
 import { Column, Entity } from 'typeorm';
 
-export enum MessageType {
-  TALK_TO_REDFIN,
-  TALK_TO_AGENT,
-}
+export const complaintStatusTypes = [
+  'IN_PROGESS',
+  'RESOLVED',
+  'PENDING',
+  'NOT_YET_RECEIVED',
+  'RECEIVED',
+] as const;
+export type complaintStatusType = (typeof complaintStatusTypes)[number];
 
-@Entity('Message')
-export class Message extends BaseEntity {
+@Entity('Complaint')
+export class Complaint extends BaseEntity {
   constructor(o: Object) {
     super();
     Object.assign(this, o);
   }
 
   @Column({ nullable: true })
-  text: string;
+  propertyId: number;
 
   @Column({ nullable: true })
-  mediaType: string;
+  userId: number;
 
   @Column({ nullable: true })
-  mediaValue: string;
+  title: string;
 
   @Column({ nullable: true })
-  fromEntityId: string;
+  status: complaintStatusType;
 
   @Column({ nullable: true })
-  fromEntityName: string;
-
-  @Column({ nullable: true })
-  toEntityId: string;
-
-  @Column({ nullable: true })
-  toEntityName: string;
+  description: string;
 
   @Column({ nullable: true })
   createdAt?: string;

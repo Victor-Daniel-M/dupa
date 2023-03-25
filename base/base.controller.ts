@@ -6,11 +6,14 @@ import {
   Put,
   Body,
   Param,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ApiTags, ApiResponse } from '@nestjs/swagger';
 import { IBaseRepository } from './IBase.repository';
 import { BaseEntity } from './base.entity';
+import { ResponseInterceptor } from 'common/filters-interceptors/src';
 
+@UseInterceptors(ResponseInterceptor)
 export class BaseController<T extends BaseEntity> {
   constructor(private readonly IBaseService: IBaseRepository<T>) {}
 

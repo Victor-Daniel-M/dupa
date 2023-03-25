@@ -22,10 +22,10 @@ export class Offer extends BaseEntity {
   onEntityName: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 }
 
 @Entity('OfferMeta')
@@ -42,10 +42,10 @@ export class OfferMeta extends BaseEntity {
   value: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 
   @Column({ nullable: true })
   offerId: string;

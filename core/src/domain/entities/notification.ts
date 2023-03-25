@@ -18,10 +18,10 @@ export class NotificationStrategy extends BaseEntity {
   desc: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 }
 
 @Entity('NotificationFrequency')
@@ -41,10 +41,10 @@ export class NotificationFrequency extends BaseEntity {
   desc: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 }
 
 @Entity('NotificationSubscribable')
@@ -58,10 +58,10 @@ export class NotificationSubscribable extends BaseEntity {
   actionId: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 
   @Column({ nullable: true })
   notificationStrategyId: string;
@@ -84,10 +84,10 @@ export class NotificationSubscriber extends BaseEntity {
   entityName: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 
   @Column({ nullable: true })
   notificationSubscribableId: string;

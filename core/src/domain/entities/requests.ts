@@ -35,10 +35,10 @@ export class Request extends BaseEntity {
   message: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 
   @Column({ nullable: true })
   status: RequestStatus;
@@ -61,10 +61,10 @@ export class RequestMeta extends BaseEntity {
   value: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 
   @Column({ nullable: true })
   requestId: string;

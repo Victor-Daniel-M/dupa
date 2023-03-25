@@ -61,35 +61,27 @@ import { OwnerRegisterUsecase } from './application/owner/register';
 import { S3Provider } from './infrastructure/services/s3Provider.service';
 import { BaseRepository } from 'base/base.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './domain/entities/user';
-import { ResourceAction } from './domain/entities/actions';
-import { Address, EntityAddress } from './domain/entities/address';
-import { Action } from 'rxjs/internal/scheduler/Action';
-import { Property } from './domain/entities/property';
-import {
-  AuthStrategy,
-  AuthStrategyMeta,
-} from '@core/domain/entities/authStrategies';
-import { Charge, ChargeType } from '@core/domain/entities/charges';
-import { Config } from '@core/domain/entities/configs';
-import { Invite, InviteMeta } from '@core/domain/entities/invite';
-import { Location } from '@core/domain/entities/location';
-import { Media } from '@core/domain/entities/media';
-import { Message } from '@core/domain/entities/message';
-import {
-  NotificationFrequency,
-  NotificationStrategy,
-  NotificationSubscribable,
-  NotificationSubscriber,
-} from '@core/domain/entities/notification';
-import { Offer, OfferMeta } from '@core/domain/entities/offers';
-import { Permission } from '@core/domain/entities/permissions';
-import { Place, PlaceMeta } from '@core/domain/entities/places';
-import { PropertyCategory } from '@core/domain/entities/property';
 import { RealtorController } from './adapter/controllers/realtor.controller';
 import { RealtorRegisterUsecase } from './application/realtor/register';
-import { UserProperty } from './domain/entities/userProperties';
 import { AssignPropertyByOwnerUsecase } from './application/owner/assign-property';
+import { SearcherRegisterUsecase } from './application/searcher/register';
+import { SearcherController } from './adapter/controllers/searcher.controller';
+import { PaymentMethodRepositoryImpl } from './infrastructure/repositories/payment-methods-repository';
+import { PaymentCategoryRepositoryImpl } from './infrastructure/repositories/payment-categories-repository';
+import { PaymentRepositoryImpl } from './infrastructure/repositories/payments-repository';
+import { TenancyAgreementRepositoryImpl } from './infrastructure/repositories/tenancy-agreements-repository';
+import { UserTenancyAgreementRepositoryImpl } from './infrastructure/repositories/user-tenancy-agreements-repository';
+import { UserTenancyAgreementController } from './adapter/controllers/crud-controllers/userTenancyAgreement';
+import { TenancyAgreementController } from './adapter/controllers/crud-controllers/tenancyAgreement';
+import { PaymentController } from './adapter/controllers/crud-controllers/payment';
+import { PaymentMethodsController } from './adapter/controllers/crud-controllers/paymentMethods';
+import { PaymentCategoriesController } from './adapter/controllers/crud-controllers/paymentCategories';
+import { models } from './models';
+import { ApplicationRepositoryImpl } from './infrastructure/repositories/applications-repository';
+import { ApplicationController } from './adapter/controllers/crud-controllers/applications';
+import { ComplaintController } from './adapter/controllers/crud-controllers/complaints';
+import { ComplaintRepositoryImpl } from './infrastructure/repositories/complaints-repository';
+import { SearcherLoginUsecase } from './application/searcher/login';
 
 const registerOwnerUsecase = {
   provide: TYPES.useCases.OwnerRegisterUsecase,
@@ -126,6 +118,51 @@ const userPropertyRepositoryImpl = {
   useClass: UserPropertyRepositoryImpl,
 };
 
+const reactionRepositoryImpl = {
+  provide: TYPES.repositories.ReactionRepositoryImpl,
+  useClass: ReactionRepositoryImpl,
+};
+
+const scheduleRepositoryImpl = {
+  provide: TYPES.repositories.ScheduleRepositoryImpl,
+  useClass: ScheduleRepositoryImpl,
+};
+
+const userTenancyAgreementRepositoryImpl = {
+  provide: TYPES.repositories.UserTenancyAgreementRepositoryImpl,
+  useClass: UserTenancyAgreementRepositoryImpl,
+};
+
+const tenancyAgreementRepositoryImpl = {
+  provide: TYPES.repositories.TenancyAgreementRepositoryImpl,
+  useClass: TenancyAgreementRepositoryImpl,
+};
+
+const paymentRepositoryImpl = {
+  provide: TYPES.repositories.PaymentRepositoryImpl,
+  useClass: PaymentRepositoryImpl,
+};
+
+const paymentMethodRepositoryImpl = {
+  provide: TYPES.repositories.PaymentMethodRepositoryImpl,
+  useClass: PaymentMethodRepositoryImpl,
+};
+
+const paymentCategoryRepositoryImpl = {
+  provide: TYPES.repositories.PaymentCategoryRepositoryImpl,
+  useClass: PaymentCategoryRepositoryImpl,
+};
+
+const applicationRepositoryImpl = {
+  provide: TYPES.repositories.ApplicationRepositoryImpl,
+  useClass: ApplicationRepositoryImpl,
+};
+
+const complaintRepositoryImpl = {
+  provide: TYPES.repositories.ComplaintRepositoryImpl,
+  useClass: ComplaintRepositoryImpl,
+};
+
 const realtorRegisterUsecase = {
   provide: TYPES.useCases.RealtorRegisterUsecase,
   useClass: RealtorRegisterUsecase,
@@ -136,62 +173,19 @@ const assignPropertyByOwnerUsecase = {
   useClass: AssignPropertyByOwnerUsecase,
 };
 
+const searcherRegisterUsecase = {
+  provide: TYPES.useCases.SearcherRegisterUsecase,
+  useClass: SearcherRegisterUsecase,
+};
+
+const searcherLoginUsecase = {
+  provide: TYPES.useCases.SearcherLoginUsecase,
+  useClass: SearcherLoginUsecase,
+};
+
 @Global()
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      User,
-      Action,
-      ResourceAction,
-      Address,
-      EntityAddress,
-      // auth strategies
-      AuthStrategy,
-      AuthStrategyMeta,
-
-      // Charges
-      ChargeType,
-      Charge,
-
-      // Configs
-      Config,
-
-      // Invite
-      Invite,
-      InviteMeta,
-
-      // Location
-      Location,
-
-      // Media
-      Media,
-
-      // Messages
-      Message,
-
-      // Notifications
-      NotificationStrategy,
-      NotificationFrequency,
-      NotificationSubscribable,
-      NotificationSubscriber,
-
-      // Offer
-      Offer,
-      OfferMeta,
-
-      // Permission
-      Permission,
-
-      //Place
-      Place,
-      PlaceMeta,
-
-      // Property
-      PropertyCategory,
-      Property,
-      UserProperty,
-    ]),
-  ],
+  imports: [TypeOrmModule.forFeature(models)],
   providers: [
     Repository,
     EmailService,
@@ -223,6 +217,13 @@ const assignPropertyByOwnerUsecase = {
     TokenRepositoryImpl,
     UserRepositoryImpl,
     UserPropertyRepositoryImpl,
+    ComplaintRepositoryImpl,
+    ApplicationRepositoryImpl,
+    UserTenancyAgreementRepositoryImpl,
+    TenancyAgreementRepositoryImpl,
+    PaymentRepositoryImpl,
+    PaymentMethodRepositoryImpl,
+    PaymentCategoryRepositoryImpl,
 
     // Pipes
     // {
@@ -234,6 +235,8 @@ const assignPropertyByOwnerUsecase = {
     registerOwnerUsecase,
     realtorRegisterUsecase,
     assignPropertyByOwnerUsecase,
+    searcherRegisterUsecase,
+    searcherLoginUsecase,
 
     // Services
     emailService,
@@ -241,16 +244,26 @@ const assignPropertyByOwnerUsecase = {
 
     // Repositories
     repository,
+    applicationRepositoryImpl,
     userRepositoryImpl,
     propertyRepositoryImpl,
+    reactionRepositoryImpl,
+    scheduleRepositoryImpl,
     userPropertyRepositoryImpl,
+    userTenancyAgreementRepositoryImpl,
+    tenancyAgreementRepositoryImpl,
+    paymentRepositoryImpl,
+    paymentMethodRepositoryImpl,
+    paymentCategoryRepositoryImpl,
+    complaintRepositoryImpl,
   ],
   controllers: [
     ActionsController,
-    ActionsController,
+    ApplicationController,
     AddressesController,
     AuthStrategyesController,
     ChargeesController,
+    ComplaintController,
     ConfigsController,
     InvitesController,
     LocationsController,
@@ -262,6 +275,9 @@ const assignPropertyByOwnerUsecase = {
     NotificationSubscribersController,
     NotificationSubscribablesController,
     OfferController,
+    PaymentController,
+    PaymentCategoriesController,
+    PaymentMethodsController,
     PermissionController,
     PlaceController,
     PropertyController,
@@ -270,13 +286,16 @@ const assignPropertyByOwnerUsecase = {
     ResourceController,
     ScheduleController,
     SearchController,
+    TenancyAgreementController,
     TokenController,
     UserPropertyController,
     UserController,
+    UserTenancyAgreementController,
 
     // Custom controllers
     OwnerController,
     RealtorController,
+    SearcherController,
   ],
 })
 export class CoreModule {}

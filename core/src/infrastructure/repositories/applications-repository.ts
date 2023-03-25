@@ -1,14 +1,14 @@
-import { Schedule } from '@core/domain/entities/schedules';
+import { Application } from '@core/domain/entities/application';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseRepository } from 'base/base.repository';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class ScheduleRepositoryImpl extends BaseRepository<Schedule> {
+export class ApplicationRepositoryImpl extends BaseRepository<Application> {
   constructor(
-    @InjectRepository(Schedule)
-    public repository: Repository<Schedule>,
+    @InjectRepository(Application)
+    public repository: Repository<Application>,
   ) {
     super(repository);
   }

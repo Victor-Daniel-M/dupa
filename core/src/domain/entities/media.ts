@@ -24,10 +24,10 @@ export class Media extends BaseEntity {
   value: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 
   @Column({ nullable: true })
   mediaType: MediaType;

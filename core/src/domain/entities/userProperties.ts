@@ -1,7 +1,7 @@
 import { BaseEntity } from 'base/base.entity';
 import { Column, Entity } from 'typeorm';
 
-export const UserPropertyTypes = ['OWNER', 'BROKER'] as const;
+export const UserPropertyTypes = ['OWNER', 'BROKER', 'TENANT'] as const;
 
 export type UserPropertyType = (typeof UserPropertyTypes)[number];
 

@@ -1,38 +1,30 @@
 import { BaseEntity } from 'base/base.entity';
 import { Column, Entity } from 'typeorm';
 
-export enum MessageType {
-  TALK_TO_REDFIN,
-  TALK_TO_AGENT,
-}
-
-@Entity('Message')
-export class Message extends BaseEntity {
+@Entity('Payment')
+export class Payment extends BaseEntity {
   constructor(o: Object) {
     super();
     Object.assign(this, o);
   }
 
   @Column({ nullable: true })
-  text: string;
+  entityId: number;
 
   @Column({ nullable: true })
-  mediaType: string;
+  entityName: string;
 
   @Column({ nullable: true })
-  mediaValue: string;
+  userId: number;
 
   @Column({ nullable: true })
-  fromEntityId: string;
+  paymentMethodId: number;
 
   @Column({ nullable: true })
-  fromEntityName: string;
+  paymentCategoryId: number;
 
   @Column({ nullable: true })
-  toEntityId: string;
-
-  @Column({ nullable: true })
-  toEntityName: string;
+  amount: number;
 
   @Column({ nullable: true })
   createdAt?: string;

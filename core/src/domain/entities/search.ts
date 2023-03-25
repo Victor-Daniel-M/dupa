@@ -25,10 +25,10 @@ export class Search extends BaseEntity {
   searchType: SearchType;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 }
 
 @Entity('SearchMeta')
@@ -51,8 +51,8 @@ export class SearchMeta extends BaseEntity {
   searchId: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 }

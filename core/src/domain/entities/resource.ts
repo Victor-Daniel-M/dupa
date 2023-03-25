@@ -18,8 +18,8 @@ export class Resource extends BaseEntity {
   desc: string;
 
   @Column({ nullable: true })
-  createdAt: string;
+  createdAt?: string;
 
   @Column({ nullable: true })
-  updatedAt: string;
+  updatedAt?: string;
 }

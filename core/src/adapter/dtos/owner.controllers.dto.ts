@@ -28,3 +28,9 @@ export class OwnerAssignPropertyDto {
   userId: number;
   userPropertyType: UserPropertyType;
 }
+
+export class SendTenancyAgreementByOwner {
+  propertyId: number;
+  userId: number;
+  tenancyAgreementId: number;
+}
