@@ -1,0 +1,43 @@
+// dependencies -> hook -> usage (variables)
+
+/**
+ * SHARE TYPES BETWEEN FRONTEND AND BACKEND (Entities)
+  class dtos for input and output and should first be initialized
+ */
+
+/**
+ * REACT TO ENTITY SERVICE (Service;Infrastructure)
+ * dtos for input and output
+  reactToEntityService(data:{
+      fromEntityName,
+      fromEntityId,
+      toEntityName,
+      toEntityId,
+      reactionType
+    }){
+    axios.post(data)
+  }
+ */
+
+/**
+ * REACT TO ENTITY HOOK (Application/usecase)
+useReactToEntity({fromEntityName,toEntityName}:PartialInputDto){
+  reactToEntity({fromEntityId,toEntityId,reactionType}:PartialInputDto){
+    reactToEntity({
+      fromEntityName,
+      fromEntityId,
+      toEntityName,
+      toEntityId,
+      reactionType
+    })
+  }
+  return {reactToEntity}
+}
+ */
+
+/**
+ * REACT TO ENTITY COMPONENT (Controller)
+  const {reactToEntity} = useReactToEntity({fromEntityName,toEntityName})
+  ...
+  reactToEntity({fromEntityId,toEntityId,reactionType})
+ */

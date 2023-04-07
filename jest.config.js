@@ -7,12 +7,12 @@ const { compilerOptions } = require('./tsconfig.json')
 
 module.exports = {
   "rootDir": ".",
-  // "transform": {
-  //   "^.+\\.(t|j)s$": "ts-jest"
-  // },
-  transform: {
-    "^.+\\.(t|j)sx?$": "@swc/jest",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
   },
+  // transform: {
+  //   "^.+\\.(t|j)sx?$": "@swc/jest",
+  // },
   "collectCoverageFrom": [
     "**/*.(t|j)s"
   ],

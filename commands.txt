@@ -1,1 +1,2 @@
 http://localhost:4566/testbucket/pic.test.file.png
+ipconfig | findstr /C:"IPv4 Address"

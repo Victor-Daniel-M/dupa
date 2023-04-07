@@ -41,4 +41,15 @@ content-type: application/json
 DELETE http://localhost:3000/test_entity/1
 content-type: application/json
 
+### create test entity
+POST https://api.stolets.dev/pos-messaging/v1/send-mail
+content-type: application/json
+
+{
+    "receiver": "victordanny57@gmail.com",
+    "msg":"Hello world."
+}
+
+### GET PROPERTIES
+GET http://192.168.43.62:3000/payment-categories
 ###

@@ -23,6 +23,7 @@ export class AppModule {
   constructor(private readonly s3Provider: S3Provider) {}
 
   onModuleInit() {
+    // TODO: Create singleton for this that will use existing or create new one
     // try {
     //   // this.s3Provider.init();
     //   this.s3Provider.createBucket();

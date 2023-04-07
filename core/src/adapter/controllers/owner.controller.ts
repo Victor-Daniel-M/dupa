@@ -30,7 +30,7 @@ export class OwnerController {
   ) {}
 
   @Post('register')
-  @UseInterceptors(FilesInterceptor('properties[0][files][]', 2))
+  @UseInterceptors(FilesInterceptor('properties[0][files][]', 1))
   async register(
     @Body() body: OwnerRegisterDto,
     @UploadedFiles()

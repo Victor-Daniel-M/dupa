@@ -45,7 +45,7 @@ export class OwnerRegisterUsecase {
       propertyCategoryId: propertyOne.propertyCategoryId,
     });
 
-    await this.emailService.sendLoginEmail('test@email.com');
+    await this.emailService.sendLoginEmail(body.email);
 
     return {
       user: createdUser,
