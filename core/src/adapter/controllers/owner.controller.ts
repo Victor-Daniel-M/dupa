@@ -36,6 +36,9 @@ export class OwnerController {
     @UploadedFiles()
     files: Express.Multer.File[],
   ) {
+    // @ts-ignore
+    // console.log('body, files:', body, body.properties[0].files, files);
+
     return await this.ownerRegisterUsecase.execute({
       body,
       files,

@@ -1,4 +1,4 @@
-import { BaseEntity } from 'base/base.entity';
+import { BaseEntity } from '../../../../base/base.entity';
 import { Column, Entity } from 'typeorm';
 
 export const applicationTypes = ['REQUEST_TO_REPRESENT'] as const;

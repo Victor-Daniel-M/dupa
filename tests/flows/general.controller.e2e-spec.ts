@@ -1,15 +1,10 @@
-import {
-  OwnerAssignPropertyDto,
-  OwnerRegisterDto,
-  SendTenancyAgreementByOwner,
-} from '@core/adapter/dtos/owner.controllers.dto';
+import { OwnerAssignPropertyDto } from '@core/adapter/dtos/owner.controllers.dto';
 import { TYPES } from '@core/domain/types';
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '@src/app.module';
 import * as request from 'supertest';
 import * as moment from 'moment-timezone';
-import { PropertyRepositoryImpl } from '@core/infrastructure/repositories/properties-repository';
 import { Property } from '@core/domain/entities/property';
 import { User } from '@core/domain/entities/user';
 import { Reaction } from '@core/domain/entities/reaction';
@@ -23,6 +18,10 @@ import { PaymentMethod } from '@core/domain/entities/paymentMethod';
 import { PaymentCategory } from '@core/domain/entities/paymentCategory';
 import { Payment } from '@core/domain/entities/payment';
 import { Complaint } from '@core/domain/entities/complaint';
+
+function formatRes(res: any) {
+  console.log(JSON.stringify(res));
+}
 
 describe('Owner', () => {
   let app: INestApplication;
@@ -45,32 +44,34 @@ describe('Owner', () => {
 
   // Register
   it('register', async () => {
-    return request(app.getHttpServer())
-      .post('/owner/register')
-      .timeout(10000)
-      .type('form')
-      .field('email', 'owner@email.com')
-      .field('properties[0][cost]', 6_000)
-      .field('properties[0][coverImage]', '')
-      .field('properties[0][description]', 'Test')
-      .field('properties[0][openDate]', moment().toISOString())
-      .field('properties[0][propertyCategoryId]', '1')
-      .field('properties[0][title]', 'Test')
-      .attach('properties[0][files][]', `${__dirname}\\pic.test.file.png`)
-      .attach('properties[0][files][]', `${__dirname}\\pic.test.file.png`)
+    return (
+      request(app.getHttpServer())
+        .post('/owner/register')
+        .timeout(10000)
+        .type('form')
+        .field('email', 'owner@email.com')
+        .field('properties[0][cost]', 6_000)
+        .field('properties[0][coverImage]', '')
+        .field('properties[0][description]', 'Test')
+        .field('properties[0][openDate]', moment().toISOString())
+        .field('properties[0][propertyCategoryId]', '1')
+        .field('properties[0][title]', 'Test')
+        .attach('properties[0][files][]', `${__dirname}\\pic.test.file.png`)
+        // .attach('properties[0][files][]', `${__dirname}\\pic.test.file.png`)
 
-      .expect((res, error) => {
-        // console.log(res);
+        .expect((res, error) => {
+          formatRes(res);
 
-        expect(res.body).toEqual(
-          expect.objectContaining({
-            message: expect.any(String),
-            statusCode: expect.any(Number),
-          }),
-        );
+          expect(res.body).toEqual(
+            expect.objectContaining({
+              message: expect.any(String),
+              statusCode: expect.any(Number),
+            }),
+          );
 
-        expect(res.status).toBe(201);
-      });
+          expect(res.status).toBe(201);
+        })
+    );
   });
 
   // Register realtor
@@ -90,7 +91,7 @@ describe('Owner', () => {
       .attach('properties[0][files][]', `${__dirname}\\pic.test.file.png`)
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -121,6 +122,8 @@ describe('Owner', () => {
       } as Application)
 
       .expect((res, error) => {
+        formatRes(res);
+
         if (error) {
           console.log(error);
         }
@@ -153,7 +156,7 @@ describe('Owner', () => {
       } as OwnerAssignPropertyDto)
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -164,8 +167,6 @@ describe('Owner', () => {
 
         expect(res.status).toBe(201);
       });
-
-    expect(true).toBe(true);
   });
 
   // Register searcher
@@ -178,7 +179,7 @@ describe('Owner', () => {
       })
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -200,7 +201,7 @@ describe('Owner', () => {
       } as SearcherLoginDto)
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -218,7 +219,7 @@ describe('Owner', () => {
     return request(app.getHttpServer())
       .get('/properties/')
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -249,7 +250,7 @@ describe('Owner', () => {
         toEntityName: 'PROPERTY',
       } as Reaction)
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -283,7 +284,7 @@ describe('Owner', () => {
         dayOfWeek: 'FRI',
       } as Schedule)
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -317,7 +318,7 @@ describe('Owner', () => {
       } as Application)
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -348,7 +349,7 @@ describe('Owner', () => {
       } as TenancyAgreement)
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -380,7 +381,7 @@ describe('Owner', () => {
       } as UserTenancyAgreement)
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -402,7 +403,7 @@ describe('Owner', () => {
     return request(app.getHttpServer())
       .get(`/tenancy-agreements/${tenancyAgreement.id}`)
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -440,7 +441,7 @@ describe('Owner', () => {
       } as UserTenancyAgreement)
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -462,7 +463,7 @@ describe('Owner', () => {
       } as PaymentMethod)
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -484,7 +485,7 @@ describe('Owner', () => {
       } as PaymentCategory)
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -527,7 +528,7 @@ describe('Owner', () => {
       } as Payment)
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -558,7 +559,7 @@ describe('Owner', () => {
       } as UserProperty)
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -588,7 +589,7 @@ describe('Owner', () => {
       } as Complaint)
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -609,7 +610,7 @@ describe('Owner', () => {
       .get('/complaints')
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -634,7 +635,7 @@ describe('Owner', () => {
       })
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -677,7 +678,7 @@ describe('Owner', () => {
       } as Payment)
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -695,7 +696,7 @@ describe('Owner', () => {
       .get('/payments')
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -713,7 +714,7 @@ describe('Owner', () => {
       .get('/payments')
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -731,7 +732,7 @@ describe('Owner', () => {
       .get('/properties')
 
       .expect((res, error) => {
-        // console.log(res);
+        formatRes(res);
 
         expect(res.body).toEqual(
           expect.objectContaining({

@@ -1,14 +1,21 @@
-require('tsconfig-paths/register');
-// import { UserSchema } from '@src/auth/domain/user.entity';
-// import * as mongoose from 'mongoose';
+import { createConnection } from 'typeorm';
+import { OrmConfig } from '../ormconfig';
+import { models } from '../core/src/models';
 
 async function tearDown() {
-  // await mongoose.connect(
-  //   `mongodb://127.0.0.1:27017/chapChapIdentityServiceDB`,
-  //   // { useNewUrlParser: true, useUnifiedTopology: true },
-  // );
-  // await mongoose.model('users', UserSchema).deleteMany({});
-  // await mongoose.disconnect();
+  const connection = await createConnection({ ...OrmConfig, name: 'teardown' });
+
+  for (let index = 0; index < models.length; index++) {
+    try {
+      const model = models[index];
+      const repostory = connection.getRepository(model);
+      await repostory.delete({});
+    } catch (error) {
+      console.log('error:', error);
+    }
+  }
+
+  await connection.close();
 }
 
 export default tearDown;

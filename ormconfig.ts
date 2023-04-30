@@ -1,4 +1,4 @@
-import { models } from '@core/models';
+import { models } from './core/src/models';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
 export const OrmConfig: PostgresConnectionOptions = {
