@@ -35,5 +35,5 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 #ignore test files
-*.test.file.*
+# *.test.file.*
 commands.txt
