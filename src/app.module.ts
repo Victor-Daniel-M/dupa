@@ -24,10 +24,10 @@ export class AppModule {
 
   onModuleInit() {
     // // TODO: Create singleton for this that will use existing or create new one
-    try {
-      // this.s3Provider.init();
-      this.s3Provider.createBucket();
-      console.log('S3 provider initialized');
-    } catch (error) {}
+    // try {
+    //   // this.s3Provider.init();
+    //   this.s3Provider.createBucket();
+    //   console.log('S3 provider initialized');
+    // } catch (error) {}
   }
 }

@@ -3,7 +3,7 @@ import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConne
 
 export const OrmConfig: PostgresConnectionOptions = {
   type: 'postgres',
-  host: 'localhost',
+  host: '192.168.43.62',
   port: 5432,
   username: 'postgres',
   password: 'postgres',

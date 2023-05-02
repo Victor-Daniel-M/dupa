@@ -11,7 +11,7 @@ export class S3Provider {
       (this._s3 = new S3({
         accessKeyId: process.env.AWS_ACCESS_KEY_ID ?? 'testaccesskey',
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ?? 'testsecretkey',
-        endpoint: process.env.DYNAMO_DB_END_POINT ?? 'http://localhost:4566',
+        endpoint: 'http://192.168.43.62:4566',
         s3ForcePathStyle: true,
         region: process.env.AWS_REGION ?? 'ap-southeast-1',
         logger: console,

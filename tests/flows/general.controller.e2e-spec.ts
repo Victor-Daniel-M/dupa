@@ -56,7 +56,7 @@ describe('Owner', () => {
         .field('properties[0][openDate]', moment().toISOString())
         .field('properties[0][propertyCategoryId]', '1')
         .field('properties[0][title]', 'Test')
-        .attach('properties[0][files][]', `${__dirname}\\pic.test.file.png`)
+        .attach('properties[0][files][]', `${__dirname}/pic.test.file.png`)
         // .attach('properties[0][files][]', `${__dirname}\\pic.test.file.png`)
 
         .expect((res, error) => {
@@ -87,8 +87,8 @@ describe('Owner', () => {
       .field('properties[0][openDate]', moment().toISOString())
       .field('properties[0][propertyCategoryId]', '1')
       .field('properties[0][title]', 'Test')
-      .attach('properties[0][files][]', `${__dirname}\\pic.test.file.png`)
-      .attach('properties[0][files][]', `${__dirname}\\pic.test.file.png`)
+      .attach('properties[0][files][]', `${__dirname}/pic.test.file.png`)
+      .attach('properties[0][files][]', `${__dirname}/pic.test.file.png`)
 
       .expect((res, error) => {
         formatRes(res);
