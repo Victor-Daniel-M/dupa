@@ -6,7 +6,7 @@ phases:
       nodejs: 18
     commands:
       - echo "Installing Yarn"
-      - npm install -g yarn
+      - npm install -g yarn nest
       - echo "Installing dependencies"
       - yarn install
 
