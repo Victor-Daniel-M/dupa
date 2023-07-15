@@ -13,8 +13,15 @@ phases:
 
   build:
     commands:
-      - echo $AWS_BUCKET_NAME
+      - echo > .env
+      - echo "DATABASE_URL=$DATABASE_URL" >> .env
+      - echo "NODE_ENV=$NODE_ENV" >> .env
+      - echo "AWS_BUCKET_NAME=$AWS_BUCKET_NAME" >> .env
+      - echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" >> .env
+      - echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> .env
+      - echo "AWS_REGION=$AWS_REGION" >> .env
       - ls
+      - cat .env
       - echo "Building the application"
       - yarn build
 
