@@ -13,6 +13,8 @@ phases:
 
   build:
     commands:
+      - echo $AWS_BUCKET_NAME
+      - ls
       - echo "Building the application"
       - yarn build
 

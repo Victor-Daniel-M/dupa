@@ -9,6 +9,8 @@ import { PingModule } from './ping/ping.module';
 import { S3Provider } from 'real-estate/src/infrastructure/services/s3Provider.service';
 import { DbModule } from 'db/src/db.module';
 import { CONSTANTS } from '@common/constants';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -18,6 +20,9 @@ import { CONSTANTS } from '@common/constants';
     RealEstateModule,
     DbModule,
     PingModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../..', 'client'),
+    }),
   ],
   controllers: [AppController],
   providers: [AppService, S3Provider],
