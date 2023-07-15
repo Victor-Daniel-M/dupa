@@ -32,9 +32,6 @@ export class AppModule {
 
   onModuleInit() {
     // // TODO: Create singleton for this that will use existing or create new one
-
-    console.log('onModuleInit:CONSTANTS:', CONSTANTS);
-
     if (CONSTANTS.NODE_ENV == 'development') {
       try {
         // this.s3Provider.init();
