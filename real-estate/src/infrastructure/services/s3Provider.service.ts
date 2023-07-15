@@ -2,6 +2,8 @@ import { CONSTANTS } from '@common/constants';
 import { Injectable } from '@nestjs/common';
 import * as S3 from 'aws-sdk/clients/s3';
 
+console.log('S3Provider:CONSTANTS:', CONSTANTS);
+
 @Injectable()
 export class S3Provider {
   private _s3: S3;

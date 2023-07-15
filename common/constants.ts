@@ -1,4 +1,5 @@
 import 'dotenv/config';
+
 export const CONSTANTS = {
   NODE_ENV: process.env.NODE_ENV!,
   LOCALSTACK_HOST: process.env.LOCALSTACK_HOST!,

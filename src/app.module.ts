@@ -8,6 +8,7 @@ import { RealEstateModule } from 'real-estate/src/real-estate.module';
 import { PingModule } from './ping/ping.module';
 import { S3Provider } from 'real-estate/src/infrastructure/services/s3Provider.service';
 import { DbModule } from 'db/src/db.module';
+import { CONSTANTS } from '@common/constants';
 
 @Module({
   imports: [
@@ -26,10 +27,15 @@ export class AppModule {
 
   onModuleInit() {
     // // TODO: Create singleton for this that will use existing or create new one
-    try {
-      // this.s3Provider.init();
-      this.s3Provider.createBucket();
-      console.log('S3 provider initialized');
-    } catch (error) {}
+
+    console.log('onModuleInit:CONSTANTS:', CONSTANTS);
+
+    if (CONSTANTS.NODE_ENV == 'development') {
+      try {
+        // this.s3Provider.init();
+        this.s3Provider.createBucket();
+        console.log('S3 provider initialized');
+      } catch (error) {}
+    }
   }
 }
