@@ -6,7 +6,8 @@ phases:
       nodejs: 18
     commands:
       - echo "Installing Yarn"
-      - npm install -g yarn nest
+      - export NODE_ENV=development
+      - npm install -g yarn @nestjs/cli
       - echo "Installing dependencies"
       - yarn install
 
@@ -18,6 +19,7 @@ phases:
   post_build:
     commands:
       - echo "Deploying the application"
+      - export NODE_ENV=production
 
 artifacts:
   type: zip
