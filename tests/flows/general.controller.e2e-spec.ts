@@ -1,23 +1,23 @@
-import { OwnerAssignPropertyDto } from '@core/adapter/dtos/owner.controllers.dto';
-import { TYPES } from '@core/domain/types';
+import { OwnerAssignPropertyDto } from 'real-estate/src/adapter/dtos/owner.controllers.dto';
+import { REAL_ESTATE_TYPES } from '@real-estate/types';
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '@src/app.module';
 import * as request from 'supertest';
 import * as moment from 'moment-timezone';
-import { Property } from '@core/domain/entities/property';
-import { User } from '@core/domain/entities/user';
-import { Reaction } from '@core/domain/entities/reaction';
-import { Schedule } from '@core/domain/entities/schedules';
-import { UserProperty } from '@core/domain/entities/userProperties';
-import { Application } from '@core/domain/entities/application';
-import { SearcherLoginDto } from '@core/adapter/dtos/searcher.controllers.dto';
-import { TenancyAgreement } from '@core/domain/entities/tenancyAgreement';
-import { UserTenancyAgreement } from '@core/domain/entities/userTenancyAgreement';
-import { PaymentMethod } from '@core/domain/entities/paymentMethod';
-import { PaymentCategory } from '@core/domain/entities/paymentCategory';
-import { Payment } from '@core/domain/entities/payment';
-import { Complaint } from '@core/domain/entities/complaint';
+import { Property } from '@db/domain/entities/property';
+import { User } from '@db/domain/entities/user';
+import { Reaction } from '@db/domain/entities/reaction';
+import { Schedule } from '@db/domain/entities/schedules';
+import { UserProperty } from '@db/domain/entities/userProperties';
+import { Application } from '@db/domain/entities/application';
+import { SearcherLoginDto } from 'real-estate/src/adapter/dtos/searcher.controllers.dto';
+import { TenancyAgreement } from '@db/domain/entities/tenancyAgreement';
+import { UserTenancyAgreement } from '@db/domain/entities/userTenancyAgreement';
+import { PaymentMethod } from '@db/domain/entities/paymentMethod';
+import { PaymentCategory } from '@db/domain/entities/paymentCategory';
+import { Payment } from '@db/domain/entities/payment';
+import { Complaint } from '@db/domain/entities/complaint';
 
 function formatRes(res: any) {
   console.log(JSON.stringify(res));
@@ -32,9 +32,11 @@ describe('Owner', () => {
       imports: [AppModule],
     });
 
-    testingModule.overrideProvider(TYPES.services.EmailService).useValue({
-      async sendLoginEmail(email: string) {},
-    });
+    testingModule
+      .overrideProvider(REAL_ESTATE_TYPES.services.EmailService)
+      .useValue({
+        async sendLoginEmail(email: string) {},
+      });
 
     moduleRef = await testingModule.compile();
 

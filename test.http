@@ -12,6 +12,10 @@ content-type: application/json
 GET http://localhost:3000/test_entity
 content-type: application/json
 
+### get properties
+GET http://192.168.43.44:3000/properties/paginated
+content-type: application/json
+
 ###
 
 GET http://localhost:3000/users

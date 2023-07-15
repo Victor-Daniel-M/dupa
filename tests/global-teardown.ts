@@ -1,6 +1,6 @@
 import { createConnection } from 'typeorm';
 import { OrmConfig } from '../ormconfig';
-import { models } from '../core/src/models';
+import { models } from '../db/src/models';
 
 async function tearDown() {
   const connection = await createConnection({ ...OrmConfig, name: 'teardown' });

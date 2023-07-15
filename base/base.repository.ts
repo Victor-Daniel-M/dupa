@@ -1,17 +1,16 @@
 import { Inject, BadGatewayException, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { STATUS_CODES } from 'http';
+import { FindManyOptions, Repository } from 'typeorm';
 import { IBaseRepository } from './IBase.repository';
 import { BaseEntity } from './base.entity';
-import { TYPES } from '@core/domain/types';
+import { DB_TYPES } from '@db/types';
+import { Order, PageDto, PageMetaDto, PageOptionsDto } from '@common/ddd/dtos';
 
 @Injectable()
 export class BaseRepository<T extends BaseEntity>
   implements IBaseRepository<T>
 {
   constructor(
-    @Inject(TYPES.repositories.Repository)
+    @Inject(DB_TYPES.repositories.Repository)
     private readonly genericRepository: Repository<T>,
   ) {}
 
@@ -34,6 +33,40 @@ export class BaseRepository<T extends BaseEntity>
     } catch (error) {
       throw new BadGatewayException(error);
     }
+  }
+
+  public async getAllPaginated<T>(data: {
+    pageOptionsDto?: Partial<PageOptionsDto>;
+    findOptions?: FindManyOptions<T> | undefined;
+  }): Promise<PageDto<any>> {
+    const { pageOptionsDto } = data;
+    const take = pageOptionsDto?.take ?? 2;
+    const page = pageOptionsDto?.page ?? 1;
+    const skip = (page - 1) * take;
+
+    const res = await this.genericRepository.findAndCount({
+      take: take,
+      skip: skip,
+      // @ts-ignore
+      order: {
+        id: Order.DESC,
+      },
+      ...data.findOptions,
+    });
+
+    const itemCount = res[1];
+    const entities = res[0];
+
+    const pageMetaDto = new PageMetaDto({
+      itemCount,
+      pageOptionsDto: {
+        take,
+        page,
+        skip,
+      },
+    });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   getBy({ key, value }: { key: keyof T; value: any }): Promise<T[]> {

@@ -18,8 +18,12 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@core": ["core/src"],
-      "@core/*": ["core/src/*"],
+      "@real-estate": ["real-estate/src"],
+      "@real-estate/*": ["real-estate/src/*"],
+      "@db": ["db/src"],
+      "@common/*": ["common/*"],
+      "@common": ["common"],
+      "@db/*": ["db/src/*"],
       "@src": ["src"],
       "@src/*": ["src/*"]
     }

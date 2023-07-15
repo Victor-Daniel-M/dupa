@@ -12,6 +12,7 @@ import { ApiTags, ApiResponse } from '@nestjs/swagger';
 import { IBaseRepository } from './IBase.repository';
 import { BaseEntity } from './base.entity';
 import { ResponseInterceptor } from 'common/filters-interceptors/src';
+import { PageDto } from '@common/ddd/dtos';
 
 @UseInterceptors(ResponseInterceptor)
 export class BaseController<T extends BaseEntity> {
@@ -21,6 +22,12 @@ export class BaseController<T extends BaseEntity> {
   @ApiResponse({ status: 200, description: 'Ok' })
   async findAll(): Promise<T[]> {
     return this.IBaseService.getAll();
+  }
+
+  @Get('paginated')
+  @ApiResponse({ status: 200, description: 'Ok' })
+  async findAllPaginated(): Promise<PageDto<T[]>> {
+    return this.IBaseService.getAllPaginated({});
   }
 
   @Get(':id')

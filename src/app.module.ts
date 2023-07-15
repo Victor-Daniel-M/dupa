@@ -4,16 +4,18 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrmConfig } from '../ormconfig';
 import { TestEntityModule } from './test_entity/testEntity.module';
-import { CoreModule } from '@core/core.module';
+import { RealEstateModule } from 'real-estate/src/real-estate.module';
 import { PingModule } from './ping/ping.module';
-import { S3Provider } from '@core/infrastructure/services/s3Provider.service';
+import { S3Provider } from 'real-estate/src/infrastructure/services/s3Provider.service';
+import { DbModule } from 'db/src/db.module';
 
 @Module({
   imports: [
     // UsersModule,
     TestEntityModule,
     TypeOrmModule.forRoot(OrmConfig),
-    CoreModule,
+    RealEstateModule,
+    DbModule,
     PingModule,
   ],
   controllers: [AppController],
@@ -24,10 +26,10 @@ export class AppModule {
 
   onModuleInit() {
     // // TODO: Create singleton for this that will use existing or create new one
-    // try {
-    //   // this.s3Provider.init();
-    //   this.s3Provider.createBucket();
-    //   console.log('S3 provider initialized');
-    // } catch (error) {}
+    try {
+      // this.s3Provider.init();
+      this.s3Provider.createBucket();
+      console.log('S3 provider initialized');
+    } catch (error) {}
   }
 }

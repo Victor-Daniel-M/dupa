@@ -1,0 +1,274 @@
+auth auth-strategies login
+auth users logout
+auth users auth-strategies refresh-token
+
+users list
+users view
+users create
+users update
+users delete
+
+users user-meta list
+users user-meta create
+
+users user-highlights list
+users user-highlights create
+
+auth-stategies list
+auth-stategies view
+auth-stategies create
+auth-stategies update
+auth-stategies delete
+
+auth-stategies-meta list
+auth-stategies-meta view
+auth-stategies-meta create
+auth-stategies-meta update
+auth-stategies-meta delete
+
+auth-stategies auth-stategies-meta list
+auth-stategies auth-stategies-meta create
+
+searches list
+searches view
+searches update
+searches delete
+searches create
+
+users searches list
+
+searches search-meta list
+
+locations list
+locations view
+locations create
+locations update
+locations delete
+
+property-category list
+property-category view
+property-category create
+property-category update
+property-category delete
+
+property-categories properties list
+
+property list
+property view
+property create
+property update
+property delete
+
+property-meta-category list
+property-meta-category view
+property-meta-category create
+property-meta-category update
+property-meta-category delete
+
+properties property-meta list
+properties property-meta-categories list
+property-meta-categories property-meta list
+properties property-meta-categories property-meta list
+
+property-meta list
+property-meta view
+property-meta create
+property-meta update
+property-meta delete
+
+property-meta children
+
+user-property list
+user-property view
+user-property create
+user-property update
+user-property delete
+
+users user-properties list
+properties user-properties list
+users properties user-properties list
+
+resource list
+resource view
+resource create
+resource update
+resource delete
+
+action list
+action view
+action create
+action update
+action delete
+
+resource-action list
+resource-action view
+resource-action create
+resource-action update
+resource-action delete
+
+actions resource-action list
+resources resource-action list
+actions resources resource-action list
+
+
+permission list
+permission view
+permission create
+permission update
+permission delete
+
+resource-actions permission list
+
+notification-strategies list
+notification-strategies view
+notification-strategies create
+notification-strategies update
+notification-strategies delete
+
+notification-frequencies list
+notification-frequencies view
+notification-frequencies create
+notification-frequencies update
+notification-frequencies delete
+
+notification-subscribables list
+notification-subscribables view
+notification-subscribables create
+notification-subscribables update
+notification-subscribables delete
+
+notificationStrategies notification-subscribables list
+notificationFrequencies notification-subscribables list
+notificationStrategies notificationFrequencies notification-subscribables list
+
+
+notification-subscribers list
+notification-subscribers view
+notification-subscribers create
+notification-subscribers update
+notification-subscribers delete
+
+notificationSubscribables notification-subscribers list
+
+
+media list
+media view
+media create
+media update
+media delete
+
+media list ?entityName ?entityId
+
+reactions list
+reactions view
+reactions create
+reactions update
+reactions delete
+reactions list ?fromEntityName ?fromEntityId ?toEntityName ?toEntityId
+
+addresses list
+addresses view
+addresses create
+addresses update
+addresses delete
+
+entity-addresses list
+entity-addresses view
+entity-addresses create
+entity-addresses update
+entity-addresses delete
+entity-addresses list ?entityName ?entityId
+
+schedules list
+schedules view
+schedules create
+schedules update
+schedules delete
+schedules schedules list ?entityName ?entityId
+
+requests list
+requests view
+requests create
+requests update
+requests delete
+requests list ?fromEntityName ?fromEntityId ?toEntityName ?toEntityId
+
+requests-meta list
+requests-meta view
+requests-meta create
+requests-meta update
+requests-meta delete
+requests requests-meta list
+
+requests-users list
+requests-users view
+requests-users create
+requests-users update
+requests-users delete
+requests requests-users list
+
+offers list
+offers view
+offers create
+offers update
+offers delete
+offers list ?fromEntityName ?fromEntityId ?toEntityName ?toEntityId
+
+offers-meta list
+offers-meta view
+offers-meta create
+offers-meta update
+offers-meta delete
+offers offers-meta list
+
+messages list
+messages view
+messages create
+messages update
+messages delete
+messages list ?fromEntityName ?fromEntityId ?toEntityName ?toEntityId
+
+configs list
+configs view
+configs create
+configs update
+configs delete
+
+invites list
+invites view
+invites create
+invites update
+invites delete
+
+invite-meta list
+invite-meta view
+invite-meta create
+invite-meta update
+invite-meta delete
+invites invite-meta list
+
+places list
+places view
+places create
+places update
+places delete
+
+places-meta list
+places-meta view
+places-meta create
+places-meta update
+places-meta delete
+places places-meta list
+
+charge-types list
+charge-types view
+charge-types create
+charge-types update
+charge-types delete
+
+charges list
+charges view
+charges create
+charges update
+charges delete
+charge-types charges list

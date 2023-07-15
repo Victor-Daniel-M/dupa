@@ -37,3 +37,5 @@ lerna-debug.log*
 #ignore test files
 # *.test.file.*
 commands.txt
+
+test.ts
