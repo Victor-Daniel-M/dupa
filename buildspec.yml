@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo "Installing Yarn"
+      - npm install -g yarn
+      - echo "Installing dependencies"
+      - yarn install
+
+  build:
+    commands:
+      - echo "Building the application"
+      - yarn build
+
+  post_build:
+    commands:
+      - echo "Deploying the application"
+
+artifacts:
+  type: zip
+  files:
+    - '**/*'

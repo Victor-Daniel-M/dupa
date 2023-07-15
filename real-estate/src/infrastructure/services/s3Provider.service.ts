@@ -1,3 +1,4 @@
+import { CONSTANTS } from '@common/constants';
 import { Injectable } from '@nestjs/common';
 import * as S3 from 'aws-sdk/clients/s3';
 
@@ -7,13 +8,13 @@ export class S3Provider {
   private _bucketName: string;
 
   constructor() {
-    (this._bucketName = process.env.AWS_BUCKET_NAME ?? 'testbucket'),
+    (this._bucketName = CONSTANTS.AWS_BUCKET_NAME!),
       (this._s3 = new S3({
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID ?? 'testaccesskey',
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ?? 'testsecretkey',
-        endpoint: 'http://192.168.43.62:4566',
+        accessKeyId: CONSTANTS.AWS_ACCESS_KEY_ID,
+        secretAccessKey: CONSTANTS.AWS_SECRET_ACCESS_KEY,
+        endpoint: CONSTANTS.LOCALSTACK_HOST,
         s3ForcePathStyle: true,
-        region: process.env.AWS_REGION ?? 'ap-southeast-1',
+        region: CONSTANTS.AWS_REGION,
         logger: console,
       }));
   }
