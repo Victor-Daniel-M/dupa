@@ -14,4 +14,4 @@ npx pm2 describe main --namespace super_app_test &> /dev/null && npx pm2 delete 
 
 export NODE_ENV=production
 
-npx pm2 start -f dist/src/main.js --namespace super_app_test
+npx pm2 start -f /var/app/super_app_test/dist/src/main.js --namespace super_app_test
