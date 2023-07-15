@@ -1,8 +1,12 @@
 #!/bin/bash
 
-mkdir /var/app/super_app_test
+rm -rf /var/app/super_app_test
 
-cd /var/app/super_app_test
+mkdir -p /var/app/super_app_test
+
+cd /var/app/
+
+cp -r /var/app/current/* /var/app/super_app_test/
 
 npm install -g pm2
 

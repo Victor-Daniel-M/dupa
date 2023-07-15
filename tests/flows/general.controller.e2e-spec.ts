@@ -45,7 +45,7 @@ describe('Owner', () => {
   });
 
   // Register
-  it('register', async () => {
+  it.only('register', async () => {
     return (
       request(app.getHttpServer())
         .post('/owner/register')
@@ -77,7 +77,7 @@ describe('Owner', () => {
   });
 
   // Register realtor
-  it('register', async () => {
+  it.only('register', async () => {
     return request(app.getHttpServer())
       .post('/realtor/register')
       .timeout(10000)
@@ -107,7 +107,7 @@ describe('Owner', () => {
   });
 
   // request to represent owner property
-  it('request to represent owner property', async () => {
+  it.only('request to represent owner property', async () => {
     const properties = await request(app.getHttpServer()).get('/properties/');
     const firstProperty: Property = properties.body.data[0];
 

@@ -24,9 +24,12 @@ export class S3Provider {
   }
 
   createBucket() {
-    this._s3.createBucket({ Bucket: 'testbucket' }, (err, data) => {
-      // console.log(err, data);
-    });
+    this._s3.createBucket(
+      { Bucket: CONSTANTS.AWS_BUCKET_NAME! },
+      (err, data) => {
+        // console.log(err, data);
+      },
+    );
   }
 
   async upload(file) {

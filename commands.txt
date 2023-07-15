@@ -1,2 +1,115 @@
 http://localhost:4566/testbucket/pic.test.file.png
 ipconfig | findstr /C:"IPv4 Address"
+
+1  history
+    2  ls
+    3  cd /var/log
+    4  ls
+    5  tail -n 50 eb-engine.log
+    6  cd /var/app/current/
+    7  ls
+    8  yarn start
+    9  npm run start
+   10  cd dist/
+   11  yarn start
+   12  npm run start
+   13  cd ..
+   14  npm run start:dev
+   15  ls
+   16  history
+   17  tail -n 50 eb-engine.log
+   18  cd /var/log
+   19  tail -n 50 eb-engine.log
+   20  history
+   21  cd /var/app/current/
+   22  ls
+   23  cd dist/
+   24  history
+   25  cd /var/app/current/
+   26  ls
+   27  cd dist/
+   28  ls
+   29  node src/main.js
+   30  export NODE_ENV = production
+   31  export NODE_ENV=production
+   32  node src/main.js
+   33  cd ..
+   34  node dist/src/main.js
+   35  cd /var/log
+   36  tail -n 50 eb-engine.log
+   37  cat eb-engine.log
+   38  cd /var/app/current/
+   39  nohup node dist/src/main.js &
+   40  ls
+   41  kill $(lsof -t -i:3000)
+   42  nohup node dist/src/main.js &
+   43  ls
+   44  kill $(lsof -t -i:3000)
+   45  cat eb-engine.log
+   46  cd /var/log
+   47  cat eb-engine.log
+   48  cd /var/app/current/
+   49  kill $(lsof -t -i:3000)
+   50  nohup node dist/src/main.js &
+   51  cd /var/log
+   52  tail -n 50 eb-engine.log
+   53  ls
+   54  cd ..
+   55  ls
+   56  cd app/current/
+   57  ls
+   58  node dist/src/main.js
+   59  kill $(lsof -t -i:3000)
+   60  node dist/src/main.js
+   61  ls
+   62  cat src/app.service.ts 
+   63  cd ..
+   64  ls
+   65  cat src/app.service.ts 
+   66  cd current/
+   67  cat src/app.service.ts 
+   68  cd /var/log
+   69  tail -n 50 eb-engine.log
+   70  cd app/current/
+   71  cd /var/app/current/
+   72  cat .platform/hooks/postdeploy/my_script.sh 
+   73  history
+   74  cd /var/app/current/
+   75  node dist/src/main.
+   76  node dist/src/main.js
+   77  export NODE_ENV=production
+   78  node dist/src/main.js
+   79  cd /var/app/current/
+   80  export NODE_ENV=production
+   81  nohup node dist/src/main.js &
+   82  lsof -t -i:3000
+   83  npm install -g pm2
+   84  cd /var/app/current/
+   85  export NODE_ENV=production
+   86  pm2 start dist/src/main.js
+   87  npm run pm2 start dist/src/main.js
+   88  npx
+   89  npx pm2 start dist/src/main.js
+   90  kill $(lsof -t -i:3000)
+   91  npx pm2 start dist/src/main.js --serviceName incloy_test
+   92  npx pm2 start dist/src/main.js --service-name incloy_test
+   93  npx pm2 start -f dist/src/main.js --service-name incloy_test
+   94  npm stop incloy_test
+   95  npx pm2 stop incloy_test
+   96  npx pm2 stop default
+   97  pm2 ps
+   98  npx pm2 ps
+   99  npx pm2 delete default
+  100  npx pm2 start -f dist/src/main.js --namespace incloy_test
+  101  npx pm2 stop --namespace incloy_test
+  102  npx pm2 stop incloy_test
+  103  npx pm2 delete incloy_test
+  104  npx pm2 describe incloy_test &> /dev/null && npx pm2 delete incloy_test
+  105  npx pm2 start -f dist/src/main.js --namespace incloy_test
+  106  npx pm2 describe incloy_test &> /dev/null && npx pm2 delete incloy_test
+  107  npx pm2 ps
+  108  npx pm2 describe incloy_test
+  109  npx pm2 describe main
+  110  npx pm2 describe main --namespace incloy_test &> /dev/null && npx pm2 delete incloy_test
+  111  npm install -g pm2
+  112  history
