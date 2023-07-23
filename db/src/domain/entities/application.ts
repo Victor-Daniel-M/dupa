@@ -1,7 +1,10 @@
 import { BaseEntity } from '../../../../base/base.entity';
 import { Column, Entity } from 'typeorm';
 
-export const applicationTypes = ['REQUEST_TO_REPRESENT'] as const;
+export const applicationTypes = [
+  'REQUEST_TO_REPRESENT',
+  'REQUEST_TO_VISIT',
+] as const;
 export type applicationTypes = (typeof applicationTypes)[number];
 
 @Entity('Application')

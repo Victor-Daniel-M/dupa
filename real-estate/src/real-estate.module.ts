@@ -49,10 +49,17 @@ import { ComplaintController } from './adapter/controllers/crud-controllers/comp
 import { SearcherLoginUsecase } from './application/searcher/login';
 import { REAL_ESTATE_TYPES } from './types';
 import { DbModule } from '@db/db.module';
+import { PropertiesCreateManyUsecase } from './application/owner/properties-create-many';
+import { AdminController } from './adapter/controllers/admin.controller';
 
 const registerOwnerUsecase = {
   provide: REAL_ESTATE_TYPES.useCases.OwnerRegisterUsecase,
   useClass: OwnerRegisterUsecase,
+};
+
+const propertiesCreateManyUsecase = {
+  provide: REAL_ESTATE_TYPES.useCases.PropertiesCreateManyUsecase,
+  useClass: PropertiesCreateManyUsecase,
 };
 
 const emailService = {
@@ -101,6 +108,7 @@ const searcherLoginUsecase = {
     assignPropertyByOwnerUsecase,
     searcherRegisterUsecase,
     searcherLoginUsecase,
+    propertiesCreateManyUsecase,
 
     // Services
     emailService,
@@ -145,6 +153,7 @@ const searcherLoginUsecase = {
     OwnerController,
     RealtorController,
     SearcherController,
+    AdminController,
   ],
 })
 export class RealEstateModule {}

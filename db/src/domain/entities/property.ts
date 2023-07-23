@@ -54,7 +54,7 @@ export class Property extends BaseEntity {
   openDate: string;
 
   @Column({ nullable: true })
-  propertyCategoryId: string;
+  propertyCategoryId: number;
 }
 
 @Entity('PropertyMetaCategory')

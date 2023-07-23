@@ -7,7 +7,7 @@ class OwnerRegistrationPropertiesDto {
   coverImage: string;
   cost: number;
   openDate: string;
-  propertyCategoryId: string;
+  propertyCategoryId: number;
 }
 export class OwnerRegisterDto {
   phoneNumber: string;

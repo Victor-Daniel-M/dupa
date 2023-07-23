@@ -314,7 +314,7 @@ describe('Owner', () => {
       .post('/applications')
       .send({
         userId: firstUser.id,
-        applicationType: 'REQUEST_TO_REPRESENT',
+        applicationType: 'REQUEST_TO_VISIT',
         refEntityId: firstSchedule.id,
         refEntityName: 'SCHEDULES',
       } as Application)
