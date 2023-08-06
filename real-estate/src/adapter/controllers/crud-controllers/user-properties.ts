@@ -4,8 +4,8 @@ import { UserPropertyRepositoryImpl } from '@db/infrastructure/repositories/user
 import { BaseController } from 'base/base.controller';
 import { UserProperty } from '@db/domain/entities/userProperties';
 
-@ApiTags('user-properties')
-@Controller('user-properties')
+@ApiTags('users-properties')
+@Controller('users-properties')
 export class UserPropertyController extends BaseController<UserProperty> {
   constructor(private readonly searchRepository: UserPropertyRepositoryImpl) {
     super(searchRepository);

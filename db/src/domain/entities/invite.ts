@@ -18,12 +18,6 @@ export class Invite extends BaseEntity {
 
   @Column({ nullable: true })
   inviteType: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }
 
 @Entity('InviteMeta')
@@ -41,12 +35,6 @@ export class InviteMeta extends BaseEntity {
 
   @Column({ nullable: true })
   ref: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 
   @Column({ nullable: true })
   inviteId: string;

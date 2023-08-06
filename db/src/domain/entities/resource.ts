@@ -16,10 +16,4 @@ export class Resource extends BaseEntity {
 
   @Column({ nullable: true })
   desc: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }

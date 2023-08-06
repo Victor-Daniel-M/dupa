@@ -8,12 +8,6 @@ export class Place extends BaseEntity {
     super();
     Object.assign(this, o);
   }
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }
 
 @Entity('PlaceMeta')
@@ -28,12 +22,6 @@ export class PlaceMeta extends BaseEntity {
 
   @Column({ nullable: true })
   value: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 
   @Column({ nullable: true })
   placeId: string;

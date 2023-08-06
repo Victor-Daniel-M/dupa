@@ -43,12 +43,6 @@ export class Schedule extends BaseEntity {
   toEntityId: number;
 
   @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
-
-  @Column({ nullable: true })
   dayOfWeek: DayOfWeek;
 
   @Column({ nullable: true })

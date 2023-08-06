@@ -250,7 +250,7 @@ describe('Owner', () => {
         reactionType: 'LIKE',
         toEntityId: firstProperty.id,
         toEntityName: 'PROPERTY',
-      } as Reaction)
+      })
       .expect((res, error) => {
         formatRes(res);
 

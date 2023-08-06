@@ -6,3 +6,5 @@ export enum MetaValueTypes {
   EMAIL,
   PHONE,
 }
+
+export type EntityType = { label: string; id: number };

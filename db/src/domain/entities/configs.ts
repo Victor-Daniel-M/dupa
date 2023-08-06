@@ -17,10 +17,4 @@ export class Config extends BaseEntity {
 
   @Column({ nullable: true })
   value: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }

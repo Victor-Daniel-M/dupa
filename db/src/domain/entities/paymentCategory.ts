@@ -13,10 +13,4 @@ export class PaymentCategory extends BaseEntity {
 
   @Column({ nullable: true })
   code: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }

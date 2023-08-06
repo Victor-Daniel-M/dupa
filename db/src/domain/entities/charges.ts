@@ -17,12 +17,6 @@ export class ChargeType extends BaseEntity {
 
   @Column({ nullable: true })
   desc: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }
 
 @Entity('Charge')
@@ -40,12 +34,6 @@ export class Charge extends BaseEntity {
 
   @Column({ nullable: true })
   upperLimit: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 
   @Column({ nullable: true })
   propertyId: string;

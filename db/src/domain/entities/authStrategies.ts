@@ -17,12 +17,6 @@ export class AuthStrategy extends BaseEntity {
 
   @Column({ nullable: true })
   code: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }
 
 @Entity('AuthStrategyMeta')
@@ -43,10 +37,4 @@ export class AuthStrategyMeta extends BaseEntity {
 
   @Column({ nullable: true })
   authStrategyId: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }

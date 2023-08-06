@@ -16,12 +16,6 @@ export class NotificationStrategy extends BaseEntity {
 
   @Column({ nullable: true })
   desc: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }
 
 @Entity('NotificationFrequency')
@@ -39,12 +33,6 @@ export class NotificationFrequency extends BaseEntity {
 
   @Column({ nullable: true })
   desc: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }
 
 @Entity('NotificationSubscribable')
@@ -56,12 +44,6 @@ export class NotificationSubscribable extends BaseEntity {
 
   @Column({ nullable: true })
   actionId: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 
   @Column({ nullable: true })
   notificationStrategyId: string;
@@ -82,12 +64,6 @@ export class NotificationSubscriber extends BaseEntity {
 
   @Column({ nullable: true })
   entityName: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 
   @Column({ nullable: true })
   notificationSubscribableId: string;

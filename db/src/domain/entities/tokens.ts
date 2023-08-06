@@ -22,10 +22,4 @@ export class Token extends BaseEntity {
 
   @Column({ nullable: true })
   expiresAt: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }

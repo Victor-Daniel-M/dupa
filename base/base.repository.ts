@@ -14,11 +14,13 @@ export class BaseRepository<T extends BaseEntity>
     private readonly genericRepository: Repository<T>,
   ) {}
 
-  create(entity: T): Promise<T> {
+  create(entity: Omit<T, 'generateLabel'>): Promise<T> {
     try {
       return new Promise<T>((resolve, reject) => {
         this.genericRepository
+          // @ts-ignore
           .save(entity)
+          // @ts-ignore
           .then((created) => resolve(created))
           .catch((err) => reject(err));
       });
@@ -89,8 +91,12 @@ export class BaseRepository<T extends BaseEntity>
   }
 
   async delete(id: number) {
+    console.log('id:', id);
+
     try {
-      await this.genericRepository.delete(id);
+      const res = await this.genericRepository.delete(id);
+
+      console.log(res);
     } catch (error) {
       throw new BadGatewayException(error);
     }
@@ -109,10 +115,15 @@ export class BaseRepository<T extends BaseEntity>
   }
 
   update(entity: any): Promise<any> {
+    delete entity.label;
+    delete entity.value;
+    delete entity.updatedAt;
+    delete entity.createdAt;
+
     try {
-      return new Promise<any>((resolve, reject) => {
-        this.genericRepository.update(entity.id, entity);
-        this.genericRepository
+      return new Promise<any>(async (resolve, reject) => {
+        await this.genericRepository.update(entity.id, entity);
+        await this.genericRepository
           .findOneById(entity.id)
           .then((responseGet) => {
             try {

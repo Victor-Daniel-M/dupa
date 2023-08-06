@@ -1,5 +1,5 @@
 import { BaseEntity } from '../../../../base/base.entity';
-import { Column, Entity } from 'typeorm';
+import { AfterLoad, Column, Entity } from 'typeorm';
 
 export const UserPropertyTypes = ['OWNER', 'BROKER', 'TENANT'] as const;
 
@@ -20,4 +20,18 @@ export class UserProperty extends BaseEntity {
 
   @Column({ nullable: true })
   userId: number;
+
+  @AfterLoad()
+  protected generateLabel(): void {
+    const title = `${this.userPropertyType} to Property ${this.propertyId}`;
+    const summary = `User ${this.userId} ${this.userPropertyType} to Property ${this.propertyId}`;
+    // @ts-ignore
+    this.label = title;
+    // @ts-ignore
+    this.description = summary;
+    // @ts-ignore
+    this.title = title;
+    // @ts-ignore
+    this.value = this.id;
+  }
 }

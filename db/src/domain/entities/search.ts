@@ -23,12 +23,6 @@ export class Search extends BaseEntity {
 
   @Column({ nullable: true })
   searchType: SearchType;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }
 
 @Entity('SearchMeta')
@@ -49,10 +43,4 @@ export class SearchMeta extends BaseEntity {
 
   @Column({ nullable: true })
   searchId: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }

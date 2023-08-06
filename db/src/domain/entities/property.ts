@@ -17,12 +17,6 @@ export class PropertyCategory extends BaseEntity {
 
   @Column({ nullable: true })
   desc: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }
 
 @Entity('Property')
@@ -43,12 +37,6 @@ export class Property extends BaseEntity {
 
   @Column({ nullable: true })
   cost: number;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 
   @Column({ nullable: true })
   openDate: string;
@@ -72,12 +60,6 @@ export class PropertyMetaCategory extends BaseEntity {
 
   @Column({ nullable: true })
   valueType: MetaValueTypes;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }
 
 @Entity('PropertyMeta')
@@ -92,12 +74,6 @@ export class PropertyMeta extends BaseEntity {
 
   @Column({ nullable: true })
   value: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 
   @Column({ nullable: true })
   propertyId: string;

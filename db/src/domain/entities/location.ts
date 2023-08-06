@@ -22,10 +22,4 @@ export class Location extends BaseEntity {
 
   @Column({ nullable: true })
   name: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }

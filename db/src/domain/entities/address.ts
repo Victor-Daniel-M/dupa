@@ -19,12 +19,6 @@ export class Address extends BaseEntity {
 
   @Column({ nullable: true })
   region: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }
 
 @Entity('EntityAddress')
@@ -39,12 +33,6 @@ export class EntityAddress extends BaseEntity {
 
   @Column({ nullable: true })
   entityName: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 
   @Column({ nullable: true })
   addressId: string;

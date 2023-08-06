@@ -1,5 +1,5 @@
 import { BaseEntity } from '../../../../base/base.entity';
-import { Column, Entity } from 'typeorm';
+import { AfterLoad, Column, Entity } from 'typeorm';
 
 @Entity('UserTenancyAgreement')
 export class UserTenancyAgreement extends BaseEntity {
@@ -20,9 +20,14 @@ export class UserTenancyAgreement extends BaseEntity {
   @Column({ nullable: true })
   expiresAt?: string;
 
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
+  @AfterLoad()
+  protected generateLabel(): void {
+    const summary = `Agreement for Property ${this.propertyId} for user X`;
+    // @ts-ignore
+    this.label = summary;
+    // @ts-ignore
+    this.title = summary;
+    // @ts-ignore
+    this.value = this.id;
+  }
 }

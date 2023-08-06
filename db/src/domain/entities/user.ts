@@ -29,12 +29,6 @@ export class User extends BaseEntity {
   phoneNumber?: string;
 
   @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
-
-  @Column({ nullable: true })
   userType?: UserType;
 }
 
@@ -56,10 +50,4 @@ export class UserMeta extends BaseEntity {
 
   @Column({ nullable: true })
   userId: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }

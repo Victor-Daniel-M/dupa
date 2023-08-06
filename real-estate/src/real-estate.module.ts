@@ -51,6 +51,10 @@ import { REAL_ESTATE_TYPES } from './types';
 import { DbModule } from '@db/db.module';
 import { PropertiesCreateManyUsecase } from './application/owner/properties-create-many';
 import { AdminController } from './adapter/controllers/admin.controller';
+import { ApplicationTypeController } from './adapter/controllers/crud-controllers/application-types.module';
+import { EntityController } from './adapter/controllers/crud-controllers/entities.module';
+import { PropertyCategoryController } from './adapter/controllers/crud-controllers/property-categories.module';
+import { UserPropertyTypesController } from './adapter/controllers/crud-controllers/user-property-types.module';
 
 const registerOwnerUsecase = {
   provide: REAL_ESTATE_TYPES.useCases.OwnerRegisterUsecase,
@@ -148,6 +152,10 @@ const searcherLoginUsecase = {
     UserPropertyController,
     UserController,
     UserTenancyAgreementController,
+    ApplicationTypeController,
+    EntityController,
+    PropertyCategoryController,
+    UserPropertyTypesController,
 
     // Custom controllers
     OwnerController,

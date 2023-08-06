@@ -33,10 +33,4 @@ export class Message extends BaseEntity {
 
   @Column({ nullable: true })
   toEntityName: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }

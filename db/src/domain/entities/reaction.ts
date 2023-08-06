@@ -34,11 +34,5 @@ export class Reaction extends BaseEntity {
   text?: string;
 
   @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
-
-  @Column({ nullable: true })
   reactionType: ReactionType;
 }

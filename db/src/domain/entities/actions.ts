@@ -16,12 +16,6 @@ export class Action extends BaseEntity {
 
   @Column({ nullable: true })
   desc: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }
 
 @Entity('ResourceAction')
@@ -36,10 +30,4 @@ export class ResourceAction extends BaseEntity {
 
   @Column({ nullable: true })
   resourceId: string;
-
-  @Column({ nullable: true })
-  createdAt?: string;
-
-  @Column({ nullable: true })
-  updatedAt?: string;
 }

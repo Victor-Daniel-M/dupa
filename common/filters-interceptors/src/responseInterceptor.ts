@@ -20,7 +20,12 @@ export class ResponseInterceptor<T> implements NestInterceptor<T, Response<T>> {
       map((data) => {
         const statusCode = context.switchToHttp().getResponse().statusCode;
         const message = 'SUCCESS';
-        return { statusCode, data, message };
+
+        const res = { statusCode, data, message };
+
+        console.log(JSON.stringify(res));
+
+        return res;
       }),
     );
   }
