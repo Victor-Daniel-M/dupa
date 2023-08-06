@@ -114,6 +114,7 @@ class EntityApiTest<T extends BaseEntity> {
 describe('Role API', () => {
   const entityApiTest = new EntityApiTest<Complaint>('complaints');
 
+  // @ts-ignore
   const complaintDummyData: Complaint = {
     description: 'Some descri',
     propertyId: 1,
@@ -136,6 +137,7 @@ describe('Role API', () => {
   });
 
   it(`${entityApiTest.entityName} - should update an entity`, async () => {
+    // @ts-ignore
     await entityApiTest.updateTestEntity({
       ...complaintDummyData,
       description: 'Test',
