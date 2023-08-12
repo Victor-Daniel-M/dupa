@@ -15,9 +15,15 @@ export class RealtorRegisterDto {
   nationalId: string;
   password: string;
 
+  businessName: string;
+
   @IsNotEmpty()
   @IsEmail()
   email: string;
 
   properties: RealtorRegistrationPropertiesDto[];
 }
+
+export class RealtorRequestToRepresentReqBodyDto {}
+
+export class RealtorRequestToRepresentReqQueryDto {}

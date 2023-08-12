@@ -36,7 +36,7 @@ export class BaseController<T extends BaseEntity> {
     });
   }
 
-  @Get('one')
+  @Get('get-one')
   @ApiResponse({ status: 200, description: 'Entity retrieved successfully.' })
   @ApiResponse({ status: 404, description: 'Entity does not exist' })
   async findById(@Query('id') id: number): Promise<{ record: T }> {
@@ -58,7 +58,7 @@ export class BaseController<T extends BaseEntity> {
   @ApiResponse({ status: 200, description: 'Entity deleted successfully.' })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
   async delete(@Query('id') id: number) {
-    await this.IBaseService.delete(id);
+    return { record: await this.IBaseService.delete(id) };
   }
 
   @Put('update')

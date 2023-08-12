@@ -40,6 +40,7 @@ export class PropertiesCreateManyUsecase {
         openDate: property.openDate,
         title: property.title,
         propertyCategoryId: property.propertyCategoryId,
+        businessId: body.businessId,
       });
 
       createdProperties.push(createdProperty);

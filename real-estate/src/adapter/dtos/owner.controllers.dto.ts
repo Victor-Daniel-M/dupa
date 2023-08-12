@@ -16,6 +16,8 @@ export class OwnerRegisterDto {
   nationalId: string;
   password: string;
 
+  businessName: string;
+
   @IsNotEmpty()
   @IsEmail()
   email: string;

@@ -8,4 +8,5 @@ export class PropertyCreateDto {
 
 export class PropertiesCreateManyDto {
   properties: PropertyCreateDto[];
+  businessId: number;
 }

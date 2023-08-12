@@ -15,5 +15,6 @@ export const REAL_ESTATE_TYPES = {
     SearcherLoginUsecase: 'SearcherLoginUsecase',
     AssignPropertyByOwnerUsecase: 'AssignPropertyByOwnerUsecase',
     PropertiesCreateManyUsecase: 'PropertiesCreateManyUsecase',
+    RealtorRequestToRepresentUsecase: 'RealtorRequestToRepresentUsecase',
   },
 };

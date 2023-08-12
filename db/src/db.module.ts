@@ -37,6 +37,8 @@ import { UserTenancyAgreementRepositoryImpl } from './infrastructure/repositorie
 import { models } from './models';
 import { ApplicationRepositoryImpl } from './infrastructure/repositories/applications-repository';
 import { ComplaintRepositoryImpl } from './infrastructure/repositories/complaints-repository';
+import { BusinessRepositoryImpl } from './infrastructure/repositories/business-repository';
+import { UserBusinessRepositoryImpl } from './infrastructure/repositories/user-business-repository';
 
 const repository = {
   provide: DB_TYPES.repositories.Repository,
@@ -103,6 +105,16 @@ const complaintRepositoryImpl = {
   useClass: ComplaintRepositoryImpl,
 };
 
+const businessRepositoryImpl = {
+  provide: DB_TYPES.repositories.BusinessRepositoryImpl,
+  useClass: BusinessRepositoryImpl,
+};
+
+const userBusinessRepositoryImpl = {
+  provide: DB_TYPES.repositories.UserBusinessRepositoryImpl,
+  useClass: UserBusinessRepositoryImpl,
+};
+
 const repositories = [
   Repository,
   BaseRepository,
@@ -153,6 +165,8 @@ const repositories = [
   paymentMethodRepositoryImpl,
   paymentCategoryRepositoryImpl,
   complaintRepositoryImpl,
+  businessRepositoryImpl,
+  userBusinessRepositoryImpl,
 ];
 
 @Global()

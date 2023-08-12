@@ -18,6 +18,7 @@ import { PaymentMethod } from '@db/domain/entities/paymentMethod';
 import { PaymentCategory } from '@db/domain/entities/paymentCategory';
 import { Payment } from '@db/domain/entities/payment';
 import { Complaint } from '@db/domain/entities/complaint';
+import { Business } from '@db/domain/entities/business';
 
 function formatRes(res: any) {
   console.log(JSON.stringify(res));
@@ -26,6 +27,10 @@ function formatRes(res: any) {
 describe('Owner', () => {
   let app: INestApplication;
   let moduleRef: TestingModule;
+  let realtorBusiness: Business | null;
+  let ownerBusiness: Business | null;
+  let realtorUser: User | null;
+  let ownerUser: User | null;
 
   beforeAll(async () => {
     const testingModule = Test.createTestingModule({
@@ -45,7 +50,7 @@ describe('Owner', () => {
   });
 
   // Register
-  it.only('register', async () => {
+  it.only('register owner', async () => {
     return (
       request(app.getHttpServer())
         .post('/owner/register')
@@ -64,6 +69,11 @@ describe('Owner', () => {
         .expect((res, error) => {
           formatRes(res);
 
+          ownerBusiness = res.body.data.business;
+          ownerUser = res.body.data.user;
+
+          console.log('ownerBusiness:', ownerBusiness);
+
           expect(res.body).toEqual(
             expect.objectContaining({
               message: expect.any(String),
@@ -77,7 +87,7 @@ describe('Owner', () => {
   });
 
   // Register realtor
-  it.only('register', async () => {
+  it.only('register realtor', async () => {
     return request(app.getHttpServer())
       .post('/realtor/register')
       .timeout(10000)
@@ -95,6 +105,11 @@ describe('Owner', () => {
       .expect((res, error) => {
         formatRes(res);
 
+        realtorBusiness = res.body.data.business;
+        realtorUser = res.body.data.user;
+
+        console.log('realtorBusiness:', realtorBusiness);
+
         expect(res.body).toEqual(
           expect.objectContaining({
             message: expect.any(String),
@@ -108,14 +123,19 @@ describe('Owner', () => {
 
   // request to represent owner property
   it.only('request to represent owner property', async () => {
-    const properties = await request(app.getHttpServer()).get('/properties/');
-    const firstProperty: Property = properties.body.data[0];
+    const properties = await request(app.getHttpServer()).get(
+      '/properties/paginated',
+    );
 
-    const users = await request(app.getHttpServer()).get('/users/');
-    const firstUser: User = users.body.data[0];
+    console.log(properties.body);
+
+    const firstProperty: Property = properties.body.data.records[0];
+
+    const users = await request(app.getHttpServer()).get('/users/paginated');
+    const firstUser: User = users.body.data.records[0];
 
     return request(app.getHttpServer())
-      .post('/applications/')
+      .post('/applications/create')
       .send({
         userId: firstUser.id,
         applicationType: 'REQUEST_TO_REPRESENT',
@@ -141,12 +161,14 @@ describe('Owner', () => {
   });
 
   // Assign property to realtor
-  it('Owner Assign property', async () => {
-    const properties = await request(app.getHttpServer()).get('/properties/');
-    const firstProperty: Property = properties.body.data[0];
+  it.only('Owner Assign property', async () => {
+    const properties = await request(app.getHttpServer()).get(
+      '/properties/paginated',
+    );
+    const firstProperty: Property = properties.body.data.records[0];
 
-    const realtors = await request(app.getHttpServer()).get('/users/');
-    const firstRealtor: User = realtors.body.data[0];
+    const realtors = await request(app.getHttpServer()).get('/users/paginated');
+    const firstRealtor: User = realtors.body.data.records[0];
 
     return request(app.getHttpServer())
       .post('/owner/assign-owner-property')
@@ -172,7 +194,7 @@ describe('Owner', () => {
   });
 
   // Register searcher
-  it('register as searcher', async () => {
+  it.only('register as searcher', async () => {
     return request(app.getHttpServer())
       .post('/searcher/register')
       .timeout(10000)
@@ -194,7 +216,7 @@ describe('Owner', () => {
       });
   });
 
-  it('login as searcher', async () => {
+  it.only('login as searcher', async () => {
     return request(app.getHttpServer())
       .post('/searcher/login')
       .send({
@@ -217,9 +239,9 @@ describe('Owner', () => {
   });
 
   // View properties
-  it('view properties', async () => {
+  it.only('view properties', async () => {
     return request(app.getHttpServer())
-      .get('/properties/')
+      .get('/properties/paginated')
       .expect((res, error) => {
         formatRes(res);
 
@@ -235,15 +257,17 @@ describe('Owner', () => {
   });
 
   // View properties
-  it('react to properties', async () => {
-    const properties = await request(app.getHttpServer()).get('/properties/');
-    const firstProperty: Property = properties.body.data[0];
+  it.only('react to properties', async () => {
+    const properties = await request(app.getHttpServer()).get(
+      '/properties/paginated',
+    );
+    const firstProperty: Property = properties.body.data.records[0];
 
-    const users = await request(app.getHttpServer()).get('/users/');
-    const firstUser: User = users.body.data[0];
+    const users = await request(app.getHttpServer()).get('/users/paginated');
+    const firstUser: User = users.body.data.records[0];
 
     return request(app.getHttpServer())
-      .post('/reactions')
+      .post('/reactions/create')
       .send({
         fromEntityId: firstUser.id,
         fromEntityName: 'USER',
@@ -266,15 +290,17 @@ describe('Owner', () => {
   });
 
   // Create a property visit schedule
-  it('create a schedule to visit property', async () => {
-    const properties = await request(app.getHttpServer()).get('/properties/');
-    const firstProperty: Property = properties.body.data[0];
+  it.only('create a schedule to visit property', async () => {
+    const properties = await request(app.getHttpServer()).get(
+      '/properties/paginated',
+    );
+    const firstProperty: Property = properties.body.data.records[0];
 
-    const realtor = await request(app.getHttpServer()).get('/users/');
-    const firstRealtor: User = realtor.body.data[0];
+    const realtor = await request(app.getHttpServer()).get('/users/paginated');
+    const firstRealtor: User = realtor.body.data.records[0];
 
     return request(app.getHttpServer())
-      .post('/schedules')
+      .post('/schedules/create')
       .send({
         fromEntityId: firstRealtor.id,
         fromEntityName: 'USER',
@@ -300,18 +326,22 @@ describe('Owner', () => {
   });
 
   // request to visit property in set schedule with time
-  it('request to visit property in set schedule with time', async () => {
-    const properties = await request(app.getHttpServer()).get('/properties/');
-    const firstProperty: Property = properties.body.data[0];
+  it.only('request to visit property in set schedule with time', async () => {
+    const properties = await request(app.getHttpServer()).get(
+      '/properties/paginated',
+    );
+    const firstProperty: Property = properties.body.data.records[0];
 
-    const users = await request(app.getHttpServer()).get('/users/');
-    const firstUser: User = users.body.data[0];
+    const users = await request(app.getHttpServer()).get('/users/paginated');
+    const firstUser: User = users.body.data.records[0];
 
-    const schedules = await request(app.getHttpServer()).get('/schedules/');
-    const firstSchedule: User = schedules.body.data[0];
+    const schedules = await request(app.getHttpServer()).get(
+      '/schedules/paginated',
+    );
+    const firstSchedule: User = schedules.body.data.records[0];
 
     return request(app.getHttpServer())
-      .post('/applications')
+      .post('/applications/create')
       .send({
         userId: firstUser.id,
         applicationType: 'REQUEST_TO_VISIT',
@@ -333,15 +363,17 @@ describe('Owner', () => {
       });
   });
 
-  it('create tenancy agreement', async () => {
-    const properties = await request(app.getHttpServer()).get('/properties/');
-    const firstProperty: Property = properties.body.data[0];
+  it.only('create tenancy agreement', async () => {
+    const properties = await request(app.getHttpServer()).get(
+      '/properties/paginated',
+    );
+    const firstProperty: Property = properties.body.data.records[0];
 
-    const users = await request(app.getHttpServer()).get('/users/');
-    const firstUser: User = users.body.data[0];
+    const users = await request(app.getHttpServer()).get('/users/paginated');
+    const firstUser: User = users.body.data.records[0];
 
     return request(app.getHttpServer())
-      .post('/tenancy-agreements')
+      .post('/tenancy-agreements/create')
       .send({
         propertyId: firstProperty.id,
         description: `
@@ -364,18 +396,20 @@ describe('Owner', () => {
       });
   });
 
-  it('send tenancy agreement', async () => {
-    const properties = await request(app.getHttpServer()).get('/properties/');
-    const firstProperty: Property = properties.body.data[0];
+  it.only('send tenancy agreement', async () => {
+    const properties = await request(app.getHttpServer()).get(
+      '/properties/paginated',
+    );
+    const firstProperty: Property = properties.body.data.records[0];
 
     const tenancyAgreements = await request(app.getHttpServer()).get(
-      '/tenancy-agreements/',
+      '/tenancy-agreements/paginated',
     );
     const firstTenancyAgreement: TenancyAgreement =
-      tenancyAgreements.body.data[0];
+      tenancyAgreements.body.data.records[0];
 
     return request(app.getHttpServer())
-      .post('/user-tenancy-agreements')
+      .post('/user-tenancy-agreements/create')
       .send({
         propertyId: firstProperty.id,
         tenancyAgreementId: firstTenancyAgreement.id,
@@ -396,14 +430,14 @@ describe('Owner', () => {
       });
   });
 
-  it('view tenancy agreement', async () => {
+  it.only('view tenancy agreement', async () => {
     const tenancyAgreements = await request(app.getHttpServer()).get(
-      '/tenancy-agreements/',
+      '/tenancy-agreements/paginated',
     );
-    const tenancyAgreement: Property = tenancyAgreements.body.data[0];
+    const tenancyAgreement: Property = tenancyAgreements.body.data.records[0];
 
     return request(app.getHttpServer())
-      .get(`/tenancy-agreements/${tenancyAgreement.id}`)
+      .get(`/tenancy-agreements/get-one?id=${tenancyAgreement.id}`)
       .expect((res, error) => {
         formatRes(res);
 
@@ -418,24 +452,26 @@ describe('Owner', () => {
       });
   });
 
-  it('accept tenancy agreement', async () => {
-    const properties = await request(app.getHttpServer()).get('/properties/');
-    const firstProperty: Property = properties.body.data[0];
+  it.only('accept tenancy agreement', async () => {
+    const properties = await request(app.getHttpServer()).get(
+      '/properties/paginated',
+    );
+    const firstProperty: Property = properties.body.data.records[0];
 
     const tenancyAgreements = await request(app.getHttpServer()).get(
-      '/tenancy-agreements/',
+      '/tenancy-agreements/paginated',
     );
     const firstTenancyAgreement: TenancyAgreement =
-      tenancyAgreements.body.data[0];
+      tenancyAgreements.body.data.records[0];
 
     const userTenancyAgreements = await request(app.getHttpServer()).get(
-      '/user-tenancy-agreements/',
+      '/user-tenancy-agreements/paginated',
     );
     const firstUserTenancyAgreement: TenancyAgreement =
-      userTenancyAgreements.body.data[0];
+      userTenancyAgreements.body.data.records[0];
 
     return request(app.getHttpServer())
-      .post('/user-tenancy-agreements')
+      .post('/user-tenancy-agreements/create')
       .send({
         propertyId: firstProperty.id,
         tenancyAgreementId: firstUserTenancyAgreement.id,
@@ -456,9 +492,9 @@ describe('Owner', () => {
       });
   });
 
-  it('create payment method', async () => {
+  it.only('create payment method', async () => {
     return request(app.getHttpServer())
-      .post('/payment-methods')
+      .post('/payment-methods/create')
       .send({
         name: 'Test',
         code: 'Test',
@@ -478,9 +514,9 @@ describe('Owner', () => {
       });
   });
 
-  it('create payment category', async () => {
+  it.only('create payment category', async () => {
     return request(app.getHttpServer())
-      .post('/payment-categories')
+      .post('/payment-categories/create')
       .send({
         name: 'Any',
         code: 'Any',
@@ -500,26 +536,28 @@ describe('Owner', () => {
       });
   });
 
-  it('pay a booking', async () => {
-    const properties = await request(app.getHttpServer()).get('/properties/');
-    const firstProperty: Property = properties.body.data[0];
+  it.only('pay a booking', async () => {
+    const properties = await request(app.getHttpServer()).get(
+      '/properties/paginated',
+    );
+    const firstProperty: Property = properties.body.data.records[0];
 
-    const users = await request(app.getHttpServer()).get('/users/');
-    const firstUser: User = users.body.data[0];
+    const users = await request(app.getHttpServer()).get('/users/paginated');
+    const firstUser: User = users.body.data.records[0];
 
     const paymentMethods = await request(app.getHttpServer()).get(
-      '/payment-methods/',
+      '/payment-methods/paginated',
     );
-    const firstPaymentMethod: PaymentMethod = users.body.data[0];
+    const firstPaymentMethod: PaymentMethod = users.body.data.records[0];
 
     const paymentCategories = await request(app.getHttpServer()).get(
-      '/payment-categories/',
+      '/payment-categories/paginated',
     );
     const firstPaymentCategory: PaymentCategory =
-      paymentCategories.body.data[0];
+      paymentCategories.body.data.records[0];
 
     return request(app.getHttpServer())
-      .post('/payments')
+      .post('/payments/create')
       .send({
         entityId: firstProperty.id,
         entityName: 'PROPERTY',
@@ -544,15 +582,17 @@ describe('Owner', () => {
   });
 
   // Attach property to user as tenant
-  it('attach property to user as tenant', async () => {
-    const properties = await request(app.getHttpServer()).get('/properties/');
-    const firstProperty: Property = properties.body.data[0];
+  it.only('attach property to user as tenant', async () => {
+    const properties = await request(app.getHttpServer()).get(
+      '/properties/paginated',
+    );
+    const firstProperty: Property = properties.body.data.records[0];
 
-    const users = await request(app.getHttpServer()).get('/users/');
-    const firstUser: User = users.body.data[0];
+    const users = await request(app.getHttpServer()).get('/users/paginated');
+    const firstUser: User = users.body.data.records[0];
 
     return request(app.getHttpServer())
-      .post('/user-properties')
+      .post('/users-properties/create')
       .timeout(10000)
       .send({
         propertyId: firstProperty.id,
@@ -574,15 +614,17 @@ describe('Owner', () => {
       });
   });
 
-  it('file property complaint', async () => {
-    const properties = await request(app.getHttpServer()).get('/properties/');
-    const firstProperty: Property = properties.body.data[0];
+  it.only('file property complaint', async () => {
+    const properties = await request(app.getHttpServer()).get(
+      '/properties/paginated',
+    );
+    const firstProperty: Property = properties.body.data.records[0];
 
-    const users = await request(app.getHttpServer()).get('/users/');
-    const firstUser: User = users.body.data[0];
+    const users = await request(app.getHttpServer()).get('/users/paginated');
+    const firstUser: User = users.body.data.records[0];
 
     return request(app.getHttpServer())
-      .post('/complaints')
+      .post('/complaints/create')
       .send({
         propertyId: firstProperty.id,
         userId: firstUser.id,
@@ -604,12 +646,14 @@ describe('Owner', () => {
       });
   });
 
-  it('view property complaints', async () => {
-    const properties = await request(app.getHttpServer()).get('/properties/');
-    const firstProperty: Property = properties.body.data[0];
+  it.only('view property complaints', async () => {
+    const properties = await request(app.getHttpServer()).get(
+      '/properties/paginated',
+    );
+    const firstProperty: Property = properties.body.data.records[0];
 
     return request(app.getHttpServer())
-      .get('/complaints')
+      .get('/complaints/paginated')
 
       .expect((res, error) => {
         formatRes(res);
@@ -625,12 +669,14 @@ describe('Owner', () => {
       });
   });
 
-  it('react to property complaints', async () => {
-    const complaints = await request(app.getHttpServer()).get('/complaints/');
-    const firstComplaints: Property = complaints.body.data[0];
+  it.only('react to property complaints', async () => {
+    const complaints = await request(app.getHttpServer()).get(
+      '/complaints/paginated',
+    );
+    const firstComplaints: Property = complaints.body.data.records[0];
 
     return request(app.getHttpServer())
-      .put(`/complaints/`)
+      .put(`/complaints/update`)
       .send({
         id: firstComplaints.id,
         status: 'IN_PROGRESS',
@@ -650,26 +696,29 @@ describe('Owner', () => {
       });
   });
 
-  it('pay rent', async () => {
-    const properties = await request(app.getHttpServer()).get('/properties/');
-    const firstProperty: Property = properties.body.data[0];
+  it.only('pay rent', async () => {
+    const properties = await request(app.getHttpServer()).get(
+      '/properties/paginated',
+    );
+    const firstProperty: Property = properties.body.data.records[0];
 
-    const users = await request(app.getHttpServer()).get('/users/');
-    const firstUser: User = users.body.data[0];
+    const users = await request(app.getHttpServer()).get('/users/paginated');
+    const firstUser: User = users.body.data.records[0];
 
     const paymentMethods = await request(app.getHttpServer()).get(
-      '/payment-methods/',
+      '/payment-methods/paginated',
     );
-    const firstPaymentMethod: PaymentMethod = paymentMethods.body.data[0];
+    const firstPaymentMethod: PaymentMethod =
+      paymentMethods.body.data.records[0];
 
     const paymentCategories = await request(app.getHttpServer()).get(
-      '/payment-categories/',
+      '/payment-categories/paginated',
     );
     const firstPaymentCategory: PaymentCategory =
-      paymentCategories.body.data[0];
+      paymentCategories.body.data.records[0];
 
     return request(app.getHttpServer())
-      .post('/payments')
+      .post('/payments/create')
       .send({
         entityId: firstProperty.id,
         entityName: 'PROPERTY',
@@ -693,9 +742,9 @@ describe('Owner', () => {
       });
   });
 
-  it('view payments', async () => {
+  it.only('view payments', async () => {
     return request(app.getHttpServer())
-      .get('/payments')
+      .get('/payments/paginated')
 
       .expect((res, error) => {
         formatRes(res);
@@ -711,9 +760,9 @@ describe('Owner', () => {
       });
   });
 
-  it('view rent payments', async () => {
+  it.only('view rent payments', async () => {
     return request(app.getHttpServer())
-      .get('/payments')
+      .get('/payments/paginated')
 
       .expect((res, error) => {
         formatRes(res);
@@ -729,9 +778,9 @@ describe('Owner', () => {
       });
   });
 
-  it('search properties', async () => {
+  it.only('search properties', async () => {
     return request(app.getHttpServer())
-      .get('/properties')
+      .get('/properties/paginated')
 
       .expect((res, error) => {
         formatRes(res);

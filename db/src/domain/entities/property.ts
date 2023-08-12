@@ -43,6 +43,9 @@ export class Property extends BaseEntity {
 
   @Column({ nullable: true })
   propertyCategoryId: number;
+
+  @Column({ nullable: true })
+  businessId: number;
 }
 
 @Entity('PropertyMetaCategory')

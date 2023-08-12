@@ -13,5 +13,7 @@ export const DB_TYPES = {
     PaymentCategoryRepositoryImpl: 'PaymentCategoryRepositoryImpl',
     ApplicationRepositoryImpl: 'ApplicationRepositoryImpl',
     ComplaintRepositoryImpl: 'ComplaintRepositoryImpl',
+    BusinessRepositoryImpl: 'BusinessRepositoryImpl',
+    UserBusinessRepositoryImpl: 'UserBusinessRepositoryImpl',
   },
 };

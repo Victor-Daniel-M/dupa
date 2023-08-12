@@ -33,6 +33,8 @@ import { PropertyCategory } from './domain/entities/property';
 import { UserProperty } from './domain/entities/userProperties';
 import { Application } from './domain/entities/application';
 import { Complaint } from './domain/entities/complaint';
+import { Business } from './domain/entities/business';
+import { UserBusiness } from './domain/entities/userBusiness';
 
 export const models = [
   Action,
@@ -71,4 +73,6 @@ export const models = [
   User,
   UserProperty,
   UserTenancyAgreement,
+  Business,
+  UserBusiness,
 ];

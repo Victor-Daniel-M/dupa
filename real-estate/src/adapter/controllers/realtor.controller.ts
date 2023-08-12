@@ -5,13 +5,19 @@ import {
   Controller,
   Inject,
   Post,
+  Query,
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ResponseInterceptor } from 'common/filters-interceptors/src';
-import { RealtorRegisterDto } from '../dtos/realtor.controllers.dto';
+import {
+  RealtorRegisterDto,
+  RealtorRequestToRepresentReqBodyDto,
+  RealtorRequestToRepresentReqQueryDto,
+} from '../dtos/realtor.controllers.dto';
 import { FilesInterceptor } from '@nestjs/platform-express';
+import { RealtorRequestToRepresentUsecase } from '@real-estate/application/realtor/request-to-represent';
 
 @ApiTags('realtor')
 @Controller('realtor')
@@ -20,6 +26,8 @@ export class RealtorController {
   constructor(
     @Inject(REAL_ESTATE_TYPES.useCases.RealtorRegisterUsecase)
     private realtorRegisterUsecase: RealtorRegisterUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.RealtorRegisterUsecase)
+    private realtorRequestToRepresentUsecase: RealtorRequestToRepresentUsecase,
   ) {}
 
   @Post('register')
@@ -32,6 +40,17 @@ export class RealtorController {
     return await this.realtorRegisterUsecase.execute({
       body,
       files,
+    });
+  }
+
+  @Post('requests/apply')
+  async realtorApplyToRepresent(
+    @Body() body: RealtorRequestToRepresentReqBodyDto,
+    @Query() query: RealtorRequestToRepresentReqQueryDto,
+  ) {
+    return await this.realtorRequestToRepresentUsecase.execute({
+      body,
+      query,
     });
   }
 }
