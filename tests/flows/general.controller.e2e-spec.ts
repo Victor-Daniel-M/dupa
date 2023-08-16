@@ -135,7 +135,7 @@ describe('Owner', () => {
     const firstUser: User = users.body.data.records[0];
 
     return request(app.getHttpServer())
-      .post('/applications/create')
+      .post(`/realtor/requests/apply?businessId=${realtorBusiness?.id}`)
       .send({
         userId: firstUser.id,
         applicationType: 'REQUEST_TO_REPRESENT',
@@ -161,7 +161,7 @@ describe('Owner', () => {
   });
 
   // Assign property to realtor
-  it.only('Owner Assign property', async () => {
+  it('Owner Assign property', async () => {
     const properties = await request(app.getHttpServer()).get(
       '/properties/paginated',
     );
@@ -194,7 +194,7 @@ describe('Owner', () => {
   });
 
   // Register searcher
-  it.only('register as searcher', async () => {
+  it('register as searcher', async () => {
     return request(app.getHttpServer())
       .post('/searcher/register')
       .timeout(10000)
@@ -216,7 +216,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('login as searcher', async () => {
+  it('login as searcher', async () => {
     return request(app.getHttpServer())
       .post('/searcher/login')
       .send({
@@ -239,7 +239,7 @@ describe('Owner', () => {
   });
 
   // View properties
-  it.only('view properties', async () => {
+  it('view properties', async () => {
     return request(app.getHttpServer())
       .get('/properties/paginated')
       .expect((res, error) => {
@@ -257,7 +257,7 @@ describe('Owner', () => {
   });
 
   // View properties
-  it.only('react to properties', async () => {
+  it('react to properties', async () => {
     const properties = await request(app.getHttpServer()).get(
       '/properties/paginated',
     );
@@ -290,7 +290,7 @@ describe('Owner', () => {
   });
 
   // Create a property visit schedule
-  it.only('create a schedule to visit property', async () => {
+  it('create a schedule to visit property', async () => {
     const properties = await request(app.getHttpServer()).get(
       '/properties/paginated',
     );
@@ -326,7 +326,7 @@ describe('Owner', () => {
   });
 
   // request to visit property in set schedule with time
-  it.only('request to visit property in set schedule with time', async () => {
+  it('request to visit property in set schedule with time', async () => {
     const properties = await request(app.getHttpServer()).get(
       '/properties/paginated',
     );
@@ -363,7 +363,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('create tenancy agreement', async () => {
+  it('create tenancy agreement', async () => {
     const properties = await request(app.getHttpServer()).get(
       '/properties/paginated',
     );
@@ -396,7 +396,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('send tenancy agreement', async () => {
+  it('send tenancy agreement', async () => {
     const properties = await request(app.getHttpServer()).get(
       '/properties/paginated',
     );
@@ -430,7 +430,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('view tenancy agreement', async () => {
+  it('view tenancy agreement', async () => {
     const tenancyAgreements = await request(app.getHttpServer()).get(
       '/tenancy-agreements/paginated',
     );
@@ -452,7 +452,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('accept tenancy agreement', async () => {
+  it('accept tenancy agreement', async () => {
     const properties = await request(app.getHttpServer()).get(
       '/properties/paginated',
     );
@@ -492,7 +492,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('create payment method', async () => {
+  it('create payment method', async () => {
     return request(app.getHttpServer())
       .post('/payment-methods/create')
       .send({
@@ -514,7 +514,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('create payment category', async () => {
+  it('create payment category', async () => {
     return request(app.getHttpServer())
       .post('/payment-categories/create')
       .send({
@@ -536,7 +536,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('pay a booking', async () => {
+  it('pay a booking', async () => {
     const properties = await request(app.getHttpServer()).get(
       '/properties/paginated',
     );
@@ -582,7 +582,7 @@ describe('Owner', () => {
   });
 
   // Attach property to user as tenant
-  it.only('attach property to user as tenant', async () => {
+  it('attach property to user as tenant', async () => {
     const properties = await request(app.getHttpServer()).get(
       '/properties/paginated',
     );
@@ -614,7 +614,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('file property complaint', async () => {
+  it('file property complaint', async () => {
     const properties = await request(app.getHttpServer()).get(
       '/properties/paginated',
     );
@@ -646,7 +646,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('view property complaints', async () => {
+  it('view property complaints', async () => {
     const properties = await request(app.getHttpServer()).get(
       '/properties/paginated',
     );
@@ -669,7 +669,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('react to property complaints', async () => {
+  it('react to property complaints', async () => {
     const complaints = await request(app.getHttpServer()).get(
       '/complaints/paginated',
     );
@@ -696,7 +696,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('pay rent', async () => {
+  it('pay rent', async () => {
     const properties = await request(app.getHttpServer()).get(
       '/properties/paginated',
     );
@@ -742,7 +742,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('view payments', async () => {
+  it('view payments', async () => {
     return request(app.getHttpServer())
       .get('/payments/paginated')
 
@@ -760,7 +760,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('view rent payments', async () => {
+  it('view rent payments', async () => {
     return request(app.getHttpServer())
       .get('/payments/paginated')
 
@@ -778,7 +778,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('search properties', async () => {
+  it('search properties', async () => {
     return request(app.getHttpServer())
       .get('/properties/paginated')
 

@@ -55,7 +55,7 @@ import { ApplicationTypeController } from './adapter/controllers/crud-controller
 import { EntityController } from './adapter/controllers/crud-controllers/entities.module';
 import { PropertyCategoryController } from './adapter/controllers/crud-controllers/property-categories.module';
 import { UserPropertyTypesController } from './adapter/controllers/crud-controllers/user-property-types.module';
-import { RealtorRequestToRepresentUsecase } from './application/realtor/request-to-represent';
+import { RealtorRequestToRepresentUsecase } from './application/realtor/realtor-request-to-represent';
 
 const registerOwnerUsecase = {
   provide: REAL_ESTATE_TYPES.useCases.OwnerRegisterUsecase,

@@ -1,5 +1,27 @@
-export class ServicesApplyUsecase {
-  async execute(data: any) {
-    console.log('ServicesApplyUsecase');
+import { PropertyRepositoryImpl } from '@db/infrastructure/repositories/properties-repository';
+import { DB_TYPES } from '@db/types';
+import { Inject } from '@nestjs/common';
+import {
+  ServiceProviderServicesApplyReqBodyDto,
+  ServiceProviderServicesApplyReqQueryDto,
+} from '@real-estate/adapter/dtos/provider.controllers.dto';
+
+type ExecuteInput = {
+  body: ServiceProviderServicesApplyReqBodyDto;
+  query: ServiceProviderServicesApplyReqQueryDto;
+};
+
+export class ServiceProviderServicesApplyUsecase {
+  constructor(
+    @Inject(DB_TYPES.repositories.PropertyRepositoryImpl)
+    private propertyRepositoryImpl: PropertyRepositoryImpl,
+  ) {}
+
+  async execute(data: ExecuteInput) {
+    const { body, query } = data;
+
+    // Implement your logic for applying for services here
+
+    return {};
   }
 }

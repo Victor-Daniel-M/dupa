@@ -35,6 +35,7 @@ import { Application } from './domain/entities/application';
 import { Complaint } from './domain/entities/complaint';
 import { Business } from './domain/entities/business';
 import { UserBusiness } from './domain/entities/userBusiness';
+import { Request, Resource, Search, Token } from './domain/entities';
 
 export const models = [
   Action,
@@ -75,4 +76,8 @@ export const models = [
   UserTenancyAgreement,
   Business,
   UserBusiness,
+  Request,
+  Resource,
+  Search,
+  Token,
 ];

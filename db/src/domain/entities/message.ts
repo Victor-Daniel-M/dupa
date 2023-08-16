@@ -23,13 +23,13 @@ export class Message extends BaseEntity {
   mediaValue: string;
 
   @Column({ nullable: true })
-  fromEntityId: string;
+  fromEntityId: number;
 
   @Column({ nullable: true })
   fromEntityName: string;
 
   @Column({ nullable: true })
-  toEntityId: string;
+  toEntityId: number;
 
   @Column({ nullable: true })
   toEntityName: string;

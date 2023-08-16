@@ -15,5 +15,7 @@ export const DB_TYPES = {
     ComplaintRepositoryImpl: 'ComplaintRepositoryImpl',
     BusinessRepositoryImpl: 'BusinessRepositoryImpl',
     UserBusinessRepositoryImpl: 'UserBusinessRepositoryImpl',
+    MessageRepositoryImpl: 'MessageRepositoryImpl',
+    RequestRepositoryImpl: 'RequestRepositoryImpl',
   },
 };

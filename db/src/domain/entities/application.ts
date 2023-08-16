@@ -5,9 +5,7 @@ export const applicationTypes = [
   'REQUEST_TO_REPRESENT',
   'REQUEST_TO_VISIT',
 ] as const;
-export type applicationTypes = (typeof applicationTypes)[number];
-
-export type ApplicationType = { label: string; id: number };
+export type ApplicationType = (typeof applicationTypes)[number];
 
 @Entity('Application')
 export class Application extends BaseEntity {
@@ -20,7 +18,7 @@ export class Application extends BaseEntity {
   userId: number;
 
   @Column({ nullable: true })
-  applicationType: applicationTypes;
+  applicationType: ApplicationType;
 
   @Column({ nullable: true })
   refEntityId: number;

@@ -1,5 +1,0 @@
-export class ComplaintsUpdateUsecase {
-  async execute(data: any) {
-    console.log('ComplaintsUpdateUsecase');
-  }
-}

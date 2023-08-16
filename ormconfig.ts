@@ -19,11 +19,11 @@ if (process.env.NODE_ENV == 'production') {
   OrmConfig = {
     // Test
     type: 'postgres',
-    host: '192.168.43.62',
+    host: '127.0.0.1',
     port: 5432,
     username: 'postgres',
     password: 'postgres',
-    database: 'super_app_db',
+    database: 'super_app_local_db',
     entities: models,
     synchronize: true,
   };
