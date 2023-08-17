@@ -1,4 +1,7 @@
-import { SearcherRegisterDto } from 'real-estate/src/adapter/dtos/searcher.controllers.dto';
+import {
+  SearcherRegisterReqBodyDto,
+  SearcherRegisterReqQueryDto,
+} from 'real-estate/src/adapter/dtos/searcher.controllers.dto';
 import { DB_TYPES } from '@db/types';
 import { REAL_ESTATE_TYPES } from '@real-estate/types';
 import { UserRepositoryImpl } from '@db/infrastructure/repositories/users-repository';
@@ -13,7 +16,10 @@ export class SearcherRegisterUsecase {
     private emailService: EmailService,
   ) {}
 
-  async execute(data: { body: SearcherRegisterDto }) {
+  async execute(data: {
+    body: SearcherRegisterReqBodyDto;
+    query: SearcherRegisterReqQueryDto;
+  }) {
     const { body } = data;
 
     const createdUser = await this.usersRepository.create({

@@ -1,6 +1,6 @@
 import { IsEmail, IsNotEmpty } from 'class-validator';
 
-export class SearcherRegisterDto {
+export class SearcherRegisterReqBodyDto {
   phoneNumber: string;
   firstName: string;
   lastName: string;
@@ -11,11 +11,14 @@ export class SearcherRegisterDto {
   @IsEmail()
   email: string;
 }
+export class SearcherRegisterReqQueryDto {}
 
-export class SearcherLoginDto {
+export class SearcherLoginReqBodyDto {
   email: string;
   password: string;
 }
+
+export class SearcherLoginReqQueryDto {}
 
 // Searcher book
 export class SearcherListingsBookReqBodyDto {}

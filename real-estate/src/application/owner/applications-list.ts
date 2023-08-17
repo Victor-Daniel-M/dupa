@@ -11,7 +11,7 @@ type ExecuteInput = {
   query: OwnerViewApplicationsListReqQueryDto;
 };
 
-export class OwnerViewApplicationsListUsecase {
+export class OwnerApplicationsListUsecase {
   constructor(
     @Inject(DB_TYPES.repositories.PropertyRepositoryImpl)
     private applicationRepositoryImpl: PropertyRepositoryImpl,

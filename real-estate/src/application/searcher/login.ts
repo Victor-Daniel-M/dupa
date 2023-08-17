@@ -1,4 +1,7 @@
-import { SearcherLoginDto } from 'real-estate/src/adapter/dtos/searcher.controllers.dto';
+import {
+  SearcherLoginReqBodyDto,
+  SearcherLoginReqQueryDto,
+} from 'real-estate/src/adapter/dtos/searcher.controllers.dto';
 import { DB_TYPES } from '@db/types';
 import { UserRepositoryImpl } from '@db/infrastructure/repositories/users-repository';
 import { Inject } from '@nestjs/common';
@@ -9,7 +12,10 @@ export class SearcherLoginUsecase {
     private usersRepository: UserRepositoryImpl,
   ) {}
 
-  async execute(data: { body: SearcherLoginDto }) {
+  async execute(data: {
+    body: SearcherLoginReqBodyDto;
+    query: SearcherLoginReqQueryDto;
+  }) {
     const { body } = data;
 
     const userByEmail = await this.usersRepository.getBy({

@@ -1,5 +1,5 @@
 import { DB_TYPES } from '@db/types';
-import { REAL_ESTATE_TYPES } from '@real-estate/types';
+import { REAL_ESTATE_TYPES } from '../../types';
 import { PropertyRepositoryImpl } from '@db/infrastructure/repositories/properties-repository';
 import { UserRepositoryImpl } from '@db/infrastructure/repositories/users-repository';
 import { EmailService } from 'real-estate/src/infrastructure/services/emailService';
@@ -8,14 +8,12 @@ import { Inject } from '@nestjs/common';
 import { Property } from '@db/domain/entities';
 import { PropertiesCreateManyDto } from '@real-estate/adapter/dtos/general.dto';
 
-export class PropertiesCreateManyUsecase {
+export class OwnerPropertiesCreateManyUsecase {
   constructor(
     @Inject(DB_TYPES.repositories.UsersRepositoryImpl)
     private usersRepository: UserRepositoryImpl,
     @Inject(DB_TYPES.repositories.PropertyRepositoryImpl)
     private propertyRepository: PropertyRepositoryImpl,
-    @Inject(REAL_ESTATE_TYPES.services.EmailService)
-    private emailService: EmailService,
     @Inject(REAL_ESTATE_TYPES.services.S3Provider)
     private s3Provider: S3Provider,
   ) {}

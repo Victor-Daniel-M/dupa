@@ -11,7 +11,7 @@ import { Reaction } from '@db/domain/entities/reaction';
 import { Schedule } from '@db/domain/entities/schedules';
 import { UserProperty } from '@db/domain/entities/userProperties';
 import { Application } from '@db/domain/entities/application';
-import { SearcherLoginDto } from 'real-estate/src/adapter/dtos/searcher.controllers.dto';
+import { SearcherLoginReqBodyDto } from 'real-estate/src/adapter/dtos/searcher.controllers.dto';
 import { TenancyAgreement } from '@db/domain/entities/tenancyAgreement';
 import { UserTenancyAgreement } from '@db/domain/entities/userTenancyAgreement';
 import { PaymentMethod } from '@db/domain/entities/paymentMethod';
@@ -222,7 +222,7 @@ describe('Owner', () => {
       .send({
         email: 'searcher@email.com',
         password: '',
-      } as SearcherLoginDto)
+      } as SearcherLoginReqBodyDto)
 
       .expect((res, error) => {
         formatRes(res);

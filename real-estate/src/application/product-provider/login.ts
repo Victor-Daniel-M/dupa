@@ -3,7 +3,7 @@ import { DB_TYPES } from '@db/types';
 import { UserRepositoryImpl } from '@db/infrastructure/repositories/users-repository';
 import { Inject } from '@nestjs/common';
 
-export class ProviderLoginUsecase {
+export class ProductProviderLoginUsecase {
   constructor(
     @Inject(DB_TYPES.repositories.UsersRepositoryImpl)
     private usersRepository: UserRepositoryImpl,

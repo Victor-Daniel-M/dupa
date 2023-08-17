@@ -2,16 +2,16 @@ import { PropertyRepositoryImpl } from '@db/infrastructure/repositories/properti
 import { DB_TYPES } from '@db/types';
 import { Inject } from '@nestjs/common';
 import {
-  AdminCountsViewReqBodyDto,
-  AdminCountsViewReqQueryDto,
+  AdminCountsGraphsReqBodyDto,
+  AdminCountsGraphsReqQueryDto,
 } from '@real-estate/adapter/dtos/admin.controllers.dto';
 
 type ExecuteInput = {
-  body: AdminCountsViewReqBodyDto;
-  query: AdminCountsViewReqQueryDto;
+  body: AdminCountsGraphsReqBodyDto;
+  query: AdminCountsGraphsReqQueryDto;
 };
 
-export class AdminCountsViewUsecase {
+export class StatisticsCountsViewUsecase {
   constructor(
     @Inject(DB_TYPES.repositories.PropertyRepositoryImpl)
     private propertyRepositoryImpl: PropertyRepositoryImpl,
@@ -20,7 +20,7 @@ export class AdminCountsViewUsecase {
   async execute(data: ExecuteInput) {
     const { body, query } = data;
 
-    // Implement your logic for viewing counts here
+    // Implement your logic for generating graphs here
 
     return {};
   }

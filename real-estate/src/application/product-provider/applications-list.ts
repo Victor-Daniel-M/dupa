@@ -11,7 +11,7 @@ type ExecuteInput = {
   query: ProviderApplicationsListReqQueryDto;
 };
 
-export class ProviderApplicationsListUsecase {
+export class ProductProviderApplicationsListUsecase {
   constructor(
     @Inject(DB_TYPES.repositories.UsersRepositoryImpl)
     private userRepositoryImpl: UserRepositoryImpl,

@@ -120,6 +120,11 @@ const requestRepositoryImpl = {
   useClass: RequestRepositoryImpl,
 };
 
+const messageRepositoryImpl = {
+  provide: DB_TYPES.repositories.MessageRepositoryImpl,
+  useClass: MessageRepositoryImpl,
+};
+
 const repositories = [
   Repository,
   BaseRepository,
@@ -173,6 +178,7 @@ const repositories = [
   businessRepositoryImpl,
   userBusinessRepositoryImpl,
   requestRepositoryImpl,
+  messageRepositoryImpl,
 ];
 
 @Global()

@@ -11,7 +11,7 @@ type ExecuteInput = {
   query: TenantProductsApplyForProductReqQueryDto;
 };
 
-export class TenantProductsApplyForProductUsecase {
+export class TenantProductsListProductsUsecase {
   constructor(
     @Inject(DB_TYPES.repositories.PropertyRepositoryImpl)
     private propertyRepositoryImpl: PropertyRepositoryImpl,

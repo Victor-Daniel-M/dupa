@@ -11,7 +11,7 @@ type ExecuteInput = {
   query: SearcherViewRealtorsListReqQueryDto;
 };
 
-export class SearcherViewRealtorsListViewUsecase {
+export class SearcherViewRealtorsListUsecase {
   constructor(
     @Inject(DB_TYPES.repositories.UsersRepositoryImpl)
     private userRepositoryImpl: UserRepositoryImpl,

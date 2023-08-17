@@ -11,7 +11,7 @@ type ExecuteInput = {
   query: OwnerLoginReqQueryDto;
 };
 
-export class OwnerLoginUsecase {
+export class OwnerAuthLoginUsecase {
   constructor(
     @Inject(DB_TYPES.repositories.PropertyRepositoryImpl)
     private applicationRepositoryImpl: PropertyRepositoryImpl,

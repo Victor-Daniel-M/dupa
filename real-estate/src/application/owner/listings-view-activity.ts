@@ -1,4 +1,4 @@
-export class ListingsActivityUsecase {
+export class OwnerListingsViewActivityUsecase {
   async execute(data: any) {
     console.log('ListingsActivityUsecase');
   }

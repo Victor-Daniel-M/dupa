@@ -11,7 +11,7 @@ type ExecuteInput = {
   query: SearcherMakePaymentReqQueryDto;
 };
 
-export class SearcherMakePaymentViewUsecase {
+export class SearcherMakePaymentUsecase {
   constructor(
     @Inject(DB_TYPES.repositories.UsersRepositoryImpl)
     private userRepositoryImpl: UserRepositoryImpl,
