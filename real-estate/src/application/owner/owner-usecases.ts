@@ -1,7 +1,7 @@
 import {
   OwnerApplicationsListUsecase,
   OwnerApplicationsReactUsecase,
-  OwnerAssignPropertyUsecase,
+  OwnerAssignOfferingUsecase,
   OwnerAuthLoginUsecase,
   OwnerComplaintsListUsecase,
   OwnerComplaintsResolveUsecase,
@@ -12,8 +12,8 @@ import {
   OwnerPaymentsRecordPaymentUsecase,
   OwnerProductsApplyForProductUsecase,
   OwnerProductsViewListUsecase,
-  OwnerPropertiesCreateManyUsecase,
-  OwnerPropertiesPairWithUserUsecase,
+  OwnerOfferingsCreateManyUsecase,
+  OwnerOfferingsPairWithUserUsecase,
   OwnerRealtorsConnectWithRealtorsUsecase,
   OwnerRealtorsRequestToRepresentUsecase,
   OwnerRealtorsViewListUsecase,
@@ -46,8 +46,8 @@ export const ownerUsecaseProviders = [
     useClass: OwnerApplicationsReactUsecase,
   },
   {
-    provide: REAL_ESTATE_TYPES.useCases.OwnerAssignPropertyUsecase,
-    useClass: OwnerAssignPropertyUsecase,
+    provide: REAL_ESTATE_TYPES.useCases.OwnerAssignOfferingUsecase,
+    useClass: OwnerAssignOfferingUsecase,
   },
   {
     provide: REAL_ESTATE_TYPES.useCases.OwnerAuthLoginUsecase,
@@ -90,12 +90,12 @@ export const ownerUsecaseProviders = [
     useClass: OwnerProductsViewListUsecase,
   },
   {
-    provide: REAL_ESTATE_TYPES.useCases.OwnerPropertiesCreateManyUsecase,
-    useClass: OwnerPropertiesCreateManyUsecase,
+    provide: REAL_ESTATE_TYPES.useCases.OwnerOfferingsCreateManyUsecase,
+    useClass: OwnerOfferingsCreateManyUsecase,
   },
   {
-    provide: REAL_ESTATE_TYPES.useCases.OwnerPropertiesPairWithUserUsecase,
-    useClass: OwnerPropertiesPairWithUserUsecase,
+    provide: REAL_ESTATE_TYPES.useCases.OwnerOfferingsPairWithUserUsecase,
+    useClass: OwnerOfferingsPairWithUserUsecase,
   },
   {
     provide: REAL_ESTATE_TYPES.useCases.OwnerRealtorsConnectWithRealtorsUsecase,

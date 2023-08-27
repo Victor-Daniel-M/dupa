@@ -69,7 +69,7 @@ export class ServiceProviderController {
   }
 
   @Post('register')
-  @UseInterceptors(FilesInterceptor('properties[0][files][]', 1))
+  @UseInterceptors(FilesInterceptor('offerings[0][files][]', 1))
   async register(
     @Body() body: ServiceProviderRegisterReqBodyDto,
     @Query() query: ServiceProviderRegisterReqQueryDto,

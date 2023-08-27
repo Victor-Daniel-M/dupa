@@ -2,8 +2,8 @@ import { BaseEntity } from '../../../../base/base.entity';
 import { Column, Entity } from 'typeorm';
 import { MetaValueTypes } from './_common';
 
-@Entity('PropertyCategory')
-export class PropertyCategory extends BaseEntity {
+@Entity('OfferingCategory')
+export class OfferingCategory extends BaseEntity {
   constructor(o: Object) {
     super();
     Object.assign(this, o);
@@ -19,8 +19,8 @@ export class PropertyCategory extends BaseEntity {
   desc: string;
 }
 
-@Entity('Property')
-export class Property extends BaseEntity {
+@Entity('Offering')
+export class Offering extends BaseEntity {
   constructor(o: Object) {
     super();
     Object.assign(this, o);
@@ -42,14 +42,14 @@ export class Property extends BaseEntity {
   openDate: string;
 
   @Column({ nullable: true })
-  propertyCategoryId: number;
+  offeringCategoryId: number;
 
   @Column({ nullable: true })
   businessId: number;
 }
 
-@Entity('PropertyMetaCategory')
-export class PropertyMetaCategory extends BaseEntity {
+@Entity('OfferingMetaCategory')
+export class OfferingMetaCategory extends BaseEntity {
   constructor(o: Object) {
     super();
     Object.assign(this, o);
@@ -65,8 +65,8 @@ export class PropertyMetaCategory extends BaseEntity {
   valueType: MetaValueTypes;
 }
 
-@Entity('PropertyMeta')
-export class PropertyMeta extends BaseEntity {
+@Entity('OfferingMeta')
+export class OfferingMeta extends BaseEntity {
   constructor(o: Object) {
     super();
     Object.assign(this, o);
@@ -79,11 +79,11 @@ export class PropertyMeta extends BaseEntity {
   value: string;
 
   @Column({ nullable: true })
-  propertyId: string;
+  offeringId: string;
 
   @Column({ nullable: true })
   parentId: string;
 
   @Column({ nullable: true })
-  propertyMetaCategoryId: string;
+  offeringMetaCategoryId: string;
 }

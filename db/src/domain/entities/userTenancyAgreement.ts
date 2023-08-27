@@ -16,7 +16,7 @@ export class UserTenancyAgreement extends BaseEntity {
   }
 
   @Column({ nullable: true })
-  propertyId: number;
+  offeringId: number;
 
   @Column({ nullable: true })
   tenancyAgreementId: number;
@@ -32,7 +32,7 @@ export class UserTenancyAgreement extends BaseEntity {
 
   @AfterLoad()
   protected generateLabel(): void {
-    const summary = `Agreement for Property ${this.propertyId} for user X`;
+    const summary = `Agreement for Offering ${this.offeringId} for user X`;
     // @ts-ignore
     this.label = summary;
     // @ts-ignore

@@ -1,18 +1,18 @@
 import { REAL_ESTATE_TYPES } from '@real-estate/types';
-import { AdvancedCreateUserPropertyUsecase } from './index'; // Update the path
-import { AdvancedGetUserPropertiesUsecase } from './advanced-get-user-properties';
+import { AdvancedCreateUserOfferingUsecase } from './index'; // Update the path
+import { AdvancedGetUserOfferingsUsecase } from './advanced-get-user-offerings';
 
-const advancedCreateUserPropertyUsecase = {
-  provide: REAL_ESTATE_TYPES.useCases.AdvancedCreateUserPropertyUsecase,
-  useClass: AdvancedCreateUserPropertyUsecase,
+const advancedCreateUserOfferingUsecase = {
+  provide: REAL_ESTATE_TYPES.useCases.AdvancedCreateUserOfferingUsecase,
+  useClass: AdvancedCreateUserOfferingUsecase,
 };
 
-const advancedGetUserPropertiesUsecase = {
-  provide: REAL_ESTATE_TYPES.useCases.AdvancedGetUserPropertiesUsecase,
-  useClass: AdvancedGetUserPropertiesUsecase,
+const advancedGetUserOfferingsUsecase = {
+  provide: REAL_ESTATE_TYPES.useCases.AdvancedGetUserOfferingsUsecase,
+  useClass: AdvancedGetUserOfferingsUsecase,
 };
 
 export const generalUsecases = [
-  advancedCreateUserPropertyUsecase,
-  advancedGetUserPropertiesUsecase,
+  advancedCreateUserOfferingUsecase,
+  advancedGetUserOfferingsUsecase,
 ];

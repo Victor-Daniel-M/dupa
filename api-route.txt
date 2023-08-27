@@ -45,48 +45,48 @@ locations create
 locations update
 locations delete
 
-property-category list
-property-category view
-property-category create
-property-category update
-property-category delete
+offering-category list
+offering-category view
+offering-category create
+offering-category update
+offering-category delete
 
-property-categories properties list
+offering-categories offerings list
 
-property list
-property view
-property create
-property update
-property delete
+offering list
+offering view
+offering create
+offering update
+offering delete
 
-property-meta-category list
-property-meta-category view
-property-meta-category create
-property-meta-category update
-property-meta-category delete
+offering-meta-category list
+offering-meta-category view
+offering-meta-category create
+offering-meta-category update
+offering-meta-category delete
 
-properties property-meta list
-properties property-meta-categories list
-property-meta-categories property-meta list
-properties property-meta-categories property-meta list
+offerings offering-meta list
+offerings offering-meta-categories list
+offering-meta-categories offering-meta list
+offerings offering-meta-categories offering-meta list
 
-property-meta list
-property-meta view
-property-meta create
-property-meta update
-property-meta delete
+offering-meta list
+offering-meta view
+offering-meta create
+offering-meta update
+offering-meta delete
 
-property-meta children
+offering-meta children
 
-user-property list
-user-property view
-user-property create
-user-property update
-user-property delete
+user-offering list
+user-offering view
+user-offering create
+user-offering update
+user-offering delete
 
-users user-properties list
-properties user-properties list
-users properties user-properties list
+users user-offerings list
+offerings user-offerings list
+users offerings user-offerings list
 
 resource list
 resource view

@@ -25,7 +25,7 @@ class ServiceProviderRegistrationOfferingsDto {
   coverImage: string;
   cost: number;
   openDate: string;
-  propertyCategoryId: number;
+  offeringCategoryId: number;
 }
 
 export class ServiceProviderRegisterReqBodyDto {

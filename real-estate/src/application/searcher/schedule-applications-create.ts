@@ -1,5 +1,5 @@
 import { ApplicationRepositoryImpl } from '@db/infrastructure/repositories/applications-repository';
-import { PropertyRepositoryImpl } from '@db/infrastructure/repositories/properties-repository';
+import { OfferingRepositoryImpl } from '@db/infrastructure/repositories/offerings-repository';
 import { UserRepositoryImpl } from '@db/infrastructure/repositories/users-repository';
 import { DB_TYPES } from '@db/types';
 import { Inject } from '@nestjs/common';

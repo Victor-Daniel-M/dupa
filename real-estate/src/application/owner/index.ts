@@ -1,6 +1,6 @@
 export { OwnerApplicationsListUsecase } from './applications-list';
 export { OwnerApplicationsReactUsecase } from './applications-react';
-export { OwnerAssignPropertyUsecase } from './assign-property';
+export { OwnerAssignOfferingUsecase } from './assign-offering';
 export { OwnerAuthLoginUsecase } from './auth-login';
 export { OwnerComplaintsListUsecase } from './complaints-list';
 export { OwnerComplaintsResolveUsecase } from './complaints-resolve';
@@ -11,8 +11,8 @@ export { OwnerPaymentsPayUsecase } from './payments-pay';
 export { OwnerPaymentsRecordPaymentUsecase } from './payments-record-payment';
 export { OwnerProductsApplyForProductUsecase } from './products-apply-for-product';
 export { OwnerProductsViewListUsecase } from './products-view-list';
-export { OwnerPropertiesCreateManyUsecase } from './properties-create-many';
-export { OwnerPropertiesPairWithUserUsecase } from './properties-pair-with-user';
+export { OwnerOfferingsCreateManyUsecase } from './offerings-create-many';
+export { OwnerOfferingsPairWithUserUsecase } from './offerings-pair-with-user';
 export { OwnerRealtorsConnectWithRealtorsUsecase } from './realtors-connect-with-realtors';
 export { OwnerRealtorsRequestToRepresentUsecase } from './realtors-request-to-represent';
 export { OwnerRealtorsViewListUsecase } from './realtors-view-list';

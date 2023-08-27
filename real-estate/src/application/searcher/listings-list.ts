@@ -1,4 +1,4 @@
-import { PropertyRepositoryImpl } from '@db/infrastructure/repositories/properties-repository';
+import { OfferingRepositoryImpl } from '@db/infrastructure/repositories/offerings-repository';
 import { UserRepositoryImpl } from '@db/infrastructure/repositories/users-repository';
 import { DB_TYPES } from '@db/types';
 import { Inject } from '@nestjs/common';
@@ -15,12 +15,12 @@ type ExecuteInput = {
 
 export class SearcherViewListingListUsecase {
   constructor(
-    @Inject(DB_TYPES.repositories.PropertyRepositoryImpl)
-    private PropertyRepositoryImpl: PropertyRepositoryImpl,
+    @Inject(DB_TYPES.repositories.OfferingRepositoryImpl)
+    private OfferingRepositoryImpl: OfferingRepositoryImpl,
   ) {}
 
   async execute(data: ExecuteInput) {
-    const properties = this.PropertyRepositoryImpl.getAllPaginated({});
-    return properties;
+    const offerings = this.OfferingRepositoryImpl.getAllPaginated({});
+    return offerings;
   }
 }

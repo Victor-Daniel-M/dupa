@@ -1,5 +1,5 @@
 import { BusinessRepositoryImpl } from '@db/infrastructure/repositories/business-repository';
-import { PropertyRepositoryImpl } from '@db/infrastructure/repositories/properties-repository';
+import { OfferingRepositoryImpl } from '@db/infrastructure/repositories/offerings-repository';
 import { UserBusinessRepositoryImpl } from '@db/infrastructure/repositories/user-business-repository';
 import { UserRepositoryImpl } from '@db/infrastructure/repositories/users-repository';
 import { DB_TYPES } from '@db/types';
@@ -22,8 +22,8 @@ export class ServiceProviderRegisterUsecase {
   constructor(
     @Inject(DB_TYPES.repositories.UsersRepositoryImpl)
     private usersRepository: UserRepositoryImpl,
-    @Inject(DB_TYPES.repositories.PropertyRepositoryImpl)
-    private propertyRepository: PropertyRepositoryImpl,
+    @Inject(DB_TYPES.repositories.OfferingRepositoryImpl)
+    private offeringRepository: OfferingRepositoryImpl,
     @Inject(DB_TYPES.repositories.BusinessRepositoryImpl)
     private businessRepository: BusinessRepositoryImpl,
     @Inject(DB_TYPES.repositories.UserBusinessRepositoryImpl)
@@ -57,15 +57,15 @@ export class ServiceProviderRegisterUsecase {
       userId: createdUser.id!,
     });
 
-    const propertyOne = data.body.offerings[0];
+    const offeringOne = data.body.offerings[0];
 
-    const createdProperty = await this.propertyRepository.create({
-      cost: Number(propertyOne.cost),
+    const createdOffering = await this.offeringRepository.create({
+      cost: Number(offeringOne.cost),
       coverImage: res.Location,
-      description: propertyOne.description,
-      openDate: propertyOne.openDate,
-      title: propertyOne.title,
-      propertyCategoryId: Number(propertyOne.propertyCategoryId),
+      description: offeringOne.description,
+      openDate: offeringOne.openDate,
+      title: offeringOne.title,
+      offeringCategoryId: Number(offeringOne.offeringCategoryId),
       businessId: business.id!,
     });
 
@@ -73,7 +73,7 @@ export class ServiceProviderRegisterUsecase {
 
     return {
       user: createdUser,
-      properties: [createdProperty],
+      offerings: [createdOffering],
       userBusiness,
       business,
     };

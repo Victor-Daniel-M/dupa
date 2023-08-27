@@ -72,7 +72,7 @@ class EntityApiTest<T extends BaseEntity> {
           records: expect.arrayContaining([
             expect.objectContaining({ id: expect.any(Number) }),
           ]),
-          // Add other properties you want to assert
+          // Add other offerings you want to assert
         }),
       }),
     );
@@ -117,7 +117,7 @@ describe('Role API', () => {
   // @ts-ignore
   const complaintDummyData: Complaint = {
     description: 'Some descri',
-    propertyId: 1,
+    offeringId: 1,
     status: 'NOT_YET_RECEIVED',
     title: 'Title',
     userId: 1,

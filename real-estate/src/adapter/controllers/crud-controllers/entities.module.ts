@@ -28,13 +28,13 @@ export class EntityController {
         },
         {
           label: 'USER PROPERTIES',
-          id: 'user-properties',
-          value: 'user-properties',
+          id: 'user-offerings',
+          value: 'user-offerings',
         },
         {
           label: 'PROPERTIES',
-          id: 'properties',
-          value: 'properties',
+          id: 'offerings',
+          value: 'offerings',
         },
       ],
     };

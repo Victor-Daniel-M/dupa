@@ -13,7 +13,7 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { ResponseInterceptor } from 'common/filters-interceptors/src';
 import {
-  OwnerAssignPropertyDto,
+  OwnerAssignOfferingDto,
   OwnerRegisterDto,
   OwnerListingsViewListReqBodyDto,
   OwnerListingsViewListReqQueryDto,
@@ -30,8 +30,8 @@ import {
   OwnerProductsApplyForProductReqQueryDto,
   OwnerProductsViewListReqBodyDto,
   OwnerProductsViewListReqQueryDto,
-  OwnerPropertiesPairWithUserReqBodyDto,
-  OwnerPropertiesPairWithUserReqQueryDto,
+  OwnerOfferingsPairWithUserReqBodyDto,
+  OwnerOfferingsPairWithUserReqQueryDto,
   OwnerReactToApplicationReqBodyDto,
   OwnerReactToApplicationReqQueryDto,
   OwnerRealtorsConnectWithRealtorsReqBodyDto,
@@ -83,7 +83,7 @@ import { S3Provider } from 'real-estate/src/infrastructure/services/s3Provider.s
 import {
   OwnerApplicationsListUsecase,
   OwnerApplicationsReactUsecase,
-  OwnerAssignPropertyUsecase,
+  OwnerAssignOfferingUsecase,
   OwnerAuthLoginUsecase,
   OwnerComplaintsListUsecase,
   OwnerComplaintsResolveUsecase,
@@ -94,8 +94,8 @@ import {
   OwnerPaymentsRecordPaymentUsecase,
   OwnerProductsApplyForProductUsecase,
   OwnerProductsViewListUsecase,
-  OwnerPropertiesCreateManyUsecase,
-  OwnerPropertiesPairWithUserUsecase,
+  OwnerOfferingsCreateManyUsecase,
+  OwnerOfferingsPairWithUserUsecase,
   OwnerRealtorsConnectWithRealtorsUsecase,
   OwnerRealtorsRequestToRepresentUsecase,
   OwnerRealtorsViewListUsecase,
@@ -127,8 +127,8 @@ export class OwnerController {
     private ownerApplicationsListUsecase: OwnerApplicationsListUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.OwnerApplicationsReactUsecase)
     private ownerApplicationsReactUsecase: OwnerApplicationsReactUsecase,
-    @Inject(REAL_ESTATE_TYPES.useCases.OwnerAssignPropertyUsecase)
-    private ownerAssignPropertyUsecase: OwnerAssignPropertyUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.OwnerAssignOfferingUsecase)
+    private ownerAssignOfferingUsecase: OwnerAssignOfferingUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.OwnerAuthLoginUsecase)
     private ownerAuthLoginUsecase: OwnerAuthLoginUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.OwnerComplaintsListUsecase)
@@ -151,10 +151,10 @@ export class OwnerController {
     private ownerProductsApplyForProductUsecase: OwnerProductsApplyForProductUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.OwnerProductsViewListUsecase)
     private ownerProductsViewListUsecase: OwnerProductsViewListUsecase,
-    @Inject(REAL_ESTATE_TYPES.useCases.OwnerPropertiesCreateManyUsecase)
-    private ownerPropertiesCreateManyUsecase: OwnerPropertiesCreateManyUsecase,
-    @Inject(REAL_ESTATE_TYPES.useCases.OwnerPropertiesPairWithUserUsecase)
-    private ownerPropertiesPairWithUserUsecase: OwnerPropertiesPairWithUserUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.OwnerOfferingsCreateManyUsecase)
+    private ownerOfferingsCreateManyUsecase: OwnerOfferingsCreateManyUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.OwnerOfferingsPairWithUserUsecase)
+    private ownerOfferingsPairWithUserUsecase: OwnerOfferingsPairWithUserUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.OwnerRealtorsConnectWithRealtorsUsecase)
     private ownerRealtorsConnectWithRealtorsUsecase: OwnerRealtorsConnectWithRealtorsUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.OwnerRealtorsRequestToRepresentUsecase)
@@ -196,14 +196,14 @@ export class OwnerController {
   ) {}
 
   @Post('register')
-  @UseInterceptors(FilesInterceptor('properties[0][files][]', 1))
+  @UseInterceptors(FilesInterceptor('offerings[0][files][]', 1))
   async register(
     @Body() body: OwnerRegisterDto,
     @UploadedFiles()
     files: Express.Multer.File[],
   ) {
     // @ts-ignore
-    // console.log('body, files:', body, body.properties[0].files, files);
+    // console.log('body, files:', body, body.offerings[0].files, files);
 
     return await this.ownerRegisterUsecase.execute({
       body,
@@ -230,9 +230,9 @@ export class OwnerController {
     return await this.ownerApplicationsReactUsecase.execute({ body, query });
   }
 
-  @Post('assign-property')
-  async assignProperty(@Body() body: OwnerAssignPropertyDto) {
-    return await this.ownerAssignPropertyUsecase.execute({ body });
+  @Post('assign-offering')
+  async assignOffering(@Body() body: OwnerAssignOfferingDto) {
+    return await this.ownerAssignOfferingUsecase.execute({ body });
   }
 
   @Post('auth/login')
@@ -354,12 +354,12 @@ export class OwnerController {
     });
   }
 
-  @Post('users-properties/attach-searcher-to-property')
-  async attachSearcherToProperty(
-    @Body() body: OwnerPropertiesPairWithUserReqBodyDto,
-    @Query() query: OwnerPropertiesPairWithUserReqQueryDto,
+  @Post('users-offerings/attach-searcher-to-offering')
+  async attachSearcherToOffering(
+    @Body() body: OwnerOfferingsPairWithUserReqBodyDto,
+    @Query() query: OwnerOfferingsPairWithUserReqQueryDto,
   ) {
-    return await this.ownerPropertiesPairWithUserUsecase.execute({
+    return await this.ownerOfferingsPairWithUserUsecase.execute({
       body,
       query,
     });
@@ -430,17 +430,17 @@ export class OwnerController {
     return await this.ownerTenantsUpdateTenantUsecase.execute({ body, query });
   }
 
-  @Post('properties/create-many')
-  async createManyProperties(@Body() body: any) {
-    return await this.ownerPropertiesCreateManyUsecase.execute(body);
+  @Post('offerings/create-many')
+  async createManyOfferings(@Body() body: any) {
+    return await this.ownerOfferingsCreateManyUsecase.execute(body);
   }
 
-  @Post('properties/pair-with-user')
-  async pairPropertiesWithUser(
-    @Body() body: OwnerPropertiesPairWithUserReqBodyDto,
-    @Query() query: OwnerPropertiesPairWithUserReqQueryDto,
+  @Post('offerings/pair-with-user')
+  async pairOfferingsWithUser(
+    @Body() body: OwnerOfferingsPairWithUserReqBodyDto,
+    @Query() query: OwnerOfferingsPairWithUserReqQueryDto,
   ) {
-    return await this.ownerPropertiesPairWithUserUsecase.execute({
+    return await this.ownerOfferingsPairWithUserUsecase.execute({
       body,
       query,
     });

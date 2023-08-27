@@ -9,7 +9,7 @@ import { User } from './domain/entities/user';
 import { ResourceAction } from './domain/entities/actions';
 import { Address, EntityAddress } from './domain/entities/address';
 import { Action } from './domain/entities/actions';
-import { Property } from './domain/entities/property';
+import { Offering } from './domain/entities/offering';
 import {
   AuthStrategy,
   AuthStrategyMeta,
@@ -29,8 +29,8 @@ import {
 import { Offer, OfferMeta } from './domain/entities/offers';
 import { Permission } from './domain/entities/permissions';
 import { Place, PlaceMeta } from './domain/entities/places';
-import { PropertyCategory } from './domain/entities/property';
-import { UserProperty } from './domain/entities/userProperties';
+import { OfferingCategory } from './domain/entities/offering';
+import { UserOffering } from './domain/entities/userOfferings';
 import { Application } from './domain/entities/application';
 import { Complaint } from './domain/entities/complaint';
 import { Business } from './domain/entities/business';
@@ -65,14 +65,14 @@ export const models = [
   Permission,
   Place,
   PlaceMeta,
-  Property,
-  PropertyCategory,
+  Offering,
+  OfferingCategory,
   Reaction,
   ResourceAction,
   Schedule,
   TenancyAgreement,
   User,
-  UserProperty,
+  UserOffering,
   UserTenancyAgreement,
   Business,
   UserBusiness,

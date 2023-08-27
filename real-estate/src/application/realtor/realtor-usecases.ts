@@ -5,13 +5,13 @@ import {
   RealtorViewOwnerRequestListUsecase,
   RealtorConnectWithOwnersUsecase,
   RealtorViewOwnerListUsecase,
-  RealtorHandoverPropertyUsecase,
-  RealtorViewPropertyListUsecase,
-  RealtorRecordPropertyUsecase,
+  RealtorHandoverOfferingUsecase,
+  RealtorViewOfferingListUsecase,
+  RealtorRecordOfferingUsecase,
   RealtorRequestToRepresentUsecase,
   RealtorRegisterUsecase,
-  RealtorRecordPropertySaleUsecase,
-  RealtorViewSalesListPropertyUsecase,
+  RealtorRecordOfferingSaleUsecase,
+  RealtorViewSalesListOfferingUsecase,
   RealtorReactToVisitRequestUsecase,
   RealtorViewVisitRequestsUsecase,
 } from './index';
@@ -42,19 +42,19 @@ const realtorViewOwnerListUsecase = {
   useClass: RealtorViewOwnerListUsecase,
 };
 
-const realtorHandoverPropertyUsecase = {
-  provide: REAL_ESTATE_TYPES.useCases.RealtorHandoverPropertyUsecase,
-  useClass: RealtorHandoverPropertyUsecase,
+const realtorHandoverOfferingUsecase = {
+  provide: REAL_ESTATE_TYPES.useCases.RealtorHandoverOfferingUsecase,
+  useClass: RealtorHandoverOfferingUsecase,
 };
 
-const realtorViewPropertyListUsecase = {
-  provide: REAL_ESTATE_TYPES.useCases.RealtorViewPropertyListUsecase,
-  useClass: RealtorViewPropertyListUsecase,
+const realtorViewOfferingListUsecase = {
+  provide: REAL_ESTATE_TYPES.useCases.RealtorViewOfferingListUsecase,
+  useClass: RealtorViewOfferingListUsecase,
 };
 
-const realtorRecordPropertyUsecase = {
-  provide: REAL_ESTATE_TYPES.useCases.RealtorRecordPropertyUsecase,
-  useClass: RealtorRecordPropertyUsecase,
+const realtorRecordOfferingUsecase = {
+  provide: REAL_ESTATE_TYPES.useCases.RealtorRecordOfferingUsecase,
+  useClass: RealtorRecordOfferingUsecase,
 };
 
 const realtorRequestToRepresentUsecase = {
@@ -67,14 +67,14 @@ const realtorRegisterUsecase = {
   useClass: RealtorRegisterUsecase,
 };
 
-const realtorRecordPropertySaleUsecase = {
-  provide: REAL_ESTATE_TYPES.useCases.RealtorRecordPropertySaleUsecase,
-  useClass: RealtorRecordPropertySaleUsecase,
+const realtorRecordOfferingSaleUsecase = {
+  provide: REAL_ESTATE_TYPES.useCases.RealtorRecordOfferingSaleUsecase,
+  useClass: RealtorRecordOfferingSaleUsecase,
 };
 
-const realtorViewSalesListPropertyUsecase = {
-  provide: REAL_ESTATE_TYPES.useCases.RealtorViewSalesListPropertyUsecase,
-  useClass: RealtorViewSalesListPropertyUsecase,
+const realtorViewSalesListOfferingUsecase = {
+  provide: REAL_ESTATE_TYPES.useCases.RealtorViewSalesListOfferingUsecase,
+  useClass: RealtorViewSalesListOfferingUsecase,
 };
 
 const realtorReactToVisitRequestUsecase = {
@@ -98,13 +98,13 @@ export const realtorUsecaseProviders = [
   realtorViewOwnerRequestListUsecase,
   realtorConnectWithOwnersUsecase,
   realtorViewOwnerListUsecase,
-  realtorHandoverPropertyUsecase,
-  realtorViewPropertyListUsecase,
-  realtorRecordPropertyUsecase,
+  realtorHandoverOfferingUsecase,
+  realtorViewOfferingListUsecase,
+  realtorRecordOfferingUsecase,
   realtorRequestToRepresentUsecase,
   realtorRegisterUsecase,
-  realtorRecordPropertySaleUsecase,
-  realtorViewSalesListPropertyUsecase,
+  realtorRecordOfferingSaleUsecase,
+  realtorViewSalesListOfferingUsecase,
   realtorReactToVisitRequestUsecase,
   realtorViewVisitRequestsUsecase,
   realtorCreateScheduleUsecase,

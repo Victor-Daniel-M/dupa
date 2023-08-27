@@ -8,13 +8,13 @@ import { IsEmail, IsNotEmpty } from 'class-validator';
 import { ApplicationDto, MessageDto, ReactionDto } from './general.dto';
 import { BusinessAndUserQueryDto, UserQueryDto } from './owner.controllers.dto';
 
-class RealtorRegistrationPropertiesDto {
+class RealtorRegistrationOfferingsDto {
   title: string;
   description: string;
   coverImage: string;
   cost: number;
   openDate: string;
-  propertyCategoryId: number;
+  offeringCategoryId: number;
 }
 export class RealtorRegisterDto {
   phoneNumber: string;
@@ -29,7 +29,7 @@ export class RealtorRegisterDto {
   @IsEmail()
   email: string;
 
-  properties: RealtorRegistrationPropertiesDto[];
+  offerings: RealtorRegistrationOfferingsDto[];
 }
 
 export class RealtorRequestToRepresentReqBodyDto extends ApplicationDto {}
@@ -46,9 +46,9 @@ export class RealtorViewVisitRequestsReqQueryDto {}
 export class RealtorReactToVisitRequestReqBodyDto extends ReactionDto {}
 export class RealtorReactToVisitRequestReqQueryDto {}
 
-// property list
-export class RealtorViewPropertyListReqBodyDto {}
-export class RealtorViewPropertyListReqQueryDto extends UserQueryDto {}
+// offering list
+export class RealtorViewOfferingListReqBodyDto {}
+export class RealtorViewOfferingListReqQueryDto extends UserQueryDto {}
 
 // Owner list
 export class RealtorViewOwnerListReqBodyDto {}
@@ -62,25 +62,25 @@ export class RealtorViewOwnerRequestListReqQueryDto {}
 export class RealtorCreateMessageReqBodyDto extends MessageDto {}
 export class RealtorCreateMessageReqQueryDto {}
 
-// Connect with property owners
+// Connect with offering owners
 export class RealtorConnectWithOwnersReqBodyDto {}
 export class RealtorConnectWithOwnersReqQueryDto {}
 
-// Handover property
-export class RealtorHandoverPropertyReqBodyDto {}
-export class RealtorHandoverPropertyReqQueryDto {}
+// Handover offering
+export class RealtorHandoverOfferingReqBodyDto {}
+export class RealtorHandoverOfferingReqQueryDto {}
 
-// Record property
-export class RealtorRecordPropertyReqBodyDto {}
-export class RealtorRecordPropertyReqQueryDto {}
-
-// Get sales list
-export class RealtorViewSalesListPropertyReqBodyDto {}
-export class RealtorViewSalesListPropertyReqQueryDto {}
+// Record offering
+export class RealtorRecordOfferingReqBodyDto {}
+export class RealtorRecordOfferingReqQueryDto {}
 
 // Get sales list
-export class RealtorRecordPropertySaleReqBodyDto {}
-export class RealtorRecordPropertySaleReqQueryDto {}
+export class RealtorViewSalesListOfferingReqBodyDto {}
+export class RealtorViewSalesListOfferingReqQueryDto {}
+
+// Get sales list
+export class RealtorRecordOfferingSaleReqBodyDto {}
+export class RealtorRecordOfferingSaleReqQueryDto {}
 
 // create schedule
 export class RealtorCreateScheduleReqBodyDto {

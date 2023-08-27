@@ -17,7 +17,7 @@ import { NotificationSubscribableRepositoryImpl } from './infrastructure/reposit
 import { OfferRepositoryImpl } from './infrastructure/repositories/offers-repository';
 import { PermissionRepositoryImpl } from './infrastructure/repositories/permissions-repository';
 import { PlaceRepositoryImpl } from './infrastructure/repositories/places-repository';
-import { PropertyRepositoryImpl } from './infrastructure/repositories/properties-repository';
+import { OfferingRepositoryImpl } from './infrastructure/repositories/offerings-repository';
 import { ReactionRepositoryImpl } from './infrastructure/repositories/reactions-repository';
 import { RequestRepositoryImpl } from './infrastructure/repositories/requests-repository';
 import { ResourceRepositoryImpl } from './infrastructure/repositories/resources-repository';
@@ -25,7 +25,7 @@ import { ScheduleRepositoryImpl } from './infrastructure/repositories/schedules-
 import { SearchRepositoryImpl } from './infrastructure/repositories/searches-repository';
 import { TokenRepositoryImpl } from './infrastructure/repositories/tokens-repository';
 import { UserRepositoryImpl } from './infrastructure/repositories/users-repository';
-import { UserPropertyRepositoryImpl } from './infrastructure/repositories/user-properties-repository';
+import { UserOfferingRepositoryImpl } from './infrastructure/repositories/user-offerings-repository';
 import { DB_TYPES } from './types';
 import { BaseRepository } from 'base/base.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -50,14 +50,14 @@ const userRepositoryImpl = {
   useClass: UserRepositoryImpl,
 };
 
-const propertyRepositoryImpl = {
-  provide: DB_TYPES.repositories.PropertyRepositoryImpl,
-  useClass: PropertyRepositoryImpl,
+const offeringRepositoryImpl = {
+  provide: DB_TYPES.repositories.OfferingRepositoryImpl,
+  useClass: OfferingRepositoryImpl,
 };
 
-const userPropertyRepositoryImpl = {
-  provide: DB_TYPES.repositories.UserPropertyRepositoryImpl,
-  useClass: UserPropertyRepositoryImpl,
+const userOfferingRepositoryImpl = {
+  provide: DB_TYPES.repositories.UserOfferingRepositoryImpl,
+  useClass: UserOfferingRepositoryImpl,
 };
 
 const reactionRepositoryImpl = {
@@ -145,7 +145,7 @@ const repositories = [
   OfferRepositoryImpl,
   PermissionRepositoryImpl,
   PlaceRepositoryImpl,
-  PropertyRepositoryImpl,
+  OfferingRepositoryImpl,
   ReactionRepositoryImpl,
   RequestRepositoryImpl,
   ResourceRepositoryImpl,
@@ -153,7 +153,7 @@ const repositories = [
   SearchRepositoryImpl,
   TokenRepositoryImpl,
   UserRepositoryImpl,
-  UserPropertyRepositoryImpl,
+  UserOfferingRepositoryImpl,
   ComplaintRepositoryImpl,
   ApplicationRepositoryImpl,
   UserTenancyAgreementRepositoryImpl,
@@ -165,10 +165,10 @@ const repositories = [
   repository,
   applicationRepositoryImpl,
   userRepositoryImpl,
-  propertyRepositoryImpl,
+  offeringRepositoryImpl,
   reactionRepositoryImpl,
   scheduleRepositoryImpl,
-  userPropertyRepositoryImpl,
+  userOfferingRepositoryImpl,
   userTenancyAgreementRepositoryImpl,
   tenancyAgreementRepositoryImpl,
   paymentRepositoryImpl,

@@ -3,16 +3,16 @@ import { UserRepositoryImpl } from '@db/infrastructure/repositories/users-reposi
 import { DB_TYPES } from '@db/types';
 import { Inject } from '@nestjs/common';
 import {
-  RealtorHandoverPropertyReqBodyDto,
-  RealtorHandoverPropertyReqQueryDto,
+  RealtorHandoverOfferingReqBodyDto,
+  RealtorHandoverOfferingReqQueryDto,
 } from '@real-estate/adapter/dtos/realtor.controllers.dto';
 
 type ExecuteInput = {
-  body: RealtorHandoverPropertyReqBodyDto;
-  query: RealtorHandoverPropertyReqQueryDto;
+  body: RealtorHandoverOfferingReqBodyDto;
+  query: RealtorHandoverOfferingReqQueryDto;
 };
 
-export class RealtorHandoverPropertyUsecase {
+export class RealtorHandoverOfferingUsecase {
   constructor(
     @Inject(DB_TYPES.repositories.UsersRepositoryImpl)
     private userRepositoryImpl: UserRepositoryImpl,

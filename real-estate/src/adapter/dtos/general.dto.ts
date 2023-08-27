@@ -1,15 +1,15 @@
 import { ApplicationType, ReactionType } from '@db/domain/entities';
 
-export class PropertyCreateDto {
+export class OfferingCreateDto {
   cost: number;
   description: string;
   openDate: string;
   title: string;
-  propertyCategoryId: number;
+  offeringCategoryId: number;
 }
 
-export class PropertiesCreateManyDto {
-  properties: PropertyCreateDto[];
+export class OfferingsCreateManyDto {
+  offerings: OfferingCreateDto[];
   businessId: number;
 }
 

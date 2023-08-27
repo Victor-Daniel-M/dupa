@@ -1,14 +1,14 @@
-import { PropertyCategory } from '@db/domain/entities/property';
+import { OfferingCategory } from '@db/domain/entities/offering';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseRepository } from 'base/base.repository';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class PropertyCategoryRepositoryImpl extends BaseRepository<PropertyCategory> {
+export class OfferingCategoryRepositoryImpl extends BaseRepository<OfferingCategory> {
   constructor(
-    @InjectRepository(PropertyCategory)
-    public repository: Repository<PropertyCategory>,
+    @InjectRepository(OfferingCategory)
+    public repository: Repository<OfferingCategory>,
   ) {
     super(repository);
   }

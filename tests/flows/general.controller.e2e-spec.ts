@@ -1,5 +1,5 @@
 import {
-  OwnerAssignPropertyDto,
+  OwnerAssignOfferingDto,
   OwnerUpdateComplaintReqBodyDto,
 } from 'real-estate/src/adapter/dtos/owner.controllers.dto';
 import { REAL_ESTATE_TYPES } from '@real-estate/types';
@@ -8,11 +8,11 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '@src/app.module';
 import * as request from 'supertest';
 import * as moment from 'moment-timezone';
-import { Property } from '@db/domain/entities/property';
+import { Offering } from '@db/domain/entities/offering';
 import { User } from '@db/domain/entities/user';
 import { Reaction } from '@db/domain/entities/reaction';
 import { Schedule } from '@db/domain/entities/schedules';
-import { UserProperty } from '@db/domain/entities/userProperties';
+import { UserOffering } from '@db/domain/entities/userOfferings';
 import { Application } from '@db/domain/entities/application';
 import {
   SearcherAcceptTenancyAgreementReqBodyDto,
@@ -38,9 +38,9 @@ describe('Owner', () => {
   let realtorUser: User | null;
   let ownerUser: User | null;
   let searcherUser: User | null;
-  let realtorProperty: Property | null;
+  let realtorOffering: Offering | null;
   let realtorSchedule: Schedule | null;
-  let ownerProperty: Property | null;
+  let ownerOffering: Offering | null;
   let ownerAgreement: TenancyAgreement | null;
   let searcherAgreement: TenancyAgreement | null;
   let mmPaymentMethod: PaymentMethod | null;
@@ -73,21 +73,21 @@ describe('Owner', () => {
         .timeout(10000)
         .type('form')
         .field('email', 'owner@email.com')
-        .field('properties[0][cost]', 6_000)
-        .field('properties[0][coverImage]', '')
-        .field('properties[0][description]', 'Test')
-        .field('properties[0][openDate]', moment().toISOString())
-        .field('properties[0][propertyCategoryId]', '1')
-        .field('properties[0][title]', 'Test')
-        .attach('properties[0][files][]', `${__dirname}/pic.test.file.png`)
-        // .attach('properties[0][files][]', `${__dirname}\\pic.test.file.png`)
+        .field('offerings[0][cost]', 6_000)
+        .field('offerings[0][coverImage]', '')
+        .field('offerings[0][description]', 'Test')
+        .field('offerings[0][openDate]', moment().toISOString())
+        .field('offerings[0][offeringCategoryId]', '1')
+        .field('offerings[0][title]', 'Test')
+        .attach('offerings[0][files][]', `${__dirname}/pic.test.file.png`)
+        // .attach('offerings[0][files][]', `${__dirname}\\pic.test.file.png`)
 
         .expect((res, error) => {
           formatRes(res);
 
           ownerBusiness = res.body.data.business;
           ownerUser = res.body.data.user;
-          ownerProperty = res.body.data.properties[0];
+          ownerOffering = res.body.data.offerings[0];
 
           console.log('ownerBusiness:', ownerBusiness);
 
@@ -110,23 +110,23 @@ describe('Owner', () => {
       .timeout(10000)
       .type('form')
       .field('email', 'realtor@email.com')
-      .field('properties[0][cost]', 6_000)
-      .field('properties[0][coverImage]', '')
-      .field('properties[0][description]', 'Test')
-      .field('properties[0][openDate]', moment().toISOString())
-      .field('properties[0][propertyCategoryId]', '1')
-      .field('properties[0][title]', 'Test')
-      .attach('properties[0][files][]', `${__dirname}/pic.test.file.png`)
-      .attach('properties[0][files][]', `${__dirname}/pic.test.file.png`)
+      .field('offerings[0][cost]', 6_000)
+      .field('offerings[0][coverImage]', '')
+      .field('offerings[0][description]', 'Test')
+      .field('offerings[0][openDate]', moment().toISOString())
+      .field('offerings[0][offeringCategoryId]', '1')
+      .field('offerings[0][title]', 'Test')
+      .attach('offerings[0][files][]', `${__dirname}/pic.test.file.png`)
+      .attach('offerings[0][files][]', `${__dirname}/pic.test.file.png`)
 
       .expect((res, error) => {
         formatRes(res);
 
         realtorBusiness = res.body.data.business;
         realtorUser = res.body.data.user;
-        realtorProperty = res.body.data.properties[0];
+        realtorOffering = res.body.data.offerings[0];
 
-        console.log('realtorProperty:', realtorProperty);
+        console.log('realtorOffering:', realtorOffering);
 
         expect(res.body).toEqual(
           expect.objectContaining({
@@ -142,7 +142,7 @@ describe('Owner', () => {
   // realtor should be able to see properites of owners
   it.only('realtor should be able to see properites of owners', async () => {
     await request(app.getHttpServer())
-      .get('/properties/paginated')
+      .get('/offerings/paginated')
       .expect((res, error) => {
         formatRes(res);
 
@@ -157,9 +157,9 @@ describe('Owner', () => {
             data: expect.objectContaining({
               records: expect.arrayContaining([
                 expect.objectContaining({
-                  ...ownerProperty,
-                  cost: Number(ownerProperty?.cost),
-                  propertyCategoryId: Number(ownerProperty?.propertyCategoryId),
+                  ...ownerOffering,
+                  cost: Number(ownerOffering?.cost),
+                  offeringCategoryId: Number(ownerOffering?.offeringCategoryId),
                 }),
               ]),
             }),
@@ -168,12 +168,12 @@ describe('Owner', () => {
       });
   });
 
-  // request to represent owner property
-  it.only('request to represent owner property', async () => {
+  // request to represent owner offering
+  it.only('request to represent owner offering', async () => {
     const requestToRepresentApplication = {
       userId: realtorUser?.id,
       applicationType: 'REQUEST_TO_REPRESENT',
-      refEntityId: ownerProperty?.id,
+      refEntityId: ownerOffering?.id,
       refEntityName: 'PROPERTY',
     } as Application;
 
@@ -201,16 +201,16 @@ describe('Owner', () => {
       });
   });
 
-  // Assign property to realtor
-  it.only('Owner Assign property', async () => {
+  // Assign offering to realtor
+  it.only('Owner Assign offering', async () => {
     return request(app.getHttpServer())
-      .post(`/owner/assign-property?business=${ownerBusiness?.id}`)
+      .post(`/owner/assign-offering?business=${ownerBusiness?.id}`)
       .timeout(10000)
       .send({
-        propertyId: ownerProperty?.id,
+        offeringId: ownerOffering?.id,
         userId: realtorUser?.id,
-        userPropertyType: 'BROKER',
-      } as OwnerAssignPropertyDto)
+        userOfferingType: 'BROKER',
+      } as OwnerAssignOfferingDto)
 
       .expect((res, error) => {
         formatRes(res);
@@ -226,10 +226,10 @@ describe('Owner', () => {
       });
   });
 
-  // Realtor should see the assigned under their properties
-  it.only('Realtor should see the assigned under their properties', async () => {
+  // Realtor should see the assigned under their offerings
+  it.only('Realtor should see the assigned under their offerings', async () => {
     return request(app.getHttpServer())
-      .get(`/realtor/properties-list?userId=${realtorUser?.id}`)
+      .get(`/realtor/offerings-list?userId=${realtorUser?.id}`)
       .timeout(10000)
       .expect((res, error) => {
         formatRes(res);
@@ -295,8 +295,8 @@ describe('Owner', () => {
       });
   });
 
-  // View properties
-  it.only('searcher should be able to view properties', async () => {
+  // View offerings
+  it.only('searcher should be able to view offerings', async () => {
     return request(app.getHttpServer())
       .get('/searcher/listings/list')
       .expect((res, error) => {
@@ -308,8 +308,8 @@ describe('Owner', () => {
             statusCode: expect.any(Number),
             data: expect.objectContaining({
               records: expect.arrayContaining([
-                expect.objectContaining(ownerProperty),
-                expect.objectContaining(realtorProperty),
+                expect.objectContaining(ownerOffering),
+                expect.objectContaining(realtorOffering),
               ]),
             }),
           }),
@@ -319,15 +319,15 @@ describe('Owner', () => {
       });
   });
 
-  // View properties
-  it.only('searcher react to properties', async () => {
+  // View offerings
+  it.only('searcher react to offerings', async () => {
     return request(app.getHttpServer())
       .post('/searcher/reactions/create')
       .send({
         fromEntityId: searcherUser?.id,
         fromEntityName: 'USER',
         reactionType: 'LIKE',
-        toEntityId: ownerProperty?.id,
+        toEntityId: ownerOffering?.id,
         toEntityName: 'PROPERTY',
       })
       .expect((res, error) => {
@@ -344,14 +344,14 @@ describe('Owner', () => {
       });
   });
 
-  // Create a property visit schedule
-  it.only('realtor create a schedule to visit property', async () => {
+  // Create a offering visit schedule
+  it.only('realtor create a schedule to visit offering', async () => {
     return request(app.getHttpServer())
       .post('/realtor/schedules/create')
       .send({
         fromEntityId: realtorUser?.id,
         fromEntityName: 'USER',
-        toEntityId: realtorProperty?.id,
+        toEntityId: realtorOffering?.id,
         toEntityName: 'PROPERTY',
         scheduleType: 'PROPERTY_VISIT_SCHEDULE',
         openAt: moment().toISOString(),
@@ -374,8 +374,8 @@ describe('Owner', () => {
       });
   });
 
-  // request to visit property in set schedule with time
-  it.only('searcher request to visit property in set schedule with time', async () => {
+  // request to visit offering in set schedule with time
+  it.only('searcher request to visit offering in set schedule with time', async () => {
     return request(app.getHttpServer())
       .post('/searcher/schedules/applications/create')
       .send({
@@ -404,7 +404,7 @@ describe('Owner', () => {
 
   it.only('owner create tenancy agreement', async () => {
     const tenancyAgreementData = {
-      propertyId: ownerProperty?.id,
+      offeringId: ownerOffering?.id,
       description: `
       The gate will always be closed by 8pm.
       We don't Joke here my friend
@@ -435,7 +435,7 @@ describe('Owner', () => {
 
   it.only('owner send tenancy agreement', async () => {
     const tenancyAgreementData = {
-      propertyId: ownerProperty?.id,
+      offeringId: ownerOffering?.id,
       tenancyAgreementId: ownerAgreement?.id,
       userId: searcherUser?.id,
     };
@@ -561,7 +561,7 @@ describe('Owner', () => {
     return request(app.getHttpServer())
       .post('/payments/create')
       .send({
-        entityId: ownerProperty?.id,
+        entityId: ownerOffering?.id,
         entityName: 'PROPERTY',
         userId: searcherUser?.id,
         paymentMethodId: mmPaymentMethod?.id,
@@ -583,18 +583,18 @@ describe('Owner', () => {
       });
   });
 
-  // Attach property to user as tenant
-  it.only('owner attach property to user as tenant', async () => {
-    const userPropertyData = {
-      propertyId: ownerProperty?.id,
+  // Attach offering to user as tenant
+  it.only('owner attach offering to user as tenant', async () => {
+    const userOfferingData = {
+      offeringId: ownerOffering?.id,
       userId: searcherUser?.id,
-      userPropertyType: 'TENANT',
-    } as UserProperty;
+      userOfferingType: 'TENANT',
+    } as UserOffering;
 
     return request(app.getHttpServer())
-      .post('/owner/users-properties/attach-searcher-to-property')
+      .post('/owner/users-offerings/attach-searcher-to-offering')
       .timeout(10000)
-      .send(userPropertyData)
+      .send(userOfferingData)
       .expect((res, error) => {
         formatRes(res);
 
@@ -603,7 +603,7 @@ describe('Owner', () => {
             message: expect.any(String),
             statusCode: expect.any(Number),
             data: expect.objectContaining({
-              record: expect.objectContaining(userPropertyData),
+              record: expect.objectContaining(userOfferingData),
             }),
           }),
         );
@@ -612,9 +612,9 @@ describe('Owner', () => {
       });
   });
 
-  it.only('tenant file property complaint', async () => {
+  it.only('tenant file offering complaint', async () => {
     const complaintData = {
-      propertyId: ownerProperty?.id,
+      offeringId: ownerOffering?.id,
       userId: searcherUser?.id,
       title: 'TENANT',
       description: 'Some description',
@@ -642,7 +642,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('owner view property complaints', async () => {
+  it.only('owner view offering complaints', async () => {
     return request(app.getHttpServer())
       .get('/owner/complaints/list')
 
@@ -665,7 +665,7 @@ describe('Owner', () => {
       });
   });
 
-  it.only('owner react to property complaints', async () => {
+  it.only('owner react to offering complaints', async () => {
     const complaintsUpdate = {
       id: tenantComplaint?.id,
       status: 'IN_PROGESS',
@@ -696,7 +696,7 @@ describe('Owner', () => {
     return request(app.getHttpServer())
       .post('/tenant/payments/pay-rent')
       .send({
-        entityId: ownerProperty?.id,
+        entityId: ownerOffering?.id,
         entityName: 'PROPERTY',
         userId: searcherUser?.id,
         paymentMethodId: mmPaymentMethod?.id,

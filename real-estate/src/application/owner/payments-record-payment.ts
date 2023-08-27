@@ -1,4 +1,4 @@
-import { PropertyRepositoryImpl } from '@db/infrastructure/repositories/properties-repository';
+import { OfferingRepositoryImpl } from '@db/infrastructure/repositories/offerings-repository';
 import { DB_TYPES } from '@db/types';
 import { Inject } from '@nestjs/common';
 import {
@@ -13,8 +13,8 @@ type ExecuteInput = {
 
 export class OwnerPaymentsRecordPaymentUsecase {
   constructor(
-    @Inject(DB_TYPES.repositories.PropertyRepositoryImpl)
-    private propertyRepositoryImpl: PropertyRepositoryImpl,
+    @Inject(DB_TYPES.repositories.OfferingRepositoryImpl)
+    private offeringRepositoryImpl: OfferingRepositoryImpl,
   ) {}
 
   async execute(data: ExecuteInput) {

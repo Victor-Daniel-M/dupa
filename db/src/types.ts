@@ -2,10 +2,10 @@ export const DB_TYPES = {
   repositories: {
     Repository: 'Repository',
     UsersRepositoryImpl: 'UsersRepositoryImpl',
-    PropertyRepositoryImpl: 'PropertyRepositoryImpl',
+    OfferingRepositoryImpl: 'OfferingRepositoryImpl',
     ReactionRepositoryImpl: 'ReactionRepositoryImpl',
     ScheduleRepositoryImpl: 'ScheduleRepositoryImpl',
-    UserPropertyRepositoryImpl: 'UserPropertyRepositoryImpl',
+    UserOfferingRepositoryImpl: 'UserOfferingRepositoryImpl',
     UserTenancyAgreementRepositoryImpl: 'UserTenancyAgreementRepositoryImpl',
     TenancyAgreementRepositoryImpl: 'TenancyAgreementRepositoryImpl',
     PaymentRepositoryImpl: 'PaymentRepositoryImpl',

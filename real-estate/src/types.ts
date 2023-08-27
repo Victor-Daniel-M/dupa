@@ -9,13 +9,13 @@ export const REAL_ESTATE_TYPES = {
     // },
   },
   useCases: {
-    AssignPropertyByOwnerUsecase: 'AssignPropertyByOwnerUsecase',
-    PropertiesCreateManyUsecase: 'PropertiesCreateManyUsecase',
+    AssignOfferingByOwnerUsecase: 'AssignOfferingByOwnerUsecase',
+    OfferingsCreateManyUsecase: 'OfferingsCreateManyUsecase',
 
     // Owner usecases
     OwnerApplicationsListUsecase: 'OwnerApplicationsListUsecase',
     OwnerApplicationsReactUsecase: 'OwnerApplicationsReactUsecase',
-    OwnerAssignPropertyUsecase: 'OwnerAssignPropertyUsecase',
+    OwnerAssignOfferingUsecase: 'OwnerAssignOfferingUsecase',
     OwnerAuthLoginUsecase: 'OwnerAuthLoginUsecase',
     OwnerComplaintsListUsecase: 'OwnerComplaintsListUsecase',
     OwnerComplaintsResolveUsecase: 'OwnerComplaintsResolveUsecase',
@@ -26,8 +26,8 @@ export const REAL_ESTATE_TYPES = {
     OwnerPaymentsRecordPaymentUsecase: 'OwnerPaymentsRecordPaymentUsecase',
     OwnerProductsApplyForProductUsecase: 'OwnerProductsApplyForProductUsecase',
     OwnerProductsViewListUsecase: 'OwnerProductsViewListUsecase',
-    OwnerPropertiesCreateManyUsecase: 'OwnerPropertiesCreateManyUsecase',
-    OwnerPropertiesPairWithUserUsecase: 'OwnerPropertiesPairWithUserUsecase',
+    OwnerOfferingsCreateManyUsecase: 'OwnerOfferingsCreateManyUsecase',
+    OwnerOfferingsPairWithUserUsecase: 'OwnerOfferingsPairWithUserUsecase',
     OwnerRealtorsConnectWithRealtorsUsecase:
       'OwnerRealtorsConnectWithRealtorsUsecase',
     OwnerRealtorsRequestToRepresentUsecase:
@@ -61,13 +61,13 @@ export const REAL_ESTATE_TYPES = {
     RealtorViewOwnerRequestListUsecase: 'RealtorViewOwnerRequestListUsecase',
     RealtorConnectWithOwnersUsecase: 'RealtorConnectWithOwnersUsecase',
     RealtorViewOwnerListUsecase: 'RealtorViewOwnerListUsecase',
-    RealtorHandoverPropertyUsecase: 'RealtorHandoverPropertyUsecase',
-    RealtorViewPropertyListUsecase: 'RealtorViewPropertyListUsecase',
-    RealtorRecordPropertyUsecase: 'RealtorRecordPropertyUsecase',
+    RealtorHandoverOfferingUsecase: 'RealtorHandoverOfferingUsecase',
+    RealtorViewOfferingListUsecase: 'RealtorViewOfferingListUsecase',
+    RealtorRecordOfferingUsecase: 'RealtorRecordOfferingUsecase',
     RealtorRequestToRepresentUsecase: 'RealtorRequestToRepresentUsecase',
     RealtorRegisterUsecase: 'RealtorRegisterUsecase',
-    RealtorRecordPropertySaleUsecase: 'RealtorRecordPropertySaleUsecase',
-    RealtorViewSalesListPropertyUsecase: 'RealtorViewSalesListPropertyUsecase',
+    RealtorRecordOfferingSaleUsecase: 'RealtorRecordOfferingSaleUsecase',
+    RealtorViewSalesListOfferingUsecase: 'RealtorViewSalesListOfferingUsecase',
     RealtorReactToVisitRequestUsecase: 'RealtorReactToVisitRequestUsecase',
     RealtorViewVisitRequestsUsecase: 'RealtorViewVisitRequestsUsecase',
     RealtorCreateScheduleUsecase: 'RealtorCreateScheduleUsecase',
@@ -149,7 +149,7 @@ export const REAL_ESTATE_TYPES = {
     StatisticsCountsViewUsecase: 'StatisticsCountsViewUsecase',
 
     // ADVANCED USECASES
-    AdvancedCreateUserPropertyUsecase: 'AdvancedCreateUserPropertyUsecase',
-    AdvancedGetUserPropertiesUsecase: 'AdvancedGetUserPropertiesUsecase',
+    AdvancedCreateUserOfferingUsecase: 'AdvancedCreateUserOfferingUsecase',
+    AdvancedGetUserOfferingsUsecase: 'AdvancedGetUserOfferingsUsecase',
   },
 };

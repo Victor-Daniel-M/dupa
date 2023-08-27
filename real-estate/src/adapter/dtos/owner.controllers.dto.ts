@@ -1,5 +1,5 @@
 import { ComplaintStatusType } from '@db/domain/entities';
-import { UserPropertyType } from '@db/domain/entities/userProperties';
+import { UserOfferingType } from '@db/domain/entities/userOfferings';
 import { IsEmail, IsNotEmpty } from 'class-validator';
 
 export class UserQueryDto {
@@ -15,13 +15,13 @@ export class BusinessAndUserQueryDto {
   businessId: string;
 }
 
-class OwnerRegistrationPropertiesDto {
+class OwnerRegistrationOfferingsDto {
   title: string;
   description: string;
   coverImage: string;
   cost: number;
   openDate: string;
-  propertyCategoryId: number;
+  offeringCategoryId: number;
 }
 export class OwnerRegisterDto {
   phoneNumber: string;
@@ -36,22 +36,22 @@ export class OwnerRegisterDto {
   @IsEmail()
   email: string;
 
-  properties: OwnerRegistrationPropertiesDto[];
+  offerings: OwnerRegistrationOfferingsDto[];
 }
 
-export class OwnerAssignPropertyDto {
-  propertyId: number;
+export class OwnerAssignOfferingDto {
+  offeringId: number;
   userId: number;
-  userPropertyType: UserPropertyType;
+  userOfferingType: UserOfferingType;
 }
 
-export class GetUserPropertiesReqQueryDto {
-  propertyId?: string;
+export class GetUserOfferingsReqQueryDto {
+  offeringId?: string;
   userId?: string;
 }
 
 export class SendTenancyAgreementByOwner {
-  propertyId: number;
+  offeringId: number;
   userId: number;
   tenancyAgreementId: number;
 }
@@ -100,13 +100,13 @@ export class OwnerProductsApplyForProductReqQueryDto {}
 export class OwnerProductsViewListReqBodyDto {}
 export class OwnerProductsViewListReqQueryDto {}
 
-// properties pair with user
-export class OwnerPropertiesPairWithUserReqBodyDto {
-  propertyId: number;
+// offerings pair with user
+export class OwnerOfferingsPairWithUserReqBodyDto {
+  offeringId: number;
   userId: number;
-  userPropertyType: UserPropertyType;
+  userOfferingType: UserOfferingType;
 }
-export class OwnerPropertiesPairWithUserReqQueryDto {}
+export class OwnerOfferingsPairWithUserReqQueryDto {}
 
 // realtors connect with realtors
 export class OwnerRealtorsConnectWithRealtorsReqBodyDto {}
@@ -134,14 +134,14 @@ export class OwnerServicesRequestServiceReqQueryDto {}
 
 // tenancies create agreement
 export class OwnerTenanciesCreateAgreementReqBodyDto {
-  propertyId: number;
+  offeringId: number;
   description: string;
 }
 export class OwnerTenanciesCreateAgreementReqQueryDto {}
 
 // send tenancy agreement
 export class OwnerSendTenancyAgreementReqBodyDto {
-  propertyId: number;
+  offeringId: number;
   userId: number;
   tenancyAgreementId: number;
 }

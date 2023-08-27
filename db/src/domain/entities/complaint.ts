@@ -18,7 +18,7 @@ export class Complaint extends BaseEntity {
   }
 
   @Column({ nullable: true })
-  propertyId: number;
+  offeringId: number;
 
   @Column({ nullable: true })
   userId: number;

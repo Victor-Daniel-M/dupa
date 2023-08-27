@@ -4,7 +4,7 @@ import { ApplicationDto, MessageDto, ReactionDto } from './general.dto';
 
 // complaints create complaint
 export class TenantComplaintsCreateComplaintReqBodyDto {
-  propertyId: number;
+  offeringId: number;
   userId: number;
   title: string;
   description: string;

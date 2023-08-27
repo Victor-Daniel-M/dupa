@@ -1,5 +1,5 @@
 import { ComplaintRepositoryImpl } from '@db/infrastructure/repositories/complaints-repository';
-import { PropertyRepositoryImpl } from '@db/infrastructure/repositories/properties-repository';
+import { OfferingRepositoryImpl } from '@db/infrastructure/repositories/offerings-repository';
 import { DB_TYPES } from '@db/types';
 import { Inject } from '@nestjs/common';
 import {
@@ -22,10 +22,10 @@ export class OwnerComplaintsListUsecase {
     const {} = data.body;
     const {} = data.query;
 
-    const visitPropertys = await this.complaintRepositoryImpl.getAllPaginated(
+    const visitOfferings = await this.complaintRepositoryImpl.getAllPaginated(
       {},
     );
 
-    return visitPropertys;
+    return visitOfferings;
   }
 }

@@ -21,14 +21,14 @@ import {
 import { OfferController } from './adapter/controllers/crud-controllers/offers';
 import { PermissionController } from './adapter/controllers/crud-controllers/permissions';
 import { PlaceController } from './adapter/controllers/crud-controllers/places';
-import { PropertyController } from './adapter/controllers/crud-controllers/properties';
+import { OfferingController } from './adapter/controllers/crud-controllers/offerings';
 import { ReactionController } from './adapter/controllers/crud-controllers/reactions';
 import { RequestController } from './adapter/controllers/crud-controllers/requests';
 import { ResourceController } from './adapter/controllers/crud-controllers/resources';
 import { ScheduleController } from './adapter/controllers/crud-controllers/schedules';
 import { SearchController } from './adapter/controllers/crud-controllers/searches';
 import { TokenController } from './adapter/controllers/crud-controllers/tokens';
-import { UserPropertyController } from './adapter/controllers/crud-controllers/user-properties';
+import { UserOfferingController } from './adapter/controllers/crud-controllers/user-offerings';
 import { UserController } from './adapter/controllers/crud-controllers/users';
 import { OwnerController } from './adapter/controllers/owner.controller';
 import { S3Provider } from './infrastructure/services/s3Provider.service';
@@ -50,8 +50,8 @@ import { DbModule } from '@db/db.module';
 import { AdminController } from './adapter/controllers/admin.controller';
 import { ApplicationTypeController } from './adapter/controllers/crud-controllers/application-types.module';
 import { EntityController } from './adapter/controllers/crud-controllers/entities.module';
-import { PropertyCategoryController } from './adapter/controllers/crud-controllers/property-categories.module';
-import { UserPropertyTypesController } from './adapter/controllers/crud-controllers/user-property-types.module';
+import { OfferingCategoryController } from './adapter/controllers/crud-controllers/offering-categories.module';
+import { UserOfferingTypesController } from './adapter/controllers/crud-controllers/user-offering-types.module';
 import { RealtorRequestToRepresentUsecase } from './application/realtor/realtor-request-to-represent';
 import { ownerUsecaseProviders } from './application/owner/owner-usecases';
 
@@ -151,7 +151,7 @@ const realtorRequestToRepresentUsecase = {
     PaymentMethodsController,
     PermissionController,
     PlaceController,
-    PropertyController,
+    OfferingController,
     ReactionController,
     RequestController,
     ResourceController,
@@ -159,13 +159,13 @@ const realtorRequestToRepresentUsecase = {
     SearchController,
     TenancyAgreementController,
     TokenController,
-    UserPropertyController,
+    UserOfferingController,
     UserController,
     UserTenancyAgreementController,
     ApplicationTypeController,
     EntityController,
-    PropertyCategoryController,
-    UserPropertyTypesController,
+    OfferingCategoryController,
+    UserOfferingTypesController,
 
     // Custom controllers
     OwnerController,

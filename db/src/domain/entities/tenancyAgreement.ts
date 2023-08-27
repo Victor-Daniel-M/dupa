@@ -9,7 +9,7 @@ export class TenancyAgreement extends BaseEntity {
   }
 
   @Column({ nullable: true })
-  propertyId: number;
+  offeringId: number;
 
   @Column({ nullable: true })
   description: string;
@@ -19,7 +19,7 @@ export class TenancyAgreement extends BaseEntity {
 
   @AfterLoad()
   protected generateLabel(): void {
-    const summary = `Agreement for Property ${this.propertyId}`;
+    const summary = `Agreement for Offering ${this.offeringId}`;
     // @ts-ignore
     this.label = summary;
     // @ts-ignore

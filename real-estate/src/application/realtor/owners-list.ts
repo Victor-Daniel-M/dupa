@@ -21,8 +21,8 @@ export class RealtorViewOwnerListUsecase {
     const {} = data.body;
     const {} = data.query;
 
-    const visitPropertys = await this.usersRepositoryImpl.getAllPaginated({});
+    const visitOfferings = await this.usersRepositoryImpl.getAllPaginated({});
 
-    return { records: visitPropertys };
+    return { records: visitOfferings };
   }
 }

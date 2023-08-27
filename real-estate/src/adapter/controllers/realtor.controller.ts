@@ -22,14 +22,14 @@ import {
   RealtorViewOwnerRequestListReqQueryDto,
   RealtorConnectWithOwnersReqQueryDto,
   RealtorViewOwnerListReqQueryDto,
-  RealtorHandoverPropertyReqBodyDto,
-  RealtorHandoverPropertyReqQueryDto,
-  RealtorViewPropertyListReqQueryDto,
-  RealtorRecordPropertyReqBodyDto,
-  RealtorRecordPropertyReqQueryDto,
-  RealtorRecordPropertySaleReqBodyDto,
-  RealtorRecordPropertySaleReqQueryDto,
-  RealtorViewSalesListPropertyReqQueryDto,
+  RealtorHandoverOfferingReqBodyDto,
+  RealtorHandoverOfferingReqQueryDto,
+  RealtorViewOfferingListReqQueryDto,
+  RealtorRecordOfferingReqBodyDto,
+  RealtorRecordOfferingReqQueryDto,
+  RealtorRecordOfferingSaleReqBodyDto,
+  RealtorRecordOfferingSaleReqQueryDto,
+  RealtorViewSalesListOfferingReqQueryDto,
   RealtorReactToVisitRequestReqBodyDto,
   RealtorReactToVisitRequestReqQueryDto,
   RealtorViewVisitRequestsReqQueryDto,
@@ -41,15 +41,15 @@ import { RealtorRequestToRepresentUsecase } from '@real-estate/application/realt
 import {
   RealtorConnectWithOwnersUsecase,
   RealtorCreateMessageUsecase,
-  RealtorHandoverPropertyUsecase,
+  RealtorHandoverOfferingUsecase,
   RealtorLoginUsecase,
   RealtorReactToVisitRequestUsecase,
-  RealtorRecordPropertySaleUsecase,
-  RealtorRecordPropertyUsecase,
+  RealtorRecordOfferingSaleUsecase,
+  RealtorRecordOfferingUsecase,
   RealtorViewOwnerListUsecase,
   RealtorViewOwnerRequestListUsecase,
-  RealtorViewPropertyListUsecase,
-  RealtorViewSalesListPropertyUsecase,
+  RealtorViewOfferingListUsecase,
+  RealtorViewSalesListOfferingUsecase,
   RealtorViewVisitRequestsUsecase,
 } from '@real-estate/application/realtor';
 import { RealtorCreateScheduleUsecase } from '@real-estate/application/realtor/schedules-create';
@@ -73,16 +73,16 @@ export class RealtorController {
     private realtorConnectWithOwnersUsecase: RealtorConnectWithOwnersUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.RealtorViewOwnerListUsecase)
     private realtorViewOwnerListUsecase: RealtorViewOwnerListUsecase,
-    @Inject(REAL_ESTATE_TYPES.useCases.RealtorHandoverPropertyUsecase)
-    private realtorHandoverPropertyUsecase: RealtorHandoverPropertyUsecase,
-    @Inject(REAL_ESTATE_TYPES.useCases.RealtorViewPropertyListUsecase)
-    private realtorViewPropertyListUsecase: RealtorViewPropertyListUsecase,
-    @Inject(REAL_ESTATE_TYPES.useCases.RealtorRecordPropertyUsecase)
-    private realtorRecordPropertyUsecase: RealtorRecordPropertyUsecase,
-    @Inject(REAL_ESTATE_TYPES.useCases.RealtorRecordPropertySaleUsecase)
-    private realtorRecordPropertySaleUsecase: RealtorRecordPropertySaleUsecase,
-    @Inject(REAL_ESTATE_TYPES.useCases.RealtorViewSalesListPropertyUsecase)
-    private realtorViewSalesListPropertyUsecase: RealtorViewSalesListPropertyUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.RealtorHandoverOfferingUsecase)
+    private realtorHandoverOfferingUsecase: RealtorHandoverOfferingUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.RealtorViewOfferingListUsecase)
+    private realtorViewOfferingListUsecase: RealtorViewOfferingListUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.RealtorRecordOfferingUsecase)
+    private realtorRecordOfferingUsecase: RealtorRecordOfferingUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.RealtorRecordOfferingSaleUsecase)
+    private realtorRecordOfferingSaleUsecase: RealtorRecordOfferingSaleUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.RealtorViewSalesListOfferingUsecase)
+    private realtorViewSalesListOfferingUsecase: RealtorViewSalesListOfferingUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.RealtorReactToVisitRequestUsecase)
     private realtorReactToVisitRequestUsecase: RealtorReactToVisitRequestUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.RealtorViewVisitRequestsUsecase)
@@ -92,7 +92,7 @@ export class RealtorController {
   ) {}
 
   @Post('register')
-  @UseInterceptors(FilesInterceptor('properties[0][files][]', 2))
+  @UseInterceptors(FilesInterceptor('offerings[0][files][]', 2))
   async registerRealtor(
     @Body() body: RealtorRegisterDto,
     @UploadedFiles()
@@ -163,31 +163,31 @@ export class RealtorController {
     });
   }
 
-  @Post('properties-handover')
-  async handoverProperty(
-    @Body() body: RealtorHandoverPropertyReqBodyDto,
-    @Query() query: RealtorHandoverPropertyReqQueryDto,
+  @Post('offerings-handover')
+  async handoverOffering(
+    @Body() body: RealtorHandoverOfferingReqBodyDto,
+    @Query() query: RealtorHandoverOfferingReqQueryDto,
   ) {
-    return await this.realtorHandoverPropertyUsecase.execute({
+    return await this.realtorHandoverOfferingUsecase.execute({
       body,
       query,
     });
   }
 
-  @Get('properties-list')
-  async viewPropertyList(@Query() query: RealtorViewPropertyListReqQueryDto) {
-    return await this.realtorViewPropertyListUsecase.execute({
+  @Get('offerings-list')
+  async viewOfferingList(@Query() query: RealtorViewOfferingListReqQueryDto) {
+    return await this.realtorViewOfferingListUsecase.execute({
       query,
       body: {},
     });
   }
 
-  @Post('properties-record')
-  async recordProperty(
-    @Body() body: RealtorRecordPropertyReqBodyDto,
-    @Query() query: RealtorRecordPropertyReqQueryDto,
+  @Post('offerings-record')
+  async recordOffering(
+    @Body() body: RealtorRecordOfferingReqBodyDto,
+    @Query() query: RealtorRecordOfferingReqQueryDto,
   ) {
-    return await this.realtorRecordPropertyUsecase.execute({
+    return await this.realtorRecordOfferingUsecase.execute({
       body,
       query,
     });

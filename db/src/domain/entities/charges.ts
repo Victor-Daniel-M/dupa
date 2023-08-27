@@ -36,7 +36,7 @@ export class Charge extends BaseEntity {
   upperLimit: string;
 
   @Column({ nullable: true })
-  propertyId: string;
+  offeringId: string;
 
   @Column({ nullable: true })
   chargeTypeId: string;

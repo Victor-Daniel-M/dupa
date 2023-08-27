@@ -1,4 +1,4 @@
-import { PropertyRepositoryImpl } from '@db/infrastructure/repositories/properties-repository';
+import { OfferingRepositoryImpl } from '@db/infrastructure/repositories/offerings-repository';
 import { TenancyAgreementRepositoryImpl } from '@db/infrastructure/repositories/tenancy-agreements-repository';
 import { UserTenancyAgreementRepositoryImpl } from '@db/infrastructure/repositories/user-tenancy-agreements-repository';
 import { DB_TYPES } from '@db/types';

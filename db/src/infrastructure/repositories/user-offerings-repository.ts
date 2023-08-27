@@ -1,14 +1,14 @@
-import { PropertyMeta } from '@db/domain/entities/property';
+import { UserOffering } from '@db/domain/entities/userOfferings';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseRepository } from 'base/base.repository';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class PropertyMetaRepositoryImpl extends BaseRepository<PropertyMeta> {
+export class UserOfferingRepositoryImpl extends BaseRepository<UserOffering> {
   constructor(
-    @InjectRepository(PropertyMeta)
-    public repository: Repository<PropertyMeta>,
+    @InjectRepository(UserOffering)
+    private repository: Repository<UserOffering>,
   ) {
     super(repository);
   }

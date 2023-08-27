@@ -1,30 +1,30 @@
 import { BaseEntity } from '../../../../base/base.entity';
 import { AfterLoad, Column, Entity } from 'typeorm';
 
-export const UserPropertyTypes = ['OWNER', 'BROKER', 'TENANT'] as const;
+export const UserOfferingTypes = ['OWNER', 'BROKER', 'TENANT'] as const;
 
-export type UserPropertyType = (typeof UserPropertyTypes)[number];
+export type UserOfferingType = (typeof UserOfferingTypes)[number];
 
-@Entity('UserProperty')
-export class UserProperty extends BaseEntity {
+@Entity('UserOffering')
+export class UserOffering extends BaseEntity {
   constructor(o: Object) {
     super();
     Object.assign(this, o);
   }
 
   @Column({ nullable: true })
-  userPropertyType: UserPropertyType;
+  userOfferingType: UserOfferingType;
 
   @Column({ nullable: true })
-  propertyId: number;
+  offeringId: number;
 
   @Column({ nullable: true })
   userId: number;
 
   @AfterLoad()
   protected generateLabel(): void {
-    const title = `${this.userPropertyType} to Property ${this.propertyId}`;
-    const summary = `User ${this.userId} ${this.userPropertyType} to Property ${this.propertyId}`;
+    const title = `${this.userOfferingType} to Offering ${this.offeringId}`;
+    const summary = `User ${this.userId} ${this.userOfferingType} to Offering ${this.offeringId}`;
     // @ts-ignore
     this.label = title;
     // @ts-ignore

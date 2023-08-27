@@ -1,4 +1,4 @@
-import { PropertyRepositoryImpl } from '@db/infrastructure/repositories/properties-repository';
+import { OfferingRepositoryImpl } from '@db/infrastructure/repositories/offerings-repository';
 import { DB_TYPES } from '@db/types';
 import { Inject } from '@nestjs/common';
 import {
@@ -13,18 +13,18 @@ type ExecuteInput = {
 
 export class OwnerApplicationsReactUsecase {
   constructor(
-    @Inject(DB_TYPES.repositories.PropertyRepositoryImpl)
-    private applicationRepositoryImpl: PropertyRepositoryImpl,
+    @Inject(DB_TYPES.repositories.OfferingRepositoryImpl)
+    private applicationRepositoryImpl: OfferingRepositoryImpl,
   ) {}
 
   async execute(data: ExecuteInput) {
     const {} = data.body;
     const {} = data.query;
 
-    const visitPropertys = await this.applicationRepositoryImpl.getAllPaginated(
+    const visitOfferings = await this.applicationRepositoryImpl.getAllPaginated(
       {},
     );
 
-    return { records: visitPropertys };
+    return { records: visitOfferings };
   }
 }
