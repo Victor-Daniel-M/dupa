@@ -5,6 +5,7 @@ import {
   Get,
   Inject,
   Post,
+  Put,
   Query,
   UploadedFiles,
   UseInterceptors,
@@ -69,6 +70,12 @@ import {
   OwnerViewApplicationsListReqQueryDto,
   OwnerViewComplaintsListReqBodyDto,
   SendTenancyAgreementByOwner,
+  OwnerSendTenancyAgreementReqBodyDto,
+  OwnerSendTenancyAgreementReqQueryDto,
+  OwnerUpdateComplaintReqBodyDto,
+  OwnerUpdateComplaintReqQueryDto,
+  OwnerPaymentsViewListReqBodyDto,
+  OwnerPaymentsViewListReqQueryDto,
 } from '../dtos/owner.controllers.dto';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { S3Provider } from 'real-estate/src/infrastructure/services/s3Provider.service';
@@ -107,6 +114,9 @@ import {
   OwnerTenantsUpdateTenantUsecase,
   // ... Other use cases
 } from '@real-estate/application/owner'; // Update the path
+import { OwnerSendTenancyAgreementUsecase } from '@real-estate/application/owner/tenancies-send-agreement';
+import { OwnerUpdateComplaintUsecase } from '@real-estate/application/owner/complaints-update';
+import { OwnerPaymentsViewListUsecase } from '@real-estate/application/owner/payments-view-list';
 
 @ApiTags('owner')
 @Controller('owner')
@@ -125,6 +135,8 @@ export class OwnerController {
     private ownerComplaintsListUsecase: OwnerComplaintsListUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.OwnerComplaintsResolveUsecase)
     private ownerComplaintsResolveUsecase: OwnerComplaintsResolveUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.OwnerUpdateComplaintUsecase)
+    private ownerUpdateComplaintUsecase: OwnerUpdateComplaintUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.OwnerListingsViewActivityUsecase)
     private ownerListingsViewActivityUsecase: OwnerListingsViewActivityUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.OwnerListingsViewListUsecase)
@@ -177,6 +189,10 @@ export class OwnerController {
     private ownerTenantsSendRentReminderUsecase: OwnerTenantsSendRentReminderUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.OwnerTenantsUpdateTenantUsecase)
     private ownerTenantsUpdateTenantUsecase: OwnerTenantsUpdateTenantUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.OwnerSendTenancyAgreementUsecase)
+    private ownerSendTenancyAgreementUsecase: OwnerSendTenancyAgreementUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.OwnerPaymentsViewListUsecase)
+    private ownerPaymentsViewListUsecase: OwnerPaymentsViewListUsecase,
   ) {}
 
   @Post('register')
@@ -240,12 +256,31 @@ export class OwnerController {
     return await this.ownerComplaintsResolveUsecase.execute({ body, query });
   }
 
+  @Put('complaints/update')
+  async updateComplaint(
+    @Body() body: OwnerUpdateComplaintReqBodyDto,
+    @Query() query: OwnerUpdateComplaintReqQueryDto,
+  ) {
+    return await this.ownerUpdateComplaintUsecase.execute({ body, query });
+  }
+
   @Post('payments/collect-payment')
   async collectPayment(
     @Body() body: OwnerPaymentsCollectPaymentReqBodyDto,
     @Query() query: OwnerPaymentsCollectPaymentReqQueryDto,
   ) {
     return await this.ownerPaymentsCollectPaymentUsecase.execute({
+      body,
+      query,
+    });
+  }
+
+  @Get('payments/list')
+  async listPayments(
+    @Body() body: OwnerPaymentsViewListReqBodyDto,
+    @Query() query: OwnerPaymentsViewListReqQueryDto,
+  ) {
+    return await this.ownerPaymentsViewListUsecase.execute({
       body,
       query,
     });
@@ -297,12 +332,34 @@ export class OwnerController {
     });
   }
 
-  @Post('tenancies/create-agreement')
+  @Post('agreements/create')
   async createTenancyAgreement(
     @Body() body: OwnerTenanciesCreateAgreementReqBodyDto,
     @Query() query: OwnerTenanciesCreateAgreementReqQueryDto,
   ) {
     return await this.ownerTenanciesCreateAgreementUsecase.execute({
+      body,
+      query,
+    });
+  }
+
+  @Post('agreements/send')
+  async sendTenancyAgreement(
+    @Body() body: OwnerSendTenancyAgreementReqBodyDto,
+    @Query() query: OwnerSendTenancyAgreementReqQueryDto,
+  ) {
+    return await this.ownerSendTenancyAgreementUsecase.execute({
+      body,
+      query,
+    });
+  }
+
+  @Post('users-properties/attach-searcher-to-property')
+  async attachSearcherToProperty(
+    @Body() body: OwnerPropertiesPairWithUserReqBodyDto,
+    @Query() query: OwnerPropertiesPairWithUserReqQueryDto,
+  ) {
+    return await this.ownerPropertiesPairWithUserUsecase.execute({
       body,
       query,
     });

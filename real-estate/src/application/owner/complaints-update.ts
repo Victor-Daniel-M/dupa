@@ -3,29 +3,26 @@ import { PropertyRepositoryImpl } from '@db/infrastructure/repositories/properti
 import { DB_TYPES } from '@db/types';
 import { Inject } from '@nestjs/common';
 import {
-  OwnerResolveComplaintsReqBodyDto,
-  OwnerResolveComplaintsReqQueryDto,
+  OwnerUpdateComplaintReqBodyDto,
+  OwnerUpdateComplaintReqQueryDto,
 } from '@real-estate/adapter/dtos/owner.controllers.dto';
 
 type ExecuteInput = {
-  body: OwnerResolveComplaintsReqBodyDto;
-  query: OwnerResolveComplaintsReqQueryDto;
+  body: OwnerUpdateComplaintReqBodyDto;
+  query: OwnerUpdateComplaintReqQueryDto;
 };
 
-export class OwnerComplaintsListUsecase {
+export class OwnerUpdateComplaintUsecase {
   constructor(
     @Inject(DB_TYPES.repositories.ComplaintRepositoryImpl)
     private complaintRepositoryImpl: ComplaintRepositoryImpl,
   ) {}
 
   async execute(data: ExecuteInput) {
-    const {} = data.body;
-    const {} = data.query;
+    const { body } = data;
 
-    const visitPropertys = await this.complaintRepositoryImpl.getAllPaginated(
-      {},
-    );
+    const updatedComplaint = await this.complaintRepositoryImpl.update(body);
 
-    return visitPropertys;
+    return { record: updatedComplaint };
   }
 }

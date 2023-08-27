@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   Inject,
   Post,
   Query,
@@ -44,11 +45,24 @@ import {
   SearcherRegisterReqQueryDto,
   SearcherLoginReqBodyDto,
   SearcherLoginReqQueryDto,
+  SearcherReactionsCreateReqBodyDto,
+  SearcherReactionsCreateReqQueryDto,
+  SearcherCreateScheduleApplicationReqBodyDto,
+  SearcherCreateScheduleApplicationReqQueryDto,
+  SearcherViewTenancyAgreementReqBodyDto,
+  SearcherViewTenancyAgreementReqQueryDto,
+  SearcherAcceptTenancyAgreementReqBodyDto,
+  SearcherAcceptTenancyAgreementReqQueryDto,
 } from '../dtos/searcher.controllers.dto';
 import {
   SearcherLoginUsecase,
   SearcherRegisterUsecase,
 } from '@real-estate/application/searcher';
+import { SearcherViewListingListUsecase } from '@real-estate/application/searcher/listings-list';
+import { SearcherReactionsCreateUsecase } from '@real-estate/application/searcher/reactions-create';
+import { SearcherCreateScheduleApplicationUsecase } from '@real-estate/application/searcher/schedule-applications-create';
+import { SearcherViewTenancyAgreementUsecase } from '@real-estate/application/searcher/agreements-view-agreement';
+import { SearcherAcceptTenancyAgreementUsecase } from '@real-estate/application/searcher/agreements-accept-agreement';
 
 @ApiTags('searcher')
 @Controller('searcher')
@@ -65,8 +79,12 @@ export class SearcherController {
     private searcherListingsSearchUsecase: SearcherListingsSearchUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.SearcherViewListingViewUsecase)
     private searcherViewListingViewUsecase: SearcherViewListingViewUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.SearcherViewListingListUsecase)
+    private searcherViewListingListUsecase: SearcherViewListingListUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.SearcherCreateMessageUsecase)
     private searcherCreateMessageUsecase: SearcherCreateMessageUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.SearcherReactionsCreateUsecase)
+    private searcherReactionsCreateUsecase: SearcherReactionsCreateUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.SearcherMakePaymentUsecase)
     private searcherMakePaymentUsecase: SearcherMakePaymentUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.SearcherRealtorsConnectUsecase)
@@ -77,6 +95,12 @@ export class SearcherController {
     private searcherRequestVisitUsecase: SearcherRequestVisitUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.SearcherCancelVisitUsecase)
     private searcherCancelVisitUsecase: SearcherCancelVisitUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.SearcherCreateScheduleApplicationUsecase)
+    private searcherCreateScheduleApplicationUsecase: SearcherCreateScheduleApplicationUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.SearcherViewTenancyAgreementUsecase)
+    private searcherViewTenancyAgreementUsecase: SearcherViewTenancyAgreementUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.SearcherAcceptTenancyAgreementUsecase)
+    private searcherAcceptTenancyAgreementUsecase: SearcherAcceptTenancyAgreementUsecase,
   ) {}
 
   @Post('register')
@@ -134,12 +158,67 @@ export class SearcherController {
     });
   }
 
+  @Get('listings/list')
+  async listingsList(
+    @Body() body: SearcherViewListingReqBodyDto,
+    @Query() query: SearcherViewListingReqQueryDto,
+  ) {
+    return await this.searcherViewListingListUsecase.execute({
+      body,
+      query,
+    });
+  }
+
+  @Get('agreements/get-one')
+  async viewAgreement(
+    @Body() body: SearcherViewTenancyAgreementReqBodyDto,
+    @Query() query: SearcherViewTenancyAgreementReqQueryDto,
+  ) {
+    return await this.searcherViewTenancyAgreementUsecase.execute({
+      body,
+      query,
+    });
+  }
+
+  @Post('agreements/accept')
+  async updateAgreement(
+    @Body() body: SearcherAcceptTenancyAgreementReqBodyDto,
+    @Query() query: SearcherAcceptTenancyAgreementReqQueryDto,
+  ) {
+    return await this.searcherAcceptTenancyAgreementUsecase.execute({
+      body,
+      query,
+    });
+  }
+
   @Post('messages/create')
   async createMessage(
     @Body() body: SearcherCreateMessageReqBodyDto,
     @Query() query: SearcherCreateMessageReqQueryDto,
   ) {
     return await this.searcherCreateMessageUsecase.execute({
+      body,
+      query,
+    });
+  }
+
+  @Post('reactions/create')
+  async createReaction(
+    @Body() body: SearcherReactionsCreateReqBodyDto,
+    @Query() query: SearcherReactionsCreateReqQueryDto,
+  ) {
+    return await this.searcherReactionsCreateUsecase.execute({
+      body,
+      query,
+    });
+  }
+
+  @Post('schedules/applications/create')
+  async createApplicationForSchedule(
+    @Body() body: SearcherCreateScheduleApplicationReqBodyDto,
+    @Query() query: SearcherCreateScheduleApplicationReqQueryDto,
+  ) {
+    return await this.searcherCreateScheduleApplicationUsecase.execute({
       body,
       query,
     });

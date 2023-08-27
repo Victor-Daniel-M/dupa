@@ -54,13 +54,13 @@ export class RealtorRegisterUsecase {
     const propertyOne = data.body.properties[0];
 
     const createdProperty = await this.propertyRepository.create({
-      cost: propertyOne.cost,
       coverImage: res.Location,
       description: propertyOne.description,
       openDate: propertyOne.openDate,
       title: propertyOne.title,
-      propertyCategoryId: propertyOne.propertyCategoryId,
       businessId: business.id!,
+      cost: Number(propertyOne.cost),
+      propertyCategoryId: Number(propertyOne.propertyCategoryId),
     });
 
     await this.emailService.sendLoginEmail('test@email.com');

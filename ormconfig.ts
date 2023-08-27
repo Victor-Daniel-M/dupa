@@ -14,6 +14,7 @@ if (process.env.NODE_ENV == 'production') {
     database: 'super_app_test',
     entities: models,
     synchronize: true,
+    namingStrategy: undefined,
   };
 } else {
   OrmConfig = {

@@ -1,6 +1,13 @@
 import { BaseEntity } from '../../../../base/base.entity';
 import { AfterLoad, Column, Entity } from 'typeorm';
 
+export const agreementStatusTypes = [
+  'ACCEPTED',
+  'REJECTED',
+  'PENDING',
+] as const;
+export type AgreementStatusType = (typeof agreementStatusTypes)[number];
+
 @Entity('UserTenancyAgreement')
 export class UserTenancyAgreement extends BaseEntity {
   constructor(o: Object) {
@@ -15,10 +22,13 @@ export class UserTenancyAgreement extends BaseEntity {
   tenancyAgreementId: number;
 
   @Column({ nullable: true })
-  description: string;
+  userId: number;
 
   @Column({ nullable: true })
   expiresAt?: string;
+
+  @Column({ nullable: true, enum: agreementStatusTypes, default: 'PENDING' })
+  status?: AgreementStatusType;
 
   @AfterLoad()
   protected generateLabel(): void {

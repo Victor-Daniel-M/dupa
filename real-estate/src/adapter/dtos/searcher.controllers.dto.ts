@@ -1,3 +1,4 @@
+import { AgreementStatusType, ApplicationType } from '@db/domain/entities';
 import { IsEmail, IsNotEmpty } from 'class-validator';
 
 export class SearcherRegisterReqBodyDto {
@@ -40,6 +41,16 @@ export class SearcherMakePaymentReqQueryDto {}
 export class SearcherCreateMessageReqBodyDto {}
 export class SearcherCreateMessageReqQueryDto {}
 
+// Create message
+export class SearcherReactionsCreateReqBodyDto {
+  fromEntityId: number;
+  fromEntityName: string;
+  reactionType: string;
+  toEntityId: number;
+  toEntityName: string;
+}
+export class SearcherReactionsCreateReqQueryDto {}
+
 // searcher connect with realtors
 export class SearcherRealtorsConnectReqBodyDto {}
 export class SearcherRealtorsConnectReqQueryDto {}
@@ -55,3 +66,23 @@ export class SearcherRequestVisitReqQueryDto {}
 // searcher request visit
 export class SearcherCancelVisitReqBodyDto {}
 export class SearcherCancelVisitReqQueryDto {}
+
+// schedule application
+export class SearcherCreateScheduleApplicationReqBodyDto {
+  userId: number;
+  refEntityId: number;
+}
+export class SearcherCreateScheduleApplicationReqQueryDto {}
+
+// accept tenancy agreement
+export class SearcherAcceptTenancyAgreementReqBodyDto {
+  id: number;
+  status: AgreementStatusType;
+}
+export class SearcherAcceptTenancyAgreementReqQueryDto {}
+
+// view tenancy agreement
+export class SearcherViewTenancyAgreementReqBodyDto {}
+export class SearcherViewTenancyAgreementReqQueryDto {
+  id: string;
+}

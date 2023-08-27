@@ -1,4 +1,5 @@
 import { PropertyRepositoryImpl } from '@db/infrastructure/repositories/properties-repository';
+import { TenancyAgreementRepositoryImpl } from '@db/infrastructure/repositories/tenancy-agreements-repository';
 import { DB_TYPES } from '@db/types';
 import { Inject } from '@nestjs/common';
 import {
@@ -13,15 +14,17 @@ type ExecuteInput = {
 
 export class OwnerTenanciesCreateAgreementUsecase {
   constructor(
-    @Inject(DB_TYPES.repositories.PropertyRepositoryImpl)
-    private propertyRepositoryImpl: PropertyRepositoryImpl,
+    @Inject(DB_TYPES.repositories.TenancyAgreementRepositoryImpl)
+    private tenancyAgreementRepositoryImpl: TenancyAgreementRepositoryImpl,
   ) {}
 
   async execute(data: ExecuteInput) {
     const { body, query } = data;
 
-    // Implement your logic for creating tenancy agreements here
+    const createdAgreement = await this.tenancyAgreementRepositoryImpl.create(
+      body,
+    );
 
-    return {};
+    return { record: createdAgreement };
   }
 }

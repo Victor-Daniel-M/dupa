@@ -33,6 +33,8 @@ import {
   RealtorReactToVisitRequestReqBodyDto,
   RealtorReactToVisitRequestReqQueryDto,
   RealtorViewVisitRequestsReqQueryDto,
+  RealtorCreateScheduleReqBodyDto,
+  RealtorCreateScheduleReqQueryDto,
 } from '../dtos/realtor.controllers.dto';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { RealtorRequestToRepresentUsecase } from '@real-estate/application/realtor/realtor-request-to-represent';
@@ -50,6 +52,7 @@ import {
   RealtorViewSalesListPropertyUsecase,
   RealtorViewVisitRequestsUsecase,
 } from '@real-estate/application/realtor';
+import { RealtorCreateScheduleUsecase } from '@real-estate/application/realtor/schedules-create';
 
 @ApiTags('realtor')
 @Controller('realtor')
@@ -84,6 +87,8 @@ export class RealtorController {
     private realtorReactToVisitRequestUsecase: RealtorReactToVisitRequestUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.RealtorViewVisitRequestsUsecase)
     private realtorViewVisitRequestsUsecase: RealtorViewVisitRequestsUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.RealtorCreateScheduleUsecase)
+    private realtorCreateScheduleUsecase: RealtorCreateScheduleUsecase,
   ) {}
 
   @Post('register')
@@ -105,6 +110,17 @@ export class RealtorController {
     @Query() query: RealtorRequestToRepresentReqQueryDto,
   ) {
     return await this.realtorRequestToRepresentUsecase.execute({
+      body,
+      query,
+    });
+  }
+
+  @Post('schedules/create')
+  async createSchedule(
+    @Body() body: RealtorCreateScheduleReqBodyDto,
+    @Query() query: RealtorCreateScheduleReqQueryDto,
+  ) {
+    return await this.realtorCreateScheduleUsecase.execute({
       body,
       query,
     });

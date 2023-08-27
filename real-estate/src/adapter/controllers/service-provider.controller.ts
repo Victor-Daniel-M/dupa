@@ -1,5 +1,13 @@
 import { REAL_ESTATE_TYPES } from '@real-estate/types';
-import { Controller, Inject, Post, Get, Body, Query } from '@nestjs/common';
+import {
+  Controller,
+  Inject,
+  Post,
+  Get,
+  Body,
+  Query,
+  UseInterceptors,
+} from '@nestjs/common';
 import {
   ServiceProviderApplicationsReactReqBodyDto,
   ServiceProviderApplicationsReactReqQueryDto,
@@ -23,6 +31,7 @@ import {
   ServiceProviderSubscriptionsInitiateTerminateUsecase,
   ServiceProviderSubscriptionsListUsecase,
 } from '@real-estate/application/service-provider'; // Update the path
+import { FilesInterceptor } from '@nestjs/platform-express';
 
 @Controller('service-provider')
 export class ServiceProviderController {
@@ -60,11 +69,17 @@ export class ServiceProviderController {
   }
 
   @Post('register')
+  @UseInterceptors(FilesInterceptor('properties[0][files][]', 1))
   async register(
     @Body() body: ServiceProviderRegisterReqBodyDto,
     @Query() query: ServiceProviderRegisterReqQueryDto,
+    files: Express.Multer.File[],
   ) {
-    return await this.serviceProviderRegisterUsecase.execute({ body, query });
+    return await this.serviceProviderRegisterUsecase.execute({
+      body,
+      query,
+      files,
+    });
   }
 
   @Get('service-categories/list')

@@ -24,6 +24,9 @@ export class Application extends BaseEntity {
   refEntityId: number;
 
   @Column({ nullable: true })
+  businessId?: string;
+
+  @Column({ nullable: true })
   refEntityName: string;
 
   @AfterLoad()

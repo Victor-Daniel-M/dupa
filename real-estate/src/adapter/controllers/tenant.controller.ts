@@ -67,9 +67,9 @@ export class TenantController {
     private tenantLoginUsecase: TenantsLoginUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.TenantsRegisterUsecase)
     private tenantRegisterUsecase: TenantsRegisterUsecase,
-    @Inject(REAL_ESTATE_TYPES.useCases.TenantsRegisterUsecase)
-    private tenantCreateComplaintUsecase: TenantComplaintsCreateComplaintUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.TenantComplaintsCreateComplaintUsecase)
+    private tenantCreateComplaintUsecase: TenantComplaintsCreateComplaintUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.TenantComplaintsDeleteComplaintUsecase)
     private tenantDeleteComplaintUsecase: TenantComplaintsDeleteComplaintUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.TenantComplaintsUpdateComplaintUsecase)
     private tenantUpdateComplaintUsecase: TenantComplaintsUpdateComplaintUsecase,
@@ -118,7 +118,7 @@ export class TenantController {
     });
   }
 
-  @Post('create-complaint')
+  @Post('complaints/create')
   async createComplaint(
     @Body() body: TenantComplaintsCreateComplaintReqBodyDto,
     @Query() query: TenantComplaintsCreateComplaintReqQueryDto,
@@ -180,7 +180,7 @@ export class TenantController {
     });
   }
 
-  @Post('payments-make')
+  @Post('payments/pay-rent')
   async makePayment(
     @Body() body: TenantPaymentsMakePaymentReqBodyDto,
     @Query() query: TenantPaymentsMakePaymentReqQueryDto,

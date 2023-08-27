@@ -32,6 +32,9 @@ import {
   OwnerTenantsUpdateTenantUsecase,
 } from './index';
 import { REAL_ESTATE_TYPES } from '../../types';
+import { OwnerSendTenancyAgreementUsecase } from './tenancies-send-agreement';
+import { OwnerUpdateComplaintUsecase } from './complaints-update';
+import { OwnerPaymentsViewListUsecase } from './payments-view-list';
 
 export const ownerUsecaseProviders = [
   {
@@ -158,5 +161,17 @@ export const ownerUsecaseProviders = [
   {
     provide: REAL_ESTATE_TYPES.useCases.OwnerTenantsUpdateTenantUsecase,
     useClass: OwnerTenantsUpdateTenantUsecase,
+  },
+  {
+    provide: REAL_ESTATE_TYPES.useCases.OwnerSendTenancyAgreementUsecase,
+    useClass: OwnerSendTenancyAgreementUsecase,
+  },
+  {
+    provide: REAL_ESTATE_TYPES.useCases.OwnerUpdateComplaintUsecase,
+    useClass: OwnerUpdateComplaintUsecase,
+  },
+  {
+    provide: REAL_ESTATE_TYPES.useCases.OwnerPaymentsViewListUsecase,
+    useClass: OwnerPaymentsViewListUsecase,
   },
 ];

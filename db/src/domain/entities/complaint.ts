@@ -8,7 +8,7 @@ export const complaintStatusTypes = [
   'NOT_YET_RECEIVED',
   'RECEIVED',
 ] as const;
-export type complaintStatusType = (typeof complaintStatusTypes)[number];
+export type ComplaintStatusType = (typeof complaintStatusTypes)[number];
 
 @Entity('Complaint')
 export class Complaint extends BaseEntity {
@@ -26,8 +26,8 @@ export class Complaint extends BaseEntity {
   @Column({ nullable: true })
   title: string;
 
-  @Column({ nullable: true })
-  status: complaintStatusType;
+  @Column({ nullable: true, default: 'PENDING' })
+  status?: ComplaintStatusType;
 
   @Column({ nullable: true })
   description: string;

@@ -51,6 +51,9 @@ export const REAL_ESTATE_TYPES = {
     OwnerTenantsListTenantsUsecase: 'OwnerTenantsListTenantsUsecase',
     OwnerTenantsSendRentReminderUsecase: 'OwnerTenantsSendRentReminderUsecase',
     OwnerTenantsUpdateTenantUsecase: 'OwnerTenantsUpdateTenantUsecase',
+    OwnerSendTenancyAgreementUsecase: 'OwnerSendTenancyAgreementUsecase',
+    OwnerUpdateComplaintUsecase: 'OwnerUpdateComplaintUsecase',
+    OwnerPaymentsViewListUsecase: 'OwnerPaymentsViewListUsecase',
 
     // Realtor
     RealtorLoginUsecase: 'RealtorLoginUsecase',
@@ -67,6 +70,7 @@ export const REAL_ESTATE_TYPES = {
     RealtorViewSalesListPropertyUsecase: 'RealtorViewSalesListPropertyUsecase',
     RealtorReactToVisitRequestUsecase: 'RealtorReactToVisitRequestUsecase',
     RealtorViewVisitRequestsUsecase: 'RealtorViewVisitRequestsUsecase',
+    RealtorCreateScheduleUsecase: 'RealtorCreateScheduleUsecase',
 
     // Searcher
     SearcherListingsBookUsecase: 'SearcherListingsBookUsecase',
@@ -80,6 +84,13 @@ export const REAL_ESTATE_TYPES = {
     SearcherRequestVisitUsecase: 'SearcherRequestVisitUsecase',
     SearcherRegisterUsecase: 'SearcherRegisterUsecase',
     SearcherCancelVisitUsecase: 'SearcherCancelVisitUsecase',
+    SearcherViewListingListUsecase: 'SearcherViewListingListUsecase',
+    SearcherReactionsCreateUsecase: 'SearcherReactionsCreateUsecase',
+    SearcherCreateScheduleApplicationUsecase:
+      'SearcherCreateScheduleApplicationUsecase',
+    SearcherViewTenancyAgreementUsecase: 'SearcherViewTenancyAgreementUsecase',
+    SearcherAcceptTenancyAgreementUsecase:
+      'SearcherAcceptTenancyAgreementUsecase',
 
     // Tenant
     TenantsLoginUsecase: 'TenantsLoginUsecase',
@@ -136,5 +147,9 @@ export const REAL_ESTATE_TYPES = {
     // STATISTICS
     StatisticsCountsGraphsUsecase: 'StatisticsCountsGraphsUsecase',
     StatisticsCountsViewUsecase: 'StatisticsCountsViewUsecase',
+
+    // ADVANCED USECASES
+    AdvancedCreateUserPropertyUsecase: 'AdvancedCreateUserPropertyUsecase',
+    AdvancedGetUserPropertiesUsecase: 'AdvancedGetUserPropertiesUsecase',
   },
 };

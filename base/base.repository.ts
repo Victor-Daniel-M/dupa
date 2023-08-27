@@ -72,11 +72,45 @@ export class BaseRepository<T extends BaseEntity>
   }
 
   getBy({ key, value }: { key: keyof T; value: any }): Promise<T[]> {
+    const repositoryName = this.genericRepository.metadata.name;
+
     try {
       return <Promise<T[]>>this.genericRepository
         .createQueryBuilder()
         .where(`${String(key)} = :value`, { value })
-        .execute();
+        .select(`${repositoryName}`)
+        .getMany();
+    } catch (error) {
+      throw new BadGatewayException(error);
+    }
+  }
+
+  getOneBy({ key, value }: { key: keyof T; value: any }): Promise<T> {
+    const repositoryName = this.genericRepository.metadata.name;
+
+    try {
+      return <Promise<T>>this.genericRepository
+        .createQueryBuilder()
+        .where(`${String(key)} = :value`, { value })
+        .select(`${repositoryName}`)
+        .getOne();
+    } catch (error) {
+      throw new BadGatewayException(error);
+    }
+  }
+
+  getIn({ key, list }: { key: keyof T; list: any[] }): Promise<T[]> {
+    const repositoryName = this.genericRepository.metadata.name;
+
+    console.log('repositoryName:', repositoryName, list);
+
+    try {
+      return <Promise<T[]>>this.genericRepository
+        .createQueryBuilder()
+        .where(`${repositoryName}.${String(key)} IN (:...ids)`, {
+          ids: list,
+        })
+        .getMany();
     } catch (error) {
       throw new BadGatewayException(error);
     }
@@ -114,16 +148,20 @@ export class BaseRepository<T extends BaseEntity>
     }
   }
 
-  update(entity: any): Promise<any> {
+  update(entity: Partial<T>): Promise<any> {
+    // @ts-ignore
     delete entity.label;
+    // @ts-ignore
     delete entity.value;
     delete entity.updatedAt;
     delete entity.createdAt;
 
     try {
       return new Promise<any>(async (resolve, reject) => {
+        // @ts-ignore
         await this.genericRepository.update(entity.id, entity);
         await this.genericRepository
+          // @ts-ignore
           .findOneById(entity.id)
           .then((responseGet) => {
             try {

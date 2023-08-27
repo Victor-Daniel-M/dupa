@@ -1,6 +1,12 @@
-import { ApplicationType, ReactionType } from '@db/domain/entities';
+import {
+  ApplicationType,
+  DayOfWeek,
+  ReactionType,
+  ScheduleType,
+} from '@db/domain/entities';
 import { IsEmail, IsNotEmpty } from 'class-validator';
 import { ApplicationDto, MessageDto, ReactionDto } from './general.dto';
+import { BusinessAndUserQueryDto, UserQueryDto } from './owner.controllers.dto';
 
 class RealtorRegistrationPropertiesDto {
   title: string;
@@ -42,7 +48,7 @@ export class RealtorReactToVisitRequestReqQueryDto {}
 
 // property list
 export class RealtorViewPropertyListReqBodyDto {}
-export class RealtorViewPropertyListReqQueryDto {}
+export class RealtorViewPropertyListReqQueryDto extends UserQueryDto {}
 
 // Owner list
 export class RealtorViewOwnerListReqBodyDto {}
@@ -75,6 +81,19 @@ export class RealtorViewSalesListPropertyReqQueryDto {}
 // Get sales list
 export class RealtorRecordPropertySaleReqBodyDto {}
 export class RealtorRecordPropertySaleReqQueryDto {}
+
+// create schedule
+export class RealtorCreateScheduleReqBodyDto {
+  fromEntityId: number;
+  fromEntityName: string;
+  toEntityId: number;
+  toEntityName: string;
+  scheduleType: ScheduleType;
+  openAt: string;
+  closeAt: string;
+  dayOfWeek: DayOfWeek;
+}
+export class RealtorCreateScheduleReqQueryDto {}
 
 // Realtor login
 export class RealtorLoginDto {}

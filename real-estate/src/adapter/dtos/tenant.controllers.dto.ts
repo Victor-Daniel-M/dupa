@@ -3,7 +3,12 @@ import { IsEmail, IsNotEmpty } from 'class-validator';
 import { ApplicationDto, MessageDto, ReactionDto } from './general.dto';
 
 // complaints create complaint
-export class TenantComplaintsCreateComplaintReqBodyDto {}
+export class TenantComplaintsCreateComplaintReqBodyDto {
+  propertyId: number;
+  userId: number;
+  title: string;
+  description: string;
+}
 export class TenantComplaintsCreateComplaintReqQueryDto {}
 
 // complaints delete complaint
@@ -15,7 +20,14 @@ export class TenantComplaintsUpdateComplaintReqBodyDto {}
 export class TenantComplaintsUpdateComplaintReqQueryDto {}
 
 // payments make payment
-export class TenantPaymentsMakePaymentReqBodyDto {}
+export class TenantPaymentsMakePaymentReqBodyDto {
+  entityId: number;
+  entityName: string;
+  userId: number;
+  paymentMethodId: number;
+  paymentCategoryId: number;
+  amount: number;
+}
 export class TenantPaymentsMakePaymentReqQueryDto {}
 
 // products apply for product

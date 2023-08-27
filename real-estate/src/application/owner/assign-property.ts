@@ -1,26 +1,23 @@
 import { OwnerAssignPropertyDto } from 'real-estate/src/adapter/dtos/owner.controllers.dto';
-import { DB_TYPES } from '@db/types';
-import { UserPropertyRepositoryImpl } from '@db/infrastructure/repositories/user-properties-repository';
 import { Inject } from '@nestjs/common';
+import { REAL_ESTATE_TYPES } from '@real-estate/types';
+import { AdvancedCreateUserPropertyUsecase } from '../general';
 
 export class OwnerAssignPropertyUsecase {
   constructor(
-    @Inject(DB_TYPES.repositories.UserPropertyRepositoryImpl)
-    private userPropertyRepository: UserPropertyRepositoryImpl,
+    @Inject(REAL_ESTATE_TYPES.useCases.AdvancedCreateUserPropertyUsecase)
+    private advancedCreateUserPropertyUsecase: AdvancedCreateUserPropertyUsecase,
   ) {}
 
   async execute(data: { body: OwnerAssignPropertyDto }) {
     const { propertyId, userId, userPropertyType } = data.body;
 
-    await this.userPropertyRepository.deleteBy({
-      key: 'userPropertyType',
-      value: 'BROKER',
-    });
-
-    return await this.userPropertyRepository.create({
-      propertyId,
-      userId,
-      userPropertyType,
+    return await this.advancedCreateUserPropertyUsecase.execute({
+      body: {
+        propertyId,
+        userId,
+        userPropertyType,
+      },
     });
   }
 }

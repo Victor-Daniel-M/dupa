@@ -18,3 +18,5 @@ export class Business extends BaseEntity {
   @Column({ nullable: true })
   type: BusinessType;
 }
+
+//TODO: Think about locations

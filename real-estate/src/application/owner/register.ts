@@ -54,12 +54,12 @@ export class OwnerRegisterUsecase {
     const propertyOne = data.body.properties[0];
 
     const createdProperty = await this.propertyRepository.create({
-      cost: propertyOne.cost,
+      cost: Number(propertyOne.cost),
       coverImage: res.Location,
       description: propertyOne.description,
       openDate: propertyOne.openDate,
       title: propertyOne.title,
-      propertyCategoryId: propertyOne.propertyCategoryId,
+      propertyCategoryId: Number(propertyOne.propertyCategoryId),
       businessId: business.id!,
     });
 

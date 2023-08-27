@@ -1,5 +1,19 @@
+import { ComplaintStatusType } from '@db/domain/entities';
 import { UserPropertyType } from '@db/domain/entities/userProperties';
 import { IsEmail, IsNotEmpty } from 'class-validator';
+
+export class UserQueryDto {
+  userId: string;
+}
+
+export class BusinessQueryDto {
+  businessId: string;
+}
+
+export class BusinessAndUserQueryDto {
+  userId: string;
+  businessId: string;
+}
 
 class OwnerRegistrationPropertiesDto {
   title: string;
@@ -31,6 +45,11 @@ export class OwnerAssignPropertyDto {
   userPropertyType: UserPropertyType;
 }
 
+export class GetUserPropertiesReqQueryDto {
+  propertyId?: string;
+  userId?: string;
+}
+
 export class SendTenancyAgreementByOwner {
   propertyId: number;
   userId: number;
@@ -59,7 +78,7 @@ export class OwnerResolveComplaintsReqQueryDto {}
 
 // listings view list
 export class OwnerListingsViewListReqBodyDto {}
-export class OwnerListingsViewListReqQueryDto {}
+export class OwnerListingsViewListReqQueryDto extends BusinessAndUserQueryDto {}
 
 // payments collect payment
 export class OwnerPaymentsCollectPaymentReqBodyDto {}
@@ -82,7 +101,11 @@ export class OwnerProductsViewListReqBodyDto {}
 export class OwnerProductsViewListReqQueryDto {}
 
 // properties pair with user
-export class OwnerPropertiesPairWithUserReqBodyDto {}
+export class OwnerPropertiesPairWithUserReqBodyDto {
+  propertyId: number;
+  userId: number;
+  userPropertyType: UserPropertyType;
+}
 export class OwnerPropertiesPairWithUserReqQueryDto {}
 
 // realtors connect with realtors
@@ -110,8 +133,19 @@ export class OwnerServicesRequestServiceReqBodyDto {}
 export class OwnerServicesRequestServiceReqQueryDto {}
 
 // tenancies create agreement
-export class OwnerTenanciesCreateAgreementReqBodyDto {}
+export class OwnerTenanciesCreateAgreementReqBodyDto {
+  propertyId: number;
+  description: string;
+}
 export class OwnerTenanciesCreateAgreementReqQueryDto {}
+
+// send tenancy agreement
+export class OwnerSendTenancyAgreementReqBodyDto {
+  propertyId: number;
+  userId: number;
+  tenancyAgreementId: number;
+}
+export class OwnerSendTenancyAgreementReqQueryDto {}
 
 // tenancies delete agreement
 export class OwnerTenanciesDeleteAgreementReqBodyDto {}
@@ -144,3 +178,15 @@ export class OwnerTenantsSendRentReminderReqQueryDto {}
 // tenants update tenant
 export class OwnerTenantsUpdateTenantReqBodyDto {}
 export class OwnerTenantsUpdateTenantReqQueryDto {}
+
+// Update complaing
+export class OwnerUpdateComplaintReqBodyDto {
+  id: number;
+  status: ComplaintStatusType;
+}
+export class OwnerUpdateComplaintReqQueryDto {}
+
+export class OwnerPaymentsViewListReqBodyDto {}
+export class OwnerPaymentsViewListReqQueryDto {
+  paymentCategoryId: string;
+}

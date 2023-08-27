@@ -26,6 +26,7 @@ export class RealtorRequestToRepresentUsecase {
       refEntityId,
       refEntityName,
       userId,
+      businessId,
     });
 
     return { record: createdApplication };

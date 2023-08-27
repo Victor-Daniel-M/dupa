@@ -19,7 +19,30 @@ export class ServiceProviderApplicationsReactReqBodyDto {}
 export class ServiceProviderApplicationsReactReqQueryDto {}
 
 // register
-export class ServiceProviderRegisterReqBodyDto {}
+class ServiceProviderRegistrationOfferingsDto {
+  title: string;
+  description: string;
+  coverImage: string;
+  cost: number;
+  openDate: string;
+  propertyCategoryId: number;
+}
+
+export class ServiceProviderRegisterReqBodyDto {
+  phoneNumber: string;
+  firstName: string;
+  lastName: string;
+  nationalId: string;
+  password: string;
+
+  businessName: string;
+
+  @IsNotEmpty()
+  @IsEmail()
+  email: string;
+
+  offerings: ServiceProviderRegistrationOfferingsDto[];
+}
 export class ServiceProviderRegisterReqQueryDto {}
 
 // service categories list

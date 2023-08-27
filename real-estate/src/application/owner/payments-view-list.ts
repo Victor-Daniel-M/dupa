@@ -3,16 +3,16 @@ import { PropertyRepositoryImpl } from '@db/infrastructure/repositories/properti
 import { DB_TYPES } from '@db/types';
 import { Inject } from '@nestjs/common';
 import {
-  TenantPaymentsMakePaymentReqBodyDto,
-  TenantPaymentsMakePaymentReqQueryDto,
-} from '@real-estate/adapter/dtos/tenant.controllers.dto';
+  OwnerPaymentsViewListReqBodyDto,
+  OwnerPaymentsViewListReqQueryDto,
+} from '@real-estate/adapter/dtos/owner.controllers.dto';
 
 type ExecuteInput = {
-  body: TenantPaymentsMakePaymentReqBodyDto;
-  query: TenantPaymentsMakePaymentReqQueryDto;
+  body: OwnerPaymentsViewListReqBodyDto;
+  query: OwnerPaymentsViewListReqQueryDto;
 };
 
-export class TenantPaymentsMakePaymentUsecase {
+export class OwnerPaymentsViewListUsecase {
   constructor(
     @Inject(DB_TYPES.repositories.PaymentRepositoryImpl)
     private paymentRepositoryImpl: PaymentRepositoryImpl,
@@ -21,8 +21,14 @@ export class TenantPaymentsMakePaymentUsecase {
   async execute(data: ExecuteInput) {
     const { body, query } = data;
 
-    const payment = await this.paymentRepositoryImpl.create(body);
+    const paginatedPayments = await this.paymentRepositoryImpl.getAllPaginated({
+      findOptions: {
+        where: {
+          paymentCategoryId: query.paymentCategoryId,
+        },
+      },
+    });
 
-    return { record: payment };
+    return paginatedPayments;
   }
 }

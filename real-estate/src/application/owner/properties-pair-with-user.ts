@@ -1,4 +1,5 @@
 import { PropertyRepositoryImpl } from '@db/infrastructure/repositories/properties-repository';
+import { UserPropertyRepositoryImpl } from '@db/infrastructure/repositories/user-properties-repository';
 import { DB_TYPES } from '@db/types';
 import { Inject } from '@nestjs/common';
 import {
@@ -13,15 +14,15 @@ type ExecuteInput = {
 
 export class OwnerPropertiesPairWithUserUsecase {
   constructor(
-    @Inject(DB_TYPES.repositories.PropertyRepositoryImpl)
-    private propertyRepositoryImpl: PropertyRepositoryImpl,
+    @Inject(DB_TYPES.repositories.UserPropertyRepositoryImpl)
+    private userPropertyRepositoryImpl: UserPropertyRepositoryImpl,
   ) {}
 
   async execute(data: ExecuteInput) {
     const { body, query } = data;
 
-    // Implement your logic for pairing properties with a user here
+    const userProperty = await this.userPropertyRepositoryImpl.create(body);
 
-    return {};
+    return { record: userProperty };
   }
 }

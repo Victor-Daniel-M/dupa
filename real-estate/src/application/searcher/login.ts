@@ -18,7 +18,7 @@ export class SearcherLoginUsecase {
   }) {
     const { body } = data;
 
-    const userByEmail = await this.usersRepository.getBy({
+    const userByEmail = await this.usersRepository.getOneBy({
       key: 'email',
       value: body.email,
     });

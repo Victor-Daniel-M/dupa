@@ -113,3 +113,9 @@ ipconfig | findstr /C:"IPv4 Address"
   110  npx pm2 describe main --namespace incloy_test &> /dev/null && npx pm2 delete incloy_test
   111  npm install -g pm2
   112  history
+
+  docker run \
+  --rm -it \
+  -p 4566:4566 \
+  -p 4510-4559:4510-4559 \
+  localstack/localstack

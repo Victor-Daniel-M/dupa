@@ -10,7 +10,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   // await app.listen(3000, process.env.HOST!);
   if (CONSTANTS.NODE_ENV == 'development') {
-    await app.listen(5001);
+    await app.listen(5001, '192.168.43.44');
   } else {
     await app.listen(5000);
   }

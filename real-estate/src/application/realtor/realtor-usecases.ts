@@ -15,6 +15,7 @@ import {
   RealtorReactToVisitRequestUsecase,
   RealtorViewVisitRequestsUsecase,
 } from './index';
+import { RealtorCreateScheduleUsecase } from './schedules-create';
 
 const realtorLoginUsecase = {
   provide: REAL_ESTATE_TYPES.useCases.RealtorLoginUsecase,
@@ -86,6 +87,11 @@ const realtorViewVisitRequestsUsecase = {
   useClass: RealtorViewVisitRequestsUsecase,
 };
 
+const realtorCreateScheduleUsecase = {
+  provide: REAL_ESTATE_TYPES.useCases.RealtorCreateScheduleUsecase,
+  useClass: RealtorCreateScheduleUsecase,
+};
+
 export const realtorUsecaseProviders = [
   realtorLoginUsecase,
   realtorCreateMessageUsecase,
@@ -101,4 +107,5 @@ export const realtorUsecaseProviders = [
   realtorViewSalesListPropertyUsecase,
   realtorReactToVisitRequestUsecase,
   realtorViewVisitRequestsUsecase,
+  realtorCreateScheduleUsecase,
 ];
