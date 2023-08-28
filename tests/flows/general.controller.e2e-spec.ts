@@ -25,6 +25,7 @@ import { PaymentCategory } from '@db/domain/entities/paymentCategory';
 import { Payment } from '@db/domain/entities/payment';
 import { Complaint } from '@db/domain/entities/complaint';
 import { Business } from '@db/domain/entities/business';
+import { ProviderApplyForOfferingCategoryReqBodyDto } from '@real-estate/adapter/dtos/provider.controllers.dto';
 
 function formatRes(res: any) {
   console.log(JSON.stringify(res));
@@ -35,18 +36,23 @@ describe('Owner', () => {
   let moduleRef: TestingModule;
   let realtorBusiness: Business | null;
   let ownerBusiness: Business | null;
+  let providerBusiness: Business | null;
   let realtorUser: User | null;
   let ownerUser: User | null;
+  let providerUser: User | null;
   let searcherUser: User | null;
   let realtorOffering: Offering | null;
   let realtorSchedule: Schedule | null;
   let ownerOffering: Offering | null;
+  let providerOffering: Offering | null;
   let ownerAgreement: TenancyAgreement | null;
   let searcherAgreement: TenancyAgreement | null;
   let mmPaymentMethod: PaymentMethod | null;
   let rentPaymentCategory: PaymentCategory | null;
   let tenantComplaint: Complaint | null;
   let rentPayment: Payment | null;
+  let providerApplicationForOfferingCategory: Application | null;
+  let ownerApplicationOfferingCategory: Application | null;
 
   beforeAll(async () => {
     const testingModule = Test.createTestingModule({
@@ -765,18 +771,257 @@ describe('Owner', () => {
       });
   });
 
-  it.todo('provider register');
-  it.todo('provider login');
-  it.todo('provider apply to provide a given product or service');
-  it.todo('admin view applications');
-  it.todo('admin react applications');
-  it.todo('provider view applications');
-  it.todo('owner view providers for a given category of product or service');
-  it.todo('owner subscribe for product or service from provider');
-  it.todo('provider view subscriptions');
-  it.todo('provider react subscriptions');
-  it.todo('owner send request for provider providing a service');
-  it.todo('provider receive request from owner requesting a service');
+  // Providdr register
+  it.only('provider register', async () => {
+    return (
+      request(app.getHttpServer())
+        .post('/service-provider/register')
+        .timeout(10000)
+        .type('form')
+        .field('email', 'provider@email.com')
+        .field('offerings[0][cost]', 6_000)
+        .field('offerings[0][coverImage]', '')
+        .field('offerings[0][description]', 'Test')
+        .field('offerings[0][openDate]', moment().toISOString())
+        .field('offerings[0][offeringCategoryId]', '1')
+        .field('offerings[0][title]', 'Test')
+        .attach('offerings[0][files][]', `${__dirname}/pic.test.file.png`)
+        // .attach('offerings[0][files][]', `${__dirname}\\pic.test.file.png`)
+        .expect((res, error) => {
+          formatRes(res);
+
+          providerBusiness = res.body.data.business;
+          providerUser = res.body.data.user;
+          providerOffering = res.body.data.offerings[0];
+
+          expect(res.body).toEqual(
+            expect.objectContaining({
+              message: expect.any(String),
+              statusCode: expect.any(Number),
+            }),
+          );
+
+          expect(res.status).toBe(201);
+        })
+    );
+  });
+
+  // Login
+  it.only('provider login', async () => {
+    const loginDetails = {
+      email: 'provider@email.com',
+    };
+    return request(app.getHttpServer())
+      .post('/service-provider/login')
+      .send(loginDetails as SearcherLoginReqBodyDto)
+
+      .expect((res, error) => {
+        formatRes(res);
+
+        providerUser = res.body.data.user;
+
+        expect(res.body).toEqual(
+          expect.objectContaining({
+            message: expect.any(String),
+            statusCode: expect.any(Number),
+            data: expect.objectContaining({
+              user: expect.objectContaining(loginDetails),
+            }),
+          }),
+        );
+
+        expect(res.status).toBe(201);
+      });
+  });
+
+  it.only('provider apply to provide a given product or service', async () => {
+    const requestToProvideOfferingApplication = {
+      userId: realtorUser?.id,
+      applicationType: 'REQUEST_TO_PROVIDE_OFFERING',
+      refEntityId: 2,
+      refEntityName: 'OFFERING_CATEGORY',
+      businessId: providerBusiness?.id,
+    } as ProviderApplyForOfferingCategoryReqBodyDto;
+
+    return request(app.getHttpServer())
+      .post(`/service-provider/services/apply-for-offering-category`)
+      .send(requestToProvideOfferingApplication)
+      .expect((res, error) => {
+        formatRes(res);
+
+        providerApplicationForOfferingCategory = res.body.data.record;
+
+        expect(res.body).toEqual(
+          expect.objectContaining({
+            message: expect.any(String),
+            statusCode: expect.any(Number),
+            data: expect.objectContaining({
+              record: expect.objectContaining(
+                requestToProvideOfferingApplication,
+              ),
+            }),
+          }),
+        );
+
+        expect(res.status).toBe(201);
+      });
+  });
+
+  it.only('admin view applications', async () => {
+    return request(app.getHttpServer())
+      .get('/applications/paginated')
+
+      .expect((res, error) => {
+        formatRes(res);
+
+        mmPaymentMethod = res.body.data.record;
+
+        expect(res.body).toEqual(
+          expect.objectContaining({
+            message: expect.any(String),
+            statusCode: expect.any(Number),
+            data: expect.objectContaining({
+              records: expect.arrayContaining([
+                expect.objectContaining(providerApplicationForOfferingCategory),
+              ]),
+            }),
+          }),
+        );
+
+        expect(res.status).toBe(200);
+      });
+  });
+
+  it.only('admin react applications', async () => {
+    const acceptToProvideOfferingApplication = {
+      id: providerApplicationForOfferingCategory?.id,
+      status: 'ACCEPTED',
+    } as Partial<Application>;
+
+    return request(app.getHttpServer())
+      .put(`/applications/update`)
+      .send(acceptToProvideOfferingApplication)
+      .expect((res, error) => {
+        formatRes(res);
+
+        providerApplicationForOfferingCategory = res.body.data.record;
+
+        expect(res.body).toEqual(
+          expect.objectContaining({
+            message: expect.any(String),
+            statusCode: expect.any(Number),
+            data: expect.objectContaining({
+              record: expect.objectContaining(
+                acceptToProvideOfferingApplication,
+              ),
+            }),
+          }),
+        );
+
+        expect(res.status).toBe(200);
+      });
+  });
+
+  it.only('provider view applications', async () => {
+    return request(app.getHttpServer())
+      .get('/service-provider/applications/list')
+
+      .expect((res, error) => {
+        formatRes(res);
+
+        expect(res.body).toEqual(
+          expect.objectContaining({
+            message: expect.any(String),
+            statusCode: expect.any(Number),
+            data: expect.objectContaining({
+              records: expect.arrayContaining([
+                expect.objectContaining(providerApplicationForOfferingCategory),
+              ]),
+            }),
+          }),
+        );
+
+        expect(res.status).toBe(200);
+      });
+  });
+
+  it.only('owner view providers for a given category of product or service', async () => {
+    return request(app.getHttpServer())
+      .get(`/owner/providers/offering-category/list?offeringCategoryId=${2}`)
+
+      .expect((res, error) => {
+        formatRes(res);
+
+        expect(res.body).toEqual(
+          expect.objectContaining({
+            message: expect.any(String),
+            statusCode: expect.any(Number),
+            data: expect.objectContaining({
+              records: expect.arrayContaining([
+                expect.objectContaining(providerBusiness),
+              ]),
+            }),
+          }),
+        );
+
+        expect(res.status).toBe(200);
+      });
+  });
+
+  it.only('owner send request for provider providing an offering', async () => {
+    const requestOfferingApplication = {
+      userId: realtorUser?.id,
+      refEntityId: 2,
+    } as Application;
+
+    return request(app.getHttpServer())
+      .post(`/owner/providers/request-offering`)
+      .send(requestOfferingApplication)
+      .expect((res, error) => {
+        formatRes(res);
+
+        ownerApplicationOfferingCategory = res.body.data.record;
+
+        if (error) {
+          console.log(error);
+        }
+
+        expect(res.body).toEqual(
+          expect.objectContaining({
+            message: expect.any(String),
+            statusCode: expect.any(Number),
+            data: expect.objectContaining({
+              record: expect.objectContaining(requestOfferingApplication),
+            }),
+          }),
+        );
+
+        expect(res.status).toBe(201);
+      });
+  });
+
+  it.only('provider receive request from owner requesting a service', async () => {
+    return request(app.getHttpServer())
+      .get('/owner/applications/list')
+
+      .expect((res, error) => {
+        formatRes(res);
+
+        expect(res.body).toEqual(
+          expect.objectContaining({
+            message: expect.any(String),
+            statusCode: expect.any(Number),
+            data: expect.objectContaining({
+              records: expect.arrayContaining([
+                expect.objectContaining({ refEntityId: 2 }),
+              ]),
+            }),
+          }),
+        );
+
+        expect(res.status).toBe(200);
+      });
+  });
 
   afterAll(async () => {
     // await UserModel.deleteMany({});

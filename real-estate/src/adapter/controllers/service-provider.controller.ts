@@ -7,10 +7,15 @@ import {
   Body,
   Query,
   UseInterceptors,
+  UploadedFiles,
 } from '@nestjs/common';
 import {
+  ProviderApplyForOfferingCategoryReqBodyDto,
+  ProviderApplyForOfferingCategoryReqQueryDto,
   ServiceProviderApplicationsReactReqBodyDto,
   ServiceProviderApplicationsReactReqQueryDto,
+  ServiceProviderLoginReqBodyDto,
+  ServiceProviderLoginReqQueryDto,
   ServiceProviderRegisterReqBodyDto,
   ServiceProviderRegisterReqQueryDto,
   ServiceProviderServiceCategoriesListReqQueryDto,
@@ -21,6 +26,8 @@ import {
   ServiceProviderSubscriptionsInitiateTerminateReqBodyDto,
   ServiceProviderSubscriptionsInitiateTerminateReqQueryDto,
   ServiceProviderSubscriptionsListReqQueryDto,
+  ServiceProviderViewApplicationsListReqBodyDto,
+  ServiceProviderViewApplicationsListReqQueryDto,
 } from '@real-estate/adapter/dtos/provider.controllers.dto';
 import {
   ServiceProviderApplicationsReactUsecase,
@@ -32,8 +39,13 @@ import {
   ServiceProviderSubscriptionsListUsecase,
 } from '@real-estate/application/service-provider'; // Update the path
 import { FilesInterceptor } from '@nestjs/platform-express';
+import { ResponseInterceptor } from '@common/filters-interceptors/src';
+import { ServiceProviderLoginUsecase } from '@real-estate/application/service-provider/login';
+import { ServiceProviderApplyForOfferingCategoryUsecase } from '@real-estate/application/service-provider/applications-apply-to-provide-offering';
+import { ServiceProviderApplicationsListUsecase } from '@real-estate/application/service-provider/applications-list';
 
 @Controller('service-provider')
+@UseInterceptors(ResponseInterceptor)
 export class ServiceProviderController {
   constructor(
     @Inject(REAL_ESTATE_TYPES.useCases.ServiceProviderApplicationsReactUsecase)
@@ -55,6 +67,14 @@ export class ServiceProviderController {
     private serviceProviderSubscriptionsInitiateTerminateUsecase: ServiceProviderSubscriptionsInitiateTerminateUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.ServiceProviderSubscriptionsListUsecase)
     private serviceProviderSubscriptionsListUsecase: ServiceProviderSubscriptionsListUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.ServiceProviderLoginUsecase)
+    private serviceProviderLoginUsecase: ServiceProviderLoginUsecase,
+    @Inject(
+      REAL_ESTATE_TYPES.useCases.ServiceProviderApplyForOfferingCategoryUsecase,
+    )
+    private serviceProviderApplyForOfferingCategoryUsecase: ServiceProviderApplyForOfferingCategoryUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.ServiceProviderApplicationsListUsecase)
+    private serviceProviderApplicationsListUsecase: ServiceProviderApplicationsListUsecase,
   ) {}
 
   @Post('applications/react')
@@ -73,12 +93,24 @@ export class ServiceProviderController {
   async register(
     @Body() body: ServiceProviderRegisterReqBodyDto,
     @Query() query: ServiceProviderRegisterReqQueryDto,
+    @UploadedFiles()
     files: Express.Multer.File[],
   ) {
     return await this.serviceProviderRegisterUsecase.execute({
       body,
       query,
       files,
+    });
+  }
+
+  @Post('login')
+  async login(
+    @Body() body: ServiceProviderLoginReqBodyDto,
+    @Query() query: ServiceProviderLoginReqQueryDto,
+  ) {
+    return await this.serviceProviderLoginUsecase.execute({
+      body,
+      query,
     });
   }
 
@@ -98,6 +130,28 @@ export class ServiceProviderController {
     @Body() body: ServiceProviderServicesApplyReqBodyDto,
   ) {
     return await this.serviceProviderServicesApplyUsecase.execute({
+      query,
+      body,
+    });
+  }
+
+  @Post('services/apply-for-offering-category')
+  async applyForOfferingCategory(
+    @Body() body: ProviderApplyForOfferingCategoryReqBodyDto,
+    @Query() query: ProviderApplyForOfferingCategoryReqQueryDto,
+  ) {
+    return await this.serviceProviderApplyForOfferingCategoryUsecase.execute({
+      query,
+      body,
+    });
+  }
+
+  @Get('applications/list')
+  async applicationsList(
+    @Body() body: ServiceProviderViewApplicationsListReqBodyDto,
+    @Query() query: ServiceProviderViewApplicationsListReqQueryDto,
+  ) {
+    return await this.serviceProviderApplicationsListUsecase.execute({
       query,
       body,
     });

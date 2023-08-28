@@ -1,34 +1,29 @@
 import { ApplicationRepositoryImpl } from '@db/infrastructure/repositories/applications-repository';
+import { UserRepositoryImpl } from '@db/infrastructure/repositories/users-repository';
 import { DB_TYPES } from '@db/types';
 import { Inject } from '@nestjs/common';
 import {
-  RealtorRequestToRepresentReqBodyDto,
-  RealtorRequestToRepresentReqQueryDto,
-} from '@real-estate/adapter/dtos/realtor.controllers.dto';
+  ProviderApplyForOfferingCategoryReqBodyDto,
+  ProviderApplyForOfferingCategoryReqQueryDto,
+} from '@real-estate/adapter/dtos/provider.controllers.dto';
 
 type ExecuteInput = {
-  body: RealtorRequestToRepresentReqBodyDto;
-  query: RealtorRequestToRepresentReqQueryDto;
+  body: ProviderApplyForOfferingCategoryReqBodyDto;
+  query: ProviderApplyForOfferingCategoryReqQueryDto;
 };
 
-export class RealtorRequestToRepresentUsecase {
+export class ServiceProviderApplyForOfferingCategoryUsecase {
   constructor(
     @Inject(DB_TYPES.repositories.ApplicationRepositoryImpl)
     private applicationRepositoryImpl: ApplicationRepositoryImpl,
   ) {}
 
   async execute(data: ExecuteInput) {
-    const { applicationType, refEntityId, refEntityName, userId } = data.body;
-    const { businessId } = data.query;
-
+    const { body } = data;
     const createdApplication = await this.applicationRepositoryImpl.create({
-      applicationType: applicationType,
-      refEntityId,
-      refEntityName,
-      userId,
-      businessId: Number(businessId),
+      ...body,
+      applicationType: 'REQUEST_TO_PROVIDE_OFFERING',
     });
-
     return { record: createdApplication };
   }
 }

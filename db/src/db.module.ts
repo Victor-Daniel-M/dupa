@@ -39,6 +39,7 @@ import { ApplicationRepositoryImpl } from './infrastructure/repositories/applica
 import { ComplaintRepositoryImpl } from './infrastructure/repositories/complaints-repository';
 import { BusinessRepositoryImpl } from './infrastructure/repositories/business-repository';
 import { UserBusinessRepositoryImpl } from './infrastructure/repositories/user-business-repository';
+import { BusinessOfferingCategoryRepositoryImpl } from './infrastructure/repositories/businesses-offering-categories';
 
 const repository = {
   provide: DB_TYPES.repositories.Repository,
@@ -125,6 +126,11 @@ const messageRepositoryImpl = {
   useClass: MessageRepositoryImpl,
 };
 
+const businessOfferingCategoryRepositoryImpl = {
+  provide: DB_TYPES.repositories.BusinessOfferingCategoryRepositoryImpl,
+  useClass: BusinessOfferingCategoryRepositoryImpl,
+};
+
 const repositories = [
   Repository,
   BaseRepository,
@@ -179,6 +185,7 @@ const repositories = [
   userBusinessRepositoryImpl,
   requestRepositoryImpl,
   messageRepositoryImpl,
+  businessOfferingCategoryRepositoryImpl,
 ];
 
 @Global()

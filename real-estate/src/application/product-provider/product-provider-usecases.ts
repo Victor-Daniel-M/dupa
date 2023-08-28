@@ -1,15 +1,9 @@
 import { REAL_ESTATE_TYPES } from '@real-estate/types';
 import {
-  ProductProviderApplicationsApplyUsecase,
   ProductProviderApplicationsListUsecase,
   ProductProviderLoginUsecase,
   ProductProviderRegisterUsecase,
-} from './index'; // Update the path
-
-const productProviderApplicationsApplyUsecase = {
-  provide: REAL_ESTATE_TYPES.useCases.ProductProviderApplicationsApplyUsecase,
-  useClass: ProductProviderApplicationsApplyUsecase,
-};
+} from './index';
 
 const productProviderApplicationsListUsecase = {
   provide: REAL_ESTATE_TYPES.useCases.ProductProviderApplicationsListUsecase,
@@ -27,7 +21,6 @@ const productProviderRegisterUsecase = {
 };
 
 export const productProviderUsecaseProviders = [
-  productProviderApplicationsApplyUsecase,
   productProviderApplicationsListUsecase,
   productProviderLoginUsecase,
   productProviderRegisterUsecase,

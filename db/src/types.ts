@@ -17,5 +17,7 @@ export const DB_TYPES = {
     UserBusinessRepositoryImpl: 'UserBusinessRepositoryImpl',
     MessageRepositoryImpl: 'MessageRepositoryImpl',
     RequestRepositoryImpl: 'RequestRepositoryImpl',
+    BusinessOfferingCategoryRepositoryImpl:
+      'BusinessOfferingCategoryRepositoryImpl',
   },
 };

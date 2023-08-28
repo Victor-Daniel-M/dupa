@@ -76,6 +76,7 @@ import {
   OwnerUpdateComplaintReqQueryDto,
   OwnerPaymentsViewListReqBodyDto,
   OwnerPaymentsViewListReqQueryDto,
+  OwnerGetProvidersByOfferingCategoryReqQueryDto,
 } from '../dtos/owner.controllers.dto';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { S3Provider } from 'real-estate/src/infrastructure/services/s3Provider.service';
@@ -117,6 +118,12 @@ import {
 import { OwnerSendTenancyAgreementUsecase } from '@real-estate/application/owner/tenancies-send-agreement';
 import { OwnerUpdateComplaintUsecase } from '@real-estate/application/owner/complaints-update';
 import { OwnerPaymentsViewListUsecase } from '@real-estate/application/owner/payments-view-list';
+import { OwnerGetProvidersByOfferingCategoryUsecase } from '@real-estate/application/owner/providers-by-offering-category';
+import { OwnerApplyForOfferingUsecase } from '@real-estate/application/owner/apply-for-offering';
+import {
+  OwnerApplyForOfferingReqBodyDto,
+  OwnerApplyForOfferingReqQueryDto,
+} from '../dtos/searcher.controllers.dto';
 
 @ApiTags('owner')
 @Controller('owner')
@@ -193,6 +200,12 @@ export class OwnerController {
     private ownerSendTenancyAgreementUsecase: OwnerSendTenancyAgreementUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.OwnerPaymentsViewListUsecase)
     private ownerPaymentsViewListUsecase: OwnerPaymentsViewListUsecase,
+    @Inject(
+      REAL_ESTATE_TYPES.useCases.OwnerGetProvidersByOfferingCategoryUsecase,
+    )
+    private ownerGetProvidersByOfferingCategoryUsecase: OwnerGetProvidersByOfferingCategoryUsecase,
+    @Inject(REAL_ESTATE_TYPES.useCases.OwnerApplyForOfferingUsecase)
+    private ownerApplyForOfferingUsecase: OwnerApplyForOfferingUsecase,
   ) {}
 
   @Post('register')
@@ -471,6 +484,27 @@ export class OwnerController {
   @Get('realtors/view-list')
   async viewRealtorsList(@Query() query: OwnerRealtorsViewListReqQueryDto) {
     return await this.ownerRealtorsViewListUsecase.execute({ query, body: {} });
+  }
+
+  @Get('providers/offering-category/list')
+  async viewProvidersForOfferingCategory(
+    @Query() query: OwnerGetProvidersByOfferingCategoryReqQueryDto,
+  ) {
+    return await this.ownerGetProvidersByOfferingCategoryUsecase.execute({
+      query,
+      body: {},
+    });
+  }
+
+  @Post('providers/request-offering')
+  async requestOffering(
+    @Query() query: OwnerApplyForOfferingReqQueryDto,
+    @Body() body: OwnerApplyForOfferingReqBodyDto,
+  ) {
+    return await this.ownerApplyForOfferingUsecase.execute({
+      query,
+      body,
+    });
   }
 
   @Get('service-providers/view-list')

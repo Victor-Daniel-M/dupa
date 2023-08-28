@@ -86,3 +86,10 @@ export class SearcherViewTenancyAgreementReqBodyDto {}
 export class SearcherViewTenancyAgreementReqQueryDto {
   id: string;
 }
+
+// apply for offering
+export class OwnerApplyForOfferingReqBodyDto {
+  refEntityId: number;
+  userId: number;
+}
+export class OwnerApplyForOfferingReqQueryDto {}

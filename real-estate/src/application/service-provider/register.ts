@@ -41,7 +41,7 @@ export class ServiceProviderRegisterUsecase {
 
     const business = await this.businessRepository.create({
       name: body.businessName,
-      type: 'OWNER',
+      type: 'PROVIDER',
     });
 
     const createdUser = await this.usersRepository.create({
@@ -77,7 +77,5 @@ export class ServiceProviderRegisterUsecase {
       userBusiness,
       business,
     };
-
-    return {};
   }
 }

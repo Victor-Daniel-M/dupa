@@ -36,6 +36,7 @@ import { Complaint } from './domain/entities/complaint';
 import { Business } from './domain/entities/business';
 import { UserBusiness } from './domain/entities/userBusiness';
 import { Request, Resource, Search, Token } from './domain/entities';
+import { BusinessOfferingCategory } from './domain/entities/businessOfferingCategory';
 
 export const models = [
   Action,
@@ -80,4 +81,5 @@ export const models = [
   Resource,
   Search,
   Token,
+  BusinessOfferingCategory,
 ];

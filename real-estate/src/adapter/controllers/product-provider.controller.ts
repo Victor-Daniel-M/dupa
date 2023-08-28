@@ -1,7 +1,6 @@
 import { REAL_ESTATE_TYPES } from '@real-estate/types';
 import { Controller, Inject, Post, Get, Body, Query } from '@nestjs/common';
 import {
-  ProductProviderApplicationsApplyUsecase,
   ProductProviderApplicationsListUsecase,
   ProductProviderLoginUsecase,
   ProductProviderRegisterUsecase,
@@ -9,8 +8,6 @@ import {
 import {
   ProviderApplicationsListReqBodyDto,
   ProviderApplicationsListReqQueryDto,
-  ProviderApplyForProductReqBodyDto,
-  ProviderApplyForProductReqQueryDto,
   ProviderLoginDto,
   ProviderRegisterDto,
   ServiceProviderApplicationsReactReqBodyDto,
@@ -32,8 +29,6 @@ import {
 @Controller('product-provider')
 export class ProductProviderController {
   constructor(
-    @Inject(REAL_ESTATE_TYPES.useCases.ProductProviderApplicationsApplyUsecase)
-    private productProviderApplicationsApplyUsecase: ProductProviderApplicationsApplyUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.ProductProviderApplicationsListUsecase)
     private productProviderApplicationsListUsecase: ProductProviderApplicationsListUsecase,
     @Inject(REAL_ESTATE_TYPES.useCases.ProductProviderLoginUsecase)
@@ -41,17 +36,6 @@ export class ProductProviderController {
     @Inject(REAL_ESTATE_TYPES.useCases.ProductProviderRegisterUsecase)
     private productProviderRegisterUsecase: ProductProviderRegisterUsecase,
   ) {}
-
-  @Post('applications/apply')
-  async applyForApplication(
-    @Body() body: ProviderApplyForProductReqBodyDto,
-    @Query() query: ProviderApplyForProductReqQueryDto,
-  ) {
-    return await this.productProviderApplicationsApplyUsecase.execute({
-      body,
-      query,
-    });
-  }
 
   @Get('applications/list')
   async listApplications(@Query() query: ProviderApplicationsListReqQueryDto) {

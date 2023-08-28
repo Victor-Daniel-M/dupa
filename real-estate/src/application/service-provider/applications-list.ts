@@ -3,16 +3,16 @@ import { OfferingRepositoryImpl } from '@db/infrastructure/repositories/offering
 import { DB_TYPES } from '@db/types';
 import { Inject } from '@nestjs/common';
 import {
-  OwnerViewApplicationsListReqBodyDto,
-  OwnerViewApplicationsListReqQueryDto,
-} from '@real-estate/adapter/dtos/owner.controllers.dto';
+  ServiceProviderViewApplicationsListReqBodyDto,
+  ServiceProviderViewApplicationsListReqQueryDto,
+} from '@real-estate/adapter/dtos/provider.controllers.dto';
 
 type ExecuteInput = {
-  body: OwnerViewApplicationsListReqBodyDto;
-  query: OwnerViewApplicationsListReqQueryDto;
+  body: ServiceProviderViewApplicationsListReqBodyDto;
+  query: ServiceProviderViewApplicationsListReqQueryDto;
 };
 
-export class OwnerApplicationsListUsecase {
+export class ServiceProviderApplicationsListUsecase {
   constructor(
     @Inject(DB_TYPES.repositories.ApplicationRepositoryImpl)
     private applicationRepositoryImpl: ApplicationRepositoryImpl,
@@ -22,10 +22,10 @@ export class OwnerApplicationsListUsecase {
     const {} = data.body;
     const {} = data.query;
 
-    const visitOfferings = await this.applicationRepositoryImpl.getAllPaginated(
+    const applications = await this.applicationRepositoryImpl.getAllPaginated(
       {},
     );
 
-    return visitOfferings;
+    return applications;
   }
 }

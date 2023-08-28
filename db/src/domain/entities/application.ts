@@ -4,8 +4,17 @@ import { AfterLoad, Column, Entity } from 'typeorm';
 export const applicationTypes = [
   'REQUEST_TO_REPRESENT',
   'REQUEST_TO_VISIT',
+  'REQUEST_TO_PROVIDE_OFFERING',
+  'REQUEST_OFFERING',
 ] as const;
 export type ApplicationType = (typeof applicationTypes)[number];
+
+export const applicationStatusTypes = [
+  'ACCEPTED',
+  'REJECTED',
+  'PENDING',
+] as const;
+export type ApplicationStatusType = (typeof applicationStatusTypes)[number];
 
 @Entity('Application')
 export class Application extends BaseEntity {
@@ -24,10 +33,13 @@ export class Application extends BaseEntity {
   refEntityId: number;
 
   @Column({ nullable: true })
-  businessId?: string;
+  businessId?: number;
 
   @Column({ nullable: true })
   refEntityName: string;
+
+  @Column({ nullable: true, default: 'PENDING' })
+  status?: ApplicationStatusType;
 
   @AfterLoad()
   protected generateLabel(): void {

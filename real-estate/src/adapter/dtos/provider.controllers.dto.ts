@@ -1,8 +1,15 @@
+import { ApplicationType } from '@db/domain/entities';
 import { IsEmail, IsNotEmpty } from 'class-validator';
 
 // Provider apply for product
-export class ProviderApplyForProductReqBodyDto {}
-export class ProviderApplyForProductReqQueryDto {}
+export class ProviderApplyForOfferingCategoryReqBodyDto {
+  userId: number;
+  applicationType: ApplicationType;
+  refEntityId: number;
+  businessId: number;
+  refEntityName: string;
+}
+export class ProviderApplyForOfferingCategoryReqQueryDto {}
 
 // Provider apply for product
 export class ProviderApplicationsListReqBodyDto {}
@@ -64,3 +71,14 @@ export class ServiceProviderSubscriptionsInitiateTerminateReqQueryDto {}
 // subscriptions list
 export class ServiceProviderSubscriptionsListReqBodyDto {}
 export class ServiceProviderSubscriptionsListReqQueryDto {}
+
+// service provider login
+export class ServiceProviderLoginReqBodyDto {
+  email: string;
+  password: string;
+}
+export class ServiceProviderLoginReqQueryDto {}
+
+// applications list
+export class ServiceProviderViewApplicationsListReqBodyDto {}
+export class ServiceProviderViewApplicationsListReqQueryDto {}

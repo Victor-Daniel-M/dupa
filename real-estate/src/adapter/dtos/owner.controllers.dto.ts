@@ -190,3 +190,9 @@ export class OwnerPaymentsViewListReqBodyDto {}
 export class OwnerPaymentsViewListReqQueryDto {
   paymentCategoryId: string;
 }
+
+// get providers by category
+export class OwnerGetProvidersByOfferingCategoryReqBodyDto {}
+export class OwnerGetProvidersByOfferingCategoryReqQueryDto {
+  offeringCategoryId: number;
+}

@@ -8,6 +8,9 @@ import {
   ServiceProviderSubscriptionsInitiateTerminateUsecase,
   ServiceProviderSubscriptionsListUsecase,
 } from './index'; // Update the path
+import { ServiceProviderLoginUsecase } from './login';
+import { ServiceProviderApplyForOfferingCategoryUsecase } from './applications-apply-to-provide-offering';
+import { ServiceProviderApplicationsListUsecase } from './applications-list';
 
 const serviceProviderApplicationsReactUsecase = {
   provide: REAL_ESTATE_TYPES.useCases.ServiceProviderApplicationsReactUsecase,
@@ -47,6 +50,22 @@ const serviceProviderSubscriptionsListUsecase = {
   useClass: ServiceProviderSubscriptionsListUsecase,
 };
 
+const serviceProviderLoginUsecase = {
+  provide: REAL_ESTATE_TYPES.useCases.ServiceProviderLoginUsecase,
+  useClass: ServiceProviderLoginUsecase,
+};
+
+const serviceProviderApplicationsApplyUsecase = {
+  provide:
+    REAL_ESTATE_TYPES.useCases.ServiceProviderApplyForOfferingCategoryUsecase,
+  useClass: ServiceProviderApplyForOfferingCategoryUsecase,
+};
+
+const serviceProviderApplicationsListUsecase = {
+  provide: REAL_ESTATE_TYPES.useCases.ServiceProviderApplicationsListUsecase,
+  useClass: ServiceProviderApplicationsListUsecase,
+};
+
 export const serviceProviderUsecaseProviders = [
   serviceProviderApplicationsReactUsecase,
   serviceProviderRegisterUsecase,
@@ -55,4 +74,7 @@ export const serviceProviderUsecaseProviders = [
   serviceProviderServicesCreateUsecase,
   serviceProviderSubscriptionsInitiateTerminateUsecase,
   serviceProviderSubscriptionsListUsecase,
+  serviceProviderLoginUsecase,
+  serviceProviderApplicationsApplyUsecase,
+  serviceProviderApplicationsListUsecase,
 ];

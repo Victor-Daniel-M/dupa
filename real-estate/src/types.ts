@@ -54,6 +54,9 @@ export const REAL_ESTATE_TYPES = {
     OwnerSendTenancyAgreementUsecase: 'OwnerSendTenancyAgreementUsecase',
     OwnerUpdateComplaintUsecase: 'OwnerUpdateComplaintUsecase',
     OwnerPaymentsViewListUsecase: 'OwnerPaymentsViewListUsecase',
+    OwnerGetProvidersByOfferingCategoryUsecase:
+      'OwnerGetProvidersByOfferingCategoryUsecase',
+    OwnerApplyForOfferingUsecase: 'OwnerApplyForOfferingUsecase',
 
     // Realtor
     RealtorLoginUsecase: 'RealtorLoginUsecase',
@@ -136,6 +139,11 @@ export const REAL_ESTATE_TYPES = {
       'ServiceProviderSubscriptionsInitiateTerminateUsecase',
     ServiceProviderSubscriptionsListUsecase:
       'ServiceProviderSubscriptionsListUsecase',
+    ServiceProviderLoginUsecase: 'ServiceProviderLoginUsecase',
+    ServiceProviderApplyForOfferingCategoryUsecase:
+      'ServiceProviderApplyForOfferingCategoryUsecase',
+    ServiceProviderApplicationsListUsecase:
+      'ServiceProviderApplicationsListUsecase',
 
     // system
     SystemCommissionsSplitCommissionUsecase:
